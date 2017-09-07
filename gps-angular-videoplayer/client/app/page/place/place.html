@@ -1,0 +1,53 @@
+<div class="page place-page">
+
+    <header>
+        <mr-place-map place="place"></mr-place-map>
+    </header>
+
+    <div class="row ui-section">
+        <div class="col-md-12">
+            <md-tabs md-selected="tabSelectedIndex" md-dynamic-height md-border-bottom md-autoselect>
+
+                <!-- CHECKINS TAB -->
+                <md-tab label="{{ 'place_checkins' | translate }}">
+                    <div id="user-checkins" class="row" infinite-scroll='checkins.nextPage()' infinite-scroll-disabled='checkins.disabled' infinite-scroll-distance='0'>
+                        <div class="col-md-12 checkin-card" ng-if="checkins.data.length == 0 && !checkins.busy">
+                            <div class="card bg-white">
+                                <div class="card-content">
+                                    <div class="card-title text-center text-truncate"><i class="zmdi zmdi-view-list"></i> {{ 'nodata_found' | translate }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 checkin-card" ng-repeat='checkin in checkins.data'>
+                            <mr-checkin-card checkin="checkin" is-timeline-card="false" template="checkin"></mr-checkin-card>
+                        </div>
+                        <div ng-show="checkins.disabled" class="col-md-12 text-center infinite-scrolling-loader-container">
+                            <md-progress-circular class="md-warn card-loader" md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+                        </div>
+                    </div>
+                </md-tab>
+
+                <!-- SESSIONS TAB -->
+                <md-tab label="{{ 'place_sessions' | translate }}">
+                    <div class="row" infinite-scroll='sessions.nextPage()' infinite-scroll-disabled='sessions.disabled' infinite-scroll-distance='0'>
+                        <div class="col-md-12 session-card" ng-if="sessions.data.length == 0 && !sessions.busy">
+                            <div class="card bg-white">
+                                <div class="card-content">
+                                    <div class="card-title text-center text-truncate"><i class="zmdi zmdi-view-list"></i> {{ 'nodata_found' | translate }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 session-card" ng-repeat='session in sessions.data'>
+                            <mr-session-card session="session" is-timeline-card="false"></mr-session-card>
+                        </div>
+                        <div ng-show="sessions.disabled" class="col-md-12 text-center infinite-scrolling-loader-container">
+                            <md-progress-circular class="md-warn card-loader" md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+                        </div>
+                    </div>
+                </md-tab>
+
+            </md-tabs>
+        </div>
+    </div>
+
+</div>

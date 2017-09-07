@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="61px" height="60px" viewBox="0 0 61 60" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>Dropbox</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Profile-Details" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Profile_Details-Logged-Desktop" sketch:type="MSArtboardGroup" transform="translate(-538.000000, -995.000000)">
+            <g id="External-Accounts-+-Dropbox-+-Buttons-/-Primary-Copy-2-+-Dropbox-Automatic-Up-+-Let-MondayReplay-acc-+-Group" sketch:type="MSLayerGroup" transform="translate(312.000000, 995.000000)">
+                <g id="Dropbox-+-Buttons-/-Primary-Copy-2-+-Dropbox-Automatic-Up-+-Let-MondayReplay-acc" transform="translate(226.000000, 0.000000)" sketch:type="MSShapeGroup">
+                    <g id="Dropbox">
+                        <path d="M0.684971098,30 C0.684971098,13.4314567 14.1358374,0 30.7283237,0 C47.32081,0 60.7716763,13.4314567 60.7716763,30 C60.7716763,46.5685433 47.32081,60 30.7283237,60 C14.1358374,60 0.684971098,46.5685433 0.684971098,30 Z" fill="#3D9AE8"></path>
+                        <path d="M41.1387502,38.5113176 L41.1387502,40.1972642 L30.7041912,46.9556324 L20.5008105,40.1511911 L20.5008105,38.5619774 L23.5525419,40.3675909 L23.8922479,40.5679027 L24.2057645,40.3285006 L30.7978417,35.2775752 L37.3876565,40.3285006 L37.7035041,40.5694773 L38.0440328,40.3653317 L41.1387502,38.5113176 Z" id="Path" fill="#FFFFFF"></path>
+                        <path d="M37.9056823,15.0443676 L30.7978417,20.9962171 L23.8498789,15.0443676 L13.2117021,21.9638205 L20.5376948,27.5288751 L13.2117021,33.0947512 L20.5008105,37.4059741 L23.8499474,39.3865694 L30.7979103,34.0632446 L37.7436107,39.3865694 L41.1387502,37.3522336 L48.2449453,33.0947512 L41.4591912,27.2872138 L48.2449453,21.6407612 L37.9056823,15.0443676 Z M40.8543707,27.0615721 L30.7279809,33.7622976 L20.6645275,27.4313891 L30.8194376,21.3046261 L40.8543707,27.0615721 Z" id="Path" fill="#FFFFFF"></path>
+                        <path d="M60.7716763,30 C60.7716763,46.5685433 47.32081,60 30.7283237,60 C24.5745636,60 18.8529309,58.1525134 14.0894606,54.9827754 L48.5140189,5.81941103 C55.9477819,11.2806503 60.7716763,20.0777973 60.7716763,30 Z" id="reflec" fill-opacity="0.08" fill="#000000"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,48 @@
+<div id="sortable-container" class="page editmovie-page">
+    <div class="row ui-section text-center">
+            <div class="content-page-container-fixed-width">
+                <div class="col-md-12">
+
+                    <div class="row timeline-editor-container" id="timeline_editor">
+                        <div class="col-md-12">
+                            <mr-movie-timeline-editor add-highlight-to-timeline="addHighlightToTimeline"></mr-movie-timeline-editor>
+                        </div>
+                    </div>
+
+                    <div class="row starred-highlight-container" id="starred_highlights">
+                        <div class="col-md-12">
+                            <section class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="title-block">
+                                        <h4 class="pull-left">{{ 'editmovie_starred_highlights' | translate }}</h4>
+                                        <a class="clear-btn pull-right"
+                                           ng-class="{'not-active': starredHighlights.clearBusy || starredHighlights.data.length == 0}"
+                                           ng-disabled="starredHighlights.clearBusy || starredHighlights.data.length == 0"
+                                           ng-click="starredHighlights.clear()">{{ 'editmovie_clear_starred_highlights_btn' | translate }}</a>
+                                    </div>
+                                    <div class="starred-highlight-list" infinite-scroll='starredHighlights.nextPage()' infinite-scroll-disabled='starredHighlights.disabled' infinite-scroll-distance='0'>
+                                        <div class="row">
+                                            <div class="col-md-12" ng-show="starredHighlights.data.length == 0 && !starredHighlights.busy">
+                                                <div class="text-center text-truncate"><i class="zmdi zmdi-view-list"></i> {{ 'nodata_found' | translate }}</div>
+                                            </div>
+                                            <div class="col-md-4 highlight-card" ng-repeat='hl in starredHighlights.data track by hl.id'>
+                                                <mr-highlight-preview
+                                                        highlight="hl" starring-enabled on-starred-toggle="starredHighlights.onHighlightStarredToggle"
+                                                        on-play-click="starredHighlights.showHighlightPreview" on-image-click="starredHighlights.highlightClick">
+                                                </mr-highlight-preview>
+                                            </div>
+                                            <div ng-show="starredHighlights.busy" class="col-md-12">
+                                                <md-progress-circular class="md-warn card-loader" md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

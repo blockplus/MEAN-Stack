@@ -1,0 +1,9 @@
+<%= content_for :title, "Search Results" %>
+
+<%= render_sidebar %>
+<div class="entry">
+  <h2>Results for "<%= params[:q] %>"</h2>
+  <% @results.each do |result| %>
+    <%= render_result result %>
+  <% end %>
+</div>

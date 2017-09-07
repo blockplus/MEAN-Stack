@@ -1,0 +1,106 @@
+.session-page {
+    height: 100%;
+    overflow-y: auto;
+
+    .content-page-container-fixed-width {
+        width: 100%;
+        display: inline-block;
+    }
+    .clip-player-container {
+        width: 100%;
+        display: inline-block;
+        float: left;
+        vertical-align: top;
+    }
+    .clip-playlist-container {
+        width: 100%;
+        display: inline-block;
+        float: right;
+    }
+
+    .highlight-playlist-container,
+    .maps-container,
+    .chart-container {
+        margin-top: 20px;
+    }
+    .map-sync-lock-box {
+        position: absolute;
+        top: 10px;
+        right: 25px;
+        background-color: white;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+        border-radius: 4px;
+    }
+
+    .clip-playlist-container {
+
+        .clip-playlist-list {
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .mr-clip-preview {
+            margin-bottom: 4px;
+        }
+    }
+
+    .highlight-playlist-container {
+        h4 {
+            text-align: left;
+            margin-top: 0px;
+        }
+    }
+
+    @media (min-width: $screen-lg-min) {
+        .content-page-container-fixed-width {
+            width: 950px;
+        }
+        .clip-player-container {
+            width: 676px;
+        }
+        .clip-playlist-container {
+            width: 226px;
+        }
+    }
+
+    @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+        .content-page-container-fixed-width {
+            width: 740px;
+        }
+        .clip-player-container {
+            width: 518px;
+        }
+        .clip-playlist-container {
+            width: 173px;
+        }
+    }
+
+    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+        .content-page-container-fixed-width {
+            width: 540px;
+        }
+        .clip-player-container {
+            width: 375px;
+        }
+        .clip-playlist-container {
+            width: 125px;
+
+            .continue-play-label {
+                font-size: 12px;
+            }
+        }
+    }
+
+    @media (max-width: $screen-xs-max) {
+        padding: 15px 0 0 0;
+
+        .clip-playlist-container {
+            margin-top: 20px;
+
+            .clip-playlist-list {
+                height: 400px;
+                margin-bottom: 0px;
+            }
+        }
+    }
+}

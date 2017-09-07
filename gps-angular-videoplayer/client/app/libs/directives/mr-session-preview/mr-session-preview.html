@@ -1,0 +1,17 @@
+<md-card class="mr-session-preview">
+    <div class="mr-video-container">
+        <a ui-sref="session({sessionId: session.id })">
+            <img ng-src="{{sessionThumbnail(session, 0)}}" class="md-card-image">
+            <span class="mr-video-icon"><i class="material-icons md-36">play_arrow</i></span>
+            <span class="mr-video-title"><p>{{session.name}}</p></span>
+        </a>
+    </div>
+
+    <md-card-content>
+        <p class="mr-video-stats">
+            <span class="pull-left mr-info mr-timetaken">{{session.timetaken | date}}</span>
+            <span class="pull-right mr-info mr-duration">{{session.duration | duration}}"</span>
+            <span class="pull-right mr-info mr-clips"><i class="material-icons md-18">movie</i> {{session.clips}}</span>
+        </p>
+    </md-card-content>
+</md-card>

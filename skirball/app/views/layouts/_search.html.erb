@@ -1,0 +1,7 @@
+<div id="search">
+  <%= form_tag :search, :method => :get, :id => :search_form do %>
+    <%= text_field_tag :q, params[:q], placeholder: "Keyword" %>
+    <a href="#" class="search" onclick="$('#search_form').submit();"></a>
+  <% end %>
+</div>
+

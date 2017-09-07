@@ -1,0 +1,53 @@
+upstream unicorn {
+  server unix:/tmp/unicorn.<%= application %>.sock fail_timeout=0;
+}
+
+server{
+  server_name *.<%= server_domain_name %> <%= server_domain_name %>;
+  rewrite ^ https://<%= server_domain_name %>$request_uri? permanent;
+}
+
+server{
+  listen 443;
+  ssl on;
+  ssl_certificate /etc/nginx/www.<%= server_domain_name %>.crt;
+  ssl_certificate_key /etc/nginx/www.<%= server_domain_name %>.key;
+  server_name *.<%= server_domain_name %>;
+  rewrite ^ https://<%= server_domain_name %>$request_uri? permanent;
+}
+
+server {
+  listen 443 default deferred;
+  server_name <%= server_domain_name %>;
+  root <%= current_path %>/public;
+
+  ssl on;
+  ssl_certificate /etc/nginx/<%= server_domain_name %>.crt;
+  ssl_certificate_key /etc/nginx/<%= server_domain_name %>.key;
+
+  ssl_session_timeout  5m;
+
+  ssl_protocols  SSLv2 SSLv3 TLSv1;
+  ssl_ciphers  HIGH:!aNULL:!MD5;
+  ssl_prefer_server_ciphers   on;
+  
+
+  location ^~ /assets/ {
+    gzip_static on;
+    expires max;
+    add_header Cache-Control public;
+  }
+
+  try_files $uri/index.html $uri @unicorn;
+  location @unicorn {
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header Host $host;
+    proxy_redirect off;
+    proxy_pass http://unicorn;
+  }
+
+  error_page 500 502 503 504 /500.html;
+  client_max_body_size 4G;
+  keepalive_timeout 10;
+}

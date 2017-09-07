@@ -1,0 +1,58 @@
+<div class="nav-wrapper">
+    <ul id="nav"
+        class="nav"
+        data-slim-scroll
+        data-highlight-active>
+        <li ng-show="isAuthenticated" mobile-close-menu>
+            <a md-button aria-label="menu" ui-sref="userfeed">
+                <i class="material-icons">view_stream</i><span>{{ 'menu_item_actions_userfeed' | translate }}</span>
+                <md-tooltip md-direction="right" class="visible-sm visible-md visible-lg">{{ 'menu_item_actions_userfeed' | translate }}</md-tooltip>
+            </a>
+        </li>
+        <li mobile-close-menu>
+            <a md-button aria-label="menu" ui-sref="worldfeed">
+                <i class="material-icons">public</i><span>{{ 'menu_item_actions_worldfeed' | translate }}</span>
+                <md-tooltip md-direction="right" class="visible-sm visible-md visible-lg">{{ 'menu_item_actions_worldfeed' | translate }}</md-tooltip>
+            </a>
+        </li>
+        <!--<li>-->
+        <!--<a md-button aria-label="menu" ui-sref="explore">-->
+        <!--<i class="material-icons">explore</i><span>{{ 'menu_item_explore' | translate }}</span>-->
+        <!--<md-tooltip md-direction="right" class="visible-sm visible-md visible-lg">{{ 'menu_item_explore' | translate }}</md-tooltip>-->
+        <!--</a>-->
+        <!--</li>-->
+        <li ng-show="isAuthenticated" mobile-close-menu>
+            <a md-button aria-label="menu" ui-sref="upload">
+                <i class="material-icons">cloud_upload</i><span>{{ 'menu_item_upload' | translate }}</span>
+                <md-tooltip md-direction="right" class="visible-sm visible-md visible-lg">{{ 'menu_item_upload' | translate }}</md-tooltip>
+            </a>
+        </li>
+        <li>
+            <a md-button aria-label="menu" ui-sref="contest1">
+                <i class="material-icons">star_rate</i><span>{{ 'menu_item_contest' | translate }}</span>
+                <md-tooltip md-direction="right" class="visible-sm visible-md visible-lg">{{ 'menu_item_contest' | translate }}</md-tooltip>
+            </a>
+        </li>
+        <li ng-show="isAuthenticated" mobile-close-menu>
+            <a md-button aria-label="menu" ui-sref="user({userId: userProfile.id })">
+                <i class="material-icons">person</i><span>{{ 'menu_item_profile' | translate }}</span>
+                <md-tooltip md-direction="right" class="visible-sm visible-md visible-lg">{{ 'menu_item_profile' | translate }}</md-tooltip>
+            </a>
+        </li>
+        <li ng-show="isAuthenticated" mobile-close-menu>
+            <a md-button aria-label="menu" ui-sref="editmovie">
+                <i class="material-icons">theaters</i><span>{{ 'menu_item_editmovie' | translate }}</span>
+                <md-tooltip md-direction="right" class="visible-sm visible-md visible-lg">{{ 'menu_item_editmovie' | translate }}</md-tooltip>
+            </a>
+        </li>
+    </ul>
+
+    <div class="nav_footer">
+        <p><a ui-sref="about">{{'menu_item_about'| translate}}</a></p>
+        <p><a ui-sref="team">{{'menu_item_team'| translate}}</a></p>
+        <p><a ui-sref="termsandconditions">Terms &<br>Conditions</a></p>
+        <p><a ui-sref="privacypolicy">Privacy<br>Policy</a></p>
+        <p><a ui-sref="faq">{{'menu_item_faq' | translate}}</a></p>
+        <p class="copyright">MondayReplay<br>© 2016</p>
+    </div>
+</div>

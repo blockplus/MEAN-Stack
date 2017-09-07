@@ -1,0 +1,26 @@
+<%= content_for :title, "Courses" %>
+<div class="view">
+  <%= link_to "View Online Course Guide", :courses, :class => "button course-guide" %>
+  <%= link_to "View Printed Course Guide", :catalog, :class => "button big course-guide" %>
+</div>
+<%= content_for :custom_head do %>
+  <meta property="og:description" content="<%= strip_tags @courses.first.description %>" />
+<% end %>
+
+<%= render "sort_filter" %>
+<%= render_sidebar %>
+<%= render 'sidebar_listings' %>
+
+<div class="entry">
+  <%= render_flash %>
+  <% @courses.each do |course| %>
+    <%= render partial: 'course', locals: { course: course } %>
+    <%= link_to "Read More", course_path(course), :class => "big register button" %>
+    <% if course.open? %>
+      <%= link_to "Register", create_line_item_path(course.id), :class => "button big register" %>
+    <% end %>
+    <div class="clear"></div>
+    <br>
+  <% end %>
+</div>
+

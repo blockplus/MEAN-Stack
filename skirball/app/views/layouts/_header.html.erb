@@ -1,0 +1,13 @@
+<div id="header">
+  <%= render 'layouts/header_top' %>
+  <div id="bottom"> 
+  </div>
+  <div id="bottom2">
+    <div class="content">
+      <%= render 'layouts/search' %>
+      <h1 class="title">
+        <%= content_for?(:title) ? yield(:title) : "Welcome!" %>
+      </h1>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<%= content_for :title, "Request a Guide" %>
+
+<%= render_sidebar %>
+<div class="entry">
+  <%= render_flash %>
+  <%= form_tag :request_guide, :id => :guide_form do %>
+    <%= label_tag :name, "Your Name" %>
+    <%= text_field_tag :name, nil, class: "span4", placeholder: "Your Name" %>
+    <%= label_tag :phone, "Your Phone Number" %>
+    <%= text_field_tag :phone, nil, class: "span4", placeholder: "(555) 555-5555" %>
+    <%= label_tag :email, "Your Email Address" %>
+    <%= text_field :email, nil, class: "span4", placeholder: "name@email.com" %>
+    <%= label_tag :address, "Your Address" %>
+    <%= text_area_tag :address, nil, rows: 5, class: "span4" %>
+    <div class="clear"></div>
+    <%= submit_tag "Request Your Guide" %>
+  <% end %>
+</div>

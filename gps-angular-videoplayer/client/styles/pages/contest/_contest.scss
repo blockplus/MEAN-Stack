@@ -1,0 +1,362 @@
+.contest-page {
+
+    .contest0-header {
+        background-image: url("/images/contest/img_ski_jump.jpg");
+    }
+
+    .contest1-header {
+        background-image: url("/images/contest1/img_contest1_background.jpg");
+    }
+
+    .contest-header {
+        position: relative;
+        background-size: 100%;
+        background-position: 0 -150px;
+        padding: 60px 0px 133px 50px;
+
+        h1 {
+            color: #ffffff;
+            font-size: 60px;
+            width: 500px;
+        }
+
+        .contest-header-subtitle {
+            position: absolute;
+            right: 50px;
+            bottom: 0px;
+            margin: 0 0 20px 0;
+
+            h2 {
+                margin: -10px 0 0 88px;
+                font-size: 16px;
+            }
+        }
+
+        @media (min-width: $screen-md) and (max-width: 1165px) {
+            background-position: 0 -120px;
+            padding-top: 50px;
+
+            h1 {
+                width: 400px;
+                font-size: 50px;
+            }
+        }
+
+        @media (min-width: $screen-sm) and (max-width: $screen-sm-max) {
+            background-position: 0 -100px;
+            padding-top: 30px;
+
+            h1 {
+                width: 350px;
+                font-size: 40px;
+            }
+        }
+
+        @media (min-width: $screen-xs) and (max-width: $screen-xs-max) {
+            background-position: 0 -50px;
+            padding: 5px 0px 110px 20px;
+
+            h1 {
+                width: 250px;
+                font-size: 28px;
+            }
+
+            .contest-header-subtitle {
+                right: 10px;
+            }
+        }
+
+        @media (max-width: $screen-xs) {
+            background-position: 0 -30px;
+            padding: 10px 0px 80px 20px;
+
+            h1 {
+                margin-top: 5px;
+                width: 200px;
+                font-size: 24px;
+            }
+
+            .contest-header-subtitle {
+                right: 20px;
+                text-align: right;
+                margin-bottom: 10px;
+
+                h2 {
+                    margin: -7px 0 0 0px;
+                    font-size: 11px;
+                }
+
+                img {
+                    width: 200px;
+                }
+            }
+        }
+    }
+
+    section {
+        background-color: white;
+        padding: 20px 0 20px 30px;
+
+        img.thumbail-preview {
+            width: 128px;
+            height: 72px;
+        }
+
+        img.contest-prize-img {
+            margin: 20px auto;
+            height: 200px;
+        }
+
+        .contest-section-content {
+            box-sizing: border-box;
+            display: table;
+            width: 100%;
+
+            .contest-section-content-left {
+                float: left;
+                width: 60%;
+            }
+
+            .contest-section-content-right {
+                float: left;
+                width: 40%;
+                padding-left: 30px;
+            }
+        }
+
+        h1.contest-section-title {
+            color: $brand-primary;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        p.contest-section-text {
+            font-size: 30px;
+            line-height: 38px;
+            margin-bottom: 30px;
+        }
+
+        h1.contest-section-footer {
+            color: $brand-danger;
+            font-weight: 400;
+            text-align: center;
+            margin-top: 30px;
+            padding: 0 100px;
+        }
+
+        h2.contest-section-slogan {
+            color: $brand-primary;
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 10px 0px 20px 0;
+        }
+
+        h2.contest-section-ribbon-slogan {
+            background-color: $color-secondary1;
+            color: white;
+            padding: 10px 0;
+            height: 56px;
+
+            .arrow-left{
+                width: 0;
+                height: 0;
+                border-top: 28px solid transparent;
+                border-bottom: 28px solid transparent;
+                border-right:28px solid white;
+                margin-top: -10px;
+            }
+            .arrow-right{
+                width: 0;
+                height: 0;
+                border-top: 28px solid transparent;
+                border-bottom: 28px solid transparent;
+                border-left:28px solid white;
+                margin-top: -10px;
+            }
+        }
+
+        &.candidate-section {
+            background-color: $brand-primary;
+            padding: 20px 20px 20px 30px;
+            color: white;
+            display: table;
+            width: 100%;
+
+            h1 {
+                margin-top: 10px;
+                font-weight: bold;
+            }
+
+            ol li {
+                font-size: 22px;
+            }
+
+            a {
+                color: white;
+                text-decoration: underline;
+                cursor: pointer;
+            }
+
+            .register-btn {
+                height: 162px;
+                width: 162px;
+                border: 3px solid white;
+                font-size: 24px;
+                line-height: 28px;
+                padding: 36px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: $screen-md-max) {
+
+            &.candidate-section {
+                padding: 10px 10px 10px 20px;
+
+                h1 {
+                    font-size: 24px;
+                }
+
+                ol li {
+                    font-size: 16px;
+                }
+
+                .register-btn {
+                    height: 120px;
+                    width: 120px;
+                    font-size: 18px;
+                    line-height: 22px;
+                    padding: 24px;
+                }
+            }
+
+            h2.contest-section-slogan {
+                font-size: 22px;
+            }
+
+            h2.contest-section-ribbon-slogan {
+                padding: 10px 0;
+                height: 46px;
+
+                .arrow-left{
+                    border-top: 23px solid transparent;
+                    border-bottom: 23px solid transparent;
+                    border-right:23px solid white;
+                    margin-top: -10px;
+                }
+                .arrow-right{
+                    border-top: 23px solid transparent;
+                    border-bottom: 23px solid transparent;
+                    border-left:23px solid white;
+                    margin-top: -10px;
+                }
+            }
+
+            p.contest-section-text {
+                font-size: 24px;
+                line-height: 28px;
+            }
+
+            div.contest-section-info {
+                padding: 10px;
+
+                h3 {
+                    margin: 0 0 20px 0;
+                    font-size: 18px;
+                }
+
+                p {
+                    font-size: 16px;
+                    margin-bottom: 10px;
+                }
+            }
+
+            h1.contest-section-footer {
+                margin-top: 30px;
+                padding: 0 80px;
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: $screen-xs-max) {
+
+            padding: 10px 20px;
+
+            &.candidate-section {
+                padding: 10px 10px 10px 20px;
+
+                h1 {
+                    font-size: 20px;
+                    margin-top: 5px;
+                }
+
+                ol {
+                    padding-left: 20px;
+                    li {
+                        font-size: 13px;
+                    }
+                }
+
+                .register-btn {
+                    height: 80px;
+                    width: 80px;
+                    font-size: 13px;
+                    line-height: 14px;
+                    padding: 16px 10px;
+                    margin-left: 10px;
+                    margin-top: 10px;
+                }
+            }
+
+            .contest-section-content {
+
+                .contest-section-content-left {
+                    width: 100%;
+                }
+
+                .contest-section-content-right {
+                    width: 100%;
+                    padding-left: 00px;
+                }
+            }
+
+            h1.contest-section-title {
+                font-size: 28px;
+            }
+
+            p.contest-section-text {
+                font-size: 16px;
+                line-height: 22px;
+            }
+
+            h1.contest-section-footer {
+                margin-top: 20px;
+                padding: 0 10px;
+                font-size: 18px;
+            }
+
+            &#contest-highlights-section{
+                .contest-section-example-img{
+                    margin-top: 40px;
+                }
+            }
+        }
+
+        @media (min-width: $screen-xs) and (max-width: $screen-xs-max) {
+
+            &.candidate-section {
+
+                .register-btn {
+                    height: 70px;
+                    width: 70px;
+                    font-size: 12px;
+                    line-height: 12px;
+                    padding: 14px 10px;
+                    margin-left: 40px;
+                    margin-top: 5px;
+                }
+            }
+        }
+    }
+}

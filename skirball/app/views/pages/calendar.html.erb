@@ -1,0 +1,7 @@
+<%= content_for :title, "Calendar" %>
+<div class="entry calendar">
+  <%= render_flash %>
+  <%= calendar @events, { next_text: "", prev_text: "" } do |event| %>
+    <div><%= link_to event.name, event.path %></div>
+  <% end %>
+</div>

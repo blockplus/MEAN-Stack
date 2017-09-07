@@ -1,0 +1,943 @@
+* {
+  border: 0px;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, ul, li {
+  margin: 0px;
+  padding: 0px;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  list-style-type: none;
+  font-family: 'Muli', sans-serif;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  -webkit-transition: all 0.3s ease-in-out 0.1s;
+  -moz-transition: all 0.3s ease-in-out 0.1s;
+  -ms-transition: all 0.3s ease-in-out 0.1s;
+  -o-transition: all 0.3s ease-in-out 0.1s;
+  transition: all 0.3s ease-in-out 0.1s;
+  color: inherit;
+}
+
+a:hover, a:focus {
+  -webkit-transition: all 0.3s ease-in-out 0.1s;
+  -moz-transition: all 0.3s ease-in-out 0.1s;
+  -ms-transition: all 0.3s ease-in-out 0.1s;
+  -o-transition: all 0.3s ease-in-out 0.1s;
+  transition: all 0.3s ease-in-out 0.1s;
+  outline: none;
+  text-decoration: none;
+  color: #63c1a4;
+}
+
+a:focus {
+  outline: none;
+}
+
+textarea {
+  resize: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+.loader {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-image: url(../img/loading.gif);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #1a1a1a;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1200px;
+  }
+}
+
+h2 {
+  font-size: 45px;
+  line-height: 44px;
+  color: #63c1a4;
+  padding-bottom: 30px;
+}
+
+p {
+  font-size: 18px;
+  line-height: 30px;
+  color: #494949;
+  padding-bottom: 30px;
+}
+
+header {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  z-index: 999;
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&0.93+0,0.93+100;White+to+Transparent */
+  background: -moz-linear-gradient(top,  rgba(255,255,255,0.93) 0%, rgba(255,255,255,0.93) 100%);
+ /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(255,255,255,0.93) 0%,rgba(255,255,255,0.93) 100%);
+ /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(255,255,255,0.93) 0%,rgba(255,255,255,0.93) 100%);
+ /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#edffffff', endColorstr='#edffffff',GradientType=0 );
+ /* IE6-9 */;
+}
+
+.headerFix .logoText {
+  opacity: 0;
+}
+
+.navbar {
+  margin: 0px;
+  border: none;
+  border-radius: 0px;
+  background-color: transparent;
+}
+
+.navbar-default .navbar-brand {
+  padding: 0px;
+  height: auto;
+  line-height: 85px;
+  margin-left: 0px !important;
+}
+
+.navbar-brand > img {
+  display: inline-block;
+}
+
+.logoText {
+  font-size: 28px;
+  line-height: 85px;
+  font-weight: 300;
+  color: #63c1a4;
+  margin-left: 23px;
+  -webkit-transition: all 0.3s ease-in-out 0.1s;
+  -moz-transition: all 0.3s ease-in-out 0.1s;
+  -ms-transition: all 0.3s ease-in-out 0.1s;
+  -o-transition: all 0.3s ease-in-out 0.1s;
+  transition: all 0.3s ease-in-out 0.1s;
+}
+
+.nameText {
+  font-size: 16px;
+  line-height: 70px;
+  font-weight: 300;
+  color: #df4a32;
+  display: inline-block;
+  padding-top: 15px;
+  float: right;
+}
+
+.navbar-default .navbar-nav > li > a {
+  font-size: 16px;
+  text-transform: uppercase;
+  color: #5b5b5b;
+  padding-right: 30px;
+  padding-left: 30px;
+  line-height: 70px;
+  padding-top: 15px;
+  padding-bottom: 0px;
+  background-image: url(../img/active.png);
+  background-repeat: no-repeat;
+  background-position: center 10px;
+  background-size: 15px 0;
+}
+
+.navbar-default .navbar-nav > li > a.current, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  background-color: transparent;
+  color: #5b5b5b;
+  background-size: 15px 24px;
+}
+
+.jumbotron {
+  background-color: transparent;
+  padding: 0px;
+  margin: 0px;
+  border-radius: 0px;
+  position: relative;
+}
+
+.bannerCaption {
+  position: absolute;
+  left: 0px;
+  top: 85px;
+  right: 0px;
+  bottom: 0px;
+}
+
+.bannerText {
+  margin-top: 85px;
+}
+
+.bannerCaption h2 {
+  font-size: 45px;
+  line-height: normal;
+  color: #FFF;
+  padding-bottom: 20px;
+  font-weight: 400;
+}
+
+.bannerApp {
+  margin-left: 36px;
+}
+
+.bannerApp img {
+  margin: 10px;
+}
+
+.bannerMobile {
+  text-align: center;
+}
+
+.section1 {
+  padding-top: 100px;
+  padding-bottom: 400px;
+  background-image: url(../img/about-bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+}
+
+.arrowCircle {
+  background-color: #88d0ba;
+  border-radius: 50%;
+  width: 68px;
+}
+
+.mImg1 {
+  margin-top: -45px;
+  text-align: center;
+}
+
+.section2 {
+  background-color: #63c1a4;
+  padding-top: 100px;
+}
+
+.section2 ul li {
+  font-size: 20px;
+  line-height: 27px;
+  color: #FFFFFF;
+  padding-bottom: 35px;
+  position: relative;
+  padding-left: 95px;
+}
+
+.section2 ul li img {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+
+.appImg {
+  margin-left: 95px;
+}
+
+.appImg img {
+  margin-right: 20px;
+}
+
+.mImg2 {
+  margin-top: -40px;
+  text-align: center;
+}
+
+.section3 {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+.section3 h3 {
+  font-size: 21px;
+  line-height: 30px;
+  color: #494949;
+  padding-bottom: 30px;
+}
+
+.section3 ul li {
+  font-size: 20px;
+  line-height: 27px;
+  color: #4c4c4c;
+  padding-bottom: 30px;
+  position: relative;
+  padding-left: 54px;
+  font-style: italic;
+  background-image: url(../img/tick.png);
+  background-repeat: no-repeat;
+  background-position: left top;
+  padding-top: 5px;
+}
+
+.btn-primary {
+  font-size: 32px;
+  line-height: normal;
+  text-transform: uppercase;
+  color: #FFF;
+  background-color: #63c1a4;
+  padding-top: 11px;
+  padding-right: 38px;
+  padding-bottom: 11px;
+  padding-left: 38px;
+  border-top-style: none;
+  border-right-style: none;
+  border-bottom-style: none;
+  border-left-style: none;
+  border-radius: 40px;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  color: #FFF;
+  background-color: #3E997D;
+}
+
+.section4 {
+  background-attachment: fixed;
+  background-image: url(../img/price-bg.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding-top: 124px;
+  padding-bottom: 124px;
+}
+
+.priceBox {
+  background-color: #FFF;
+  text-align: center;
+  border-radius: 10px;
+  min-height: 280px;
+  padding-top: 30px;
+  padding-right: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  max-width: 280px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.priceBox h3 {
+  font-size: 28px;
+  line-height: normal;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #4c4b4b;
+  margin-bottom: 15px;
+  background-image: url(../img/border.jpg);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  padding-bottom: 10px;
+}
+
+.priceBox h4 {
+  font-size: 56px;
+  line-height: normal;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #4c4b4b;
+  margin-bottom: 20px;
+}
+
+.priceBox h4 sup, .priceBox h4 sub {
+  font-size: 22px;
+  font-weight: 300;
+}
+
+.priceBox h5 {
+  font-size: 16px;
+  line-height: normal;
+  font-weight: 300;
+  color: #4c4b4b;
+  padding-bottom: 20px;
+}
+
+.priceBox .btn {
+  font-size: 26px;
+  line-height: normal;
+  text-transform: uppercase;
+  color: #FFF;
+  background-color: #63c1a4;
+  padding-top: 6px;
+  padding-right: 38px;
+  padding-bottom: 6px;
+  padding-left: 38px;
+  border-top-style: none;
+  border-right-style: none;
+  border-bottom-style: none;
+  border-left-style: none;
+  border-radius: 4px;
+}
+
+.priceBox .btn:hover, .priceBox .btn:focus {
+  color: #FFF;
+  background-color: #3E997D;
+}
+
+.signUpBox {
+  padding: 30px;
+  background-color: #FFF;
+  border-radius: 4px;
+  margin-top: 40px;
+}
+
+.signUpBox .row {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.signUpBox .col-xs-1, .signUpBox .col-sm-1, .signUpBox .col-md-1, .signUpBox .col-lg-1, .signUpBox .col-xs-2, .signUpBox .col-sm-2, .signUpBox .col-md-2, .signUpBox .col-lg-2, .signUpBox .col-xs-3, .signUpBox .col-sm-3, .signUpBox .col-md-3, .signUpBox .col-lg-3, .signUpBox .col-xs-4, .signUpBox .col-sm-4, .signUpBox .col-md-4, .signUpBox .col-lg-4, .signUpBox .col-xs-5, .signUpBox .col-sm-5, .signUpBox .col-md-5, .signUpBox .col-lg-5, .signUpBox .col-xs-6, .signUpBox .col-sm-6, .signUpBox .col-md-6, .signUpBox .col-lg-6, .signUpBox .col-xs-7, .signUpBox .col-sm-7, .signUpBox .col-md-7, .signUpBox .col-lg-7, .signUpBox .col-xs-8, .signUpBox .col-sm-8, .signUpBox .col-md-8, .signUpBox .col-lg-8, .signUpBox .col-xs-9, .signUpBox .col-sm-9, .signUpBox .col-md-9, .signUpBox .col-lg-9, .signUpBox .col-xs-10, .signUpBox .col-sm-10, .signUpBox .col-md-10, .signUpBox .col-lg-10, .signUpBox .col-xs-11, .signUpBox .col-sm-11, .signUpBox .col-md-11, .signUpBox .col-lg-11, .signUpBox .col-xs-12, .signUpBox .col-sm-12, .signUpBox .col-md-12, .signUpBox .col-lg-12 {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.signUpBox .form-control {
+  font-size: 22px;
+  line-height: normal;
+  font-weight: 400;
+  color: #727272;
+  border: 1px solid #aeaeae;
+  height: auto;
+  padding-top: 11px;
+  padding-right: 18px;
+  padding-bottom: 11px;
+  padding-left: 18px;
+  border-radius: 10px;
+}
+
+.signUpBox .btn {
+  margin-top: 10px;
+}
+
+footer {
+  padding-top: 45px;
+  padding-bottom: 15px;
+  text-align: center;
+}
+
+footer h4 {
+  font-size: 55px;
+  line-height: normal;
+  font-weight: 300;
+  color: #63c1a4;
+  padding-bottom: 10px;
+}
+
+footer figure {
+  margin-bottom: 35px;
+}
+
+footer p {
+  font-size: 16px;
+  font-weight: 300;
+  padding-bottom: 0px;
+  color: #4f4f4f;
+}
+
+.loginPop .form-control {
+  font-size: 22px;
+  line-height: normal;
+  font-weight: 400;
+  color: #727272;
+  border: 1px solid #aeaeae;
+  height: auto;
+  padding-top: 11px;
+  padding-right: 18px;
+  padding-bottom: 11px;
+  padding-left: 18px;
+  border-radius: 10px;
+}
+
+.loginPop .modal-body {
+  padding-top: 35px;
+  padding-right: 50px;
+  padding-bottom: 30px;
+  padding-left: 50px;
+}
+
+.loginPop .modal-body .btn-primary {
+  font-size: 16px;
+}
+
+.forGot {
+  margin-top: 11px;
+  font-size: 16px;
+}
+
+.loginPop .modal-footer {
+  background-color: #ccebe1;
+  padding-top: 25px;
+  padding-right: 50px;
+  padding-bottom: 15px;
+  padding-left: 50px;
+  border-top-style: none;
+  border-right-style: none;
+  border-bottom-style: none;
+  border-left-style: none;
+  border-radius: 0 0 6px 6px;
+}
+
+.loginPop .modal-footer .btn {
+  width: 100%;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  font-size: 27px;
+  margin-left: 0px !important;
+  padding-top: 13px;
+  padding-right: 15px;
+  padding-bottom: 13px;
+  padding-left: 15px;
+  line-height: normal;
+}
+
+.loginPop .modal-footer .btn-danger {
+  background-color: #df4a32;
+}
+
+.loginPop .modal-footer .btn-danger:hover, .loginPop .modal-footer .btn-danger:focus {
+  background-color: #B6341D;
+}
+
+.loginPop .modal-dialog {
+  margin: 10% auto;
+}
+
+@media (min-width: 768px) {
+  .loginPop .modal-dialog {
+    width: 470px;
+    margin: 10% auto;
+  }
+}
+
+.innerPage {
+  padding-top: 126px;
+}
+
+.locationNav {
+  margin-bottom: 20px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #e3e3e3;
+}
+
+.locationNav ul li {
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 300;
+  color: #707070;
+  border-right-width: 1px;
+  border-right-style: solid;
+  border-right-color: #c7c7c7;
+  text-align: center;
+}
+
+.locationNav ul li:last-child {
+  border: none;
+}
+
+.locationNav ul li .fa {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 40px;
+  color: #c4c4c4;
+  -webkit-transition: all 0.3s ease-in-out 0.1s;
+  -moz-transition: all 0.3s ease-in-out 0.1s;
+  -ms-transition: all 0.3s ease-in-out 0.1s;
+  -o-transition: all 0.3s ease-in-out 0.1s;
+  transition: all 0.3s ease-in-out 0.1s;
+}
+
+.locationNav ul li a {
+  padding-top: 11px;
+  padding-right: 38px;
+  padding-bottom: 11px;
+  padding-left: 38px;
+  display: block;
+}
+
+.locationNav ul li a:hover, .locationNav ul li a:focus, .locationNav ul li.active a, .locationNav ul li a:hover .fa, .locationNav ul li a:focus .fa, .locationNav ul li.active .fa {
+  color: #63c1a4;
+}
+
+.locationBanner {
+  margin-bottom: 50px;
+}
+
+.locationBanner h2 {
+  font-size: 28px;
+  font-weight: 300;
+  padding-bottom: 18px;
+  padding-left: 40px;
+  line-height: normal;
+}
+
+.locationBannerImg {
+  margin-bottom: 40px;
+}
+
+.locationThumb ul li {
+  display: inline-block;
+  float: left;
+  width: 20%;
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.locationForm {
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: #f1f1f1;
+  margin-bottom: 40px;
+  padding-bottom: 30px;
+}
+
+.locationForm .form-control {
+  font-size: 18px;
+  line-height: normal;
+  font-weight: 400;
+  color: #727272;
+  border: 1px solid #d6d6d6;
+  height: auto;
+  padding-top: 7px;
+  padding-right: 15px;
+  padding-bottom: 7px;
+  padding-left: 15px;
+  border-radius: 10px;
+  box-shadow: none;
+}
+
+.addLocation {
+  position: relative;
+}
+
+.addBtn {
+  text-align: center;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+}
+
+.innerHeader {
+  background-color: #FFF;
+  background-image: url(../img/inner-header.jpg);
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+@media (max-width: 1200px) {
+  .logoText {
+    font-size: 20px;
+  }
+
+  .navbar-default .navbar-nav > li > a {
+    padding: 15px 20px 0;
+  }
+
+  .bannerCaption h2 {
+    font-size: 40px;
+  }
+
+  .bannerApp {
+    margin-left: 0;
+  }
+
+  .bannerApp img {
+    height: 50px;
+    margin: 5px;
+  }
+
+  .bannerMobile img {
+    height: 380px;
+  }
+}
+
+@media (max-width: 992px) {
+
+  h2 {
+    font-size: 30px;
+    line-height: 32px;
+    padding-bottom: 20px;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 22px;
+    padding-bottom: 30px;
+  }
+
+  .logoText {
+    font-size: 12px;
+  }
+
+  .navbar-default .navbar-nav > li > a {
+    padding: 15px 10px 0;
+    font-size: 13px;
+  }
+
+  .bannerMobile img {
+    height: 260px;
+  }
+
+  .bannerCaption {
+    top: 120px;
+  }
+
+  .slideImg {
+    overflow: hidden;
+  }
+
+  .slideImg img {
+    position: relative;
+    left: 50%;
+    top: 0%;
+    -ms-transform: translateY(-0%) translateX(-50%);
+    -webkit-transform: translateY(-0%) translateX(-50%);
+    transform: translateY(-0%) translateX(-50%);
+    max-width: inherit;
+    height: 700px;
+  }
+
+  .bannerText {
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .bannerCaption h2 {
+    font-size: 30px;
+  }
+
+  .section1 {
+    padding-bottom: 400px;
+    padding-top: 60px;
+    text-align: center;
+  }
+
+  .mImg1 {
+    margin-top: 0px;
+    width: 160px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+  }
+
+  .section2 {
+    padding-top: 60px;
+  }
+
+  .section2 ul li {
+    font-size: 16px;
+    line-height: 22px;
+    padding-bottom: 25px;
+    padding-left: 55px;
+  }
+
+  .section2 ul li img {
+    width: 35px;
+  }
+
+  .appImg {
+    margin-bottom: 40px;
+    margin-left: 55px;
+  }
+
+  .mImg2 {
+    margin-top: 0;
+    width: 120px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section3 {
+    padding-bottom: 60px;
+    padding-top: 60px;
+  }
+
+  .section3 h3 {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  .section3 ul li {
+    font-size: 16px;
+    line-height: 22px;
+    padding-bottom: 30px;
+    padding-left: 48px;
+    padding-top: 5px;
+  }
+
+  .btn-primary {
+    font-size: 20px;
+  }
+
+  .section4 {
+    padding-bottom: 60px;
+    padding-top: 60px;
+  }
+
+  .priceBox {
+    max-width: 270px;
+    min-height: 250px;
+    padding: 25px 10px 10px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .priceBox h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+
+  .priceBox h4 {
+    font-size: 45px;
+    margin-bottom: 15px;
+  }
+
+  .priceBox h4 sup, .priceBox h4 sub {
+    font-size: 17px;
+  }
+
+  .priceBox .btn {
+    font-size: 18px;
+  }
+
+  footer h4 {
+    color: #63c1a4;
+    font-size: 30px;
+    font-weight: 300;
+    line-height: normal;
+    padding-bottom: 10px;
+  }
+}
+
+@media (max-width: 767px) {
+
+  .logoText {
+    display: none;
+  }
+
+  .navbar-default .navbar-brand {
+    line-height: 60px;
+    margin-left: 15px !important;
+    width: 125px;
+  }
+
+  .navbar-toggle {
+    margin-top: 13px;
+    border-radius: 0px;
+  }
+
+  .navbar-default .navbar-nav > li > a {
+    background-image: none;
+    padding-bottom: 6px;
+    text-align: center;
+    line-height: inherit;
+    padding-top: 6px;
+  }
+
+  .bannerCaption h2 {
+    font-size: 23px;
+  }
+
+  .bannerCaption h2 br {
+    display: none;
+  }
+
+  footer h4 {
+    font-size: 20px;
+  }
+
+  .navbar-default .navbar-nav > li > a.current, .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    color: #63c1a4;
+  }
+
+  .signUpBox .form-control {
+    font-size: 15px;
+  }
+
+  .loginPop .modal-dialog {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 360px;
+  }
+
+  .forGot {
+    font-size: 13px;
+  }
+
+  .loginPop .modal-body {
+    padding: 30px 25px 20px;
+  }
+
+  .loginPop .modal-footer {
+    padding: 25px 30px 15px;
+  }
+
+  .loginPop .form-control {
+    font-size: 15px;
+  }
+
+  .loginPop .modal-footer .btn {
+    font-size: 20px;
+  }
+
+  .innerPage {
+    padding-top: 90px;
+  }
+
+  .locationNav ul li {
+    border-right: medium none;
+    display: block;
+    font-size: 15px;
+  }
+
+  .locationNav ul li .fa {
+    font-size: 24px;
+  }
+
+  .locationBanner h2 {
+    font-size: 22px;
+    padding-left: 0px;
+    text-align: center;
+  }
+
+  .locationBannerImg {
+    margin-bottom: 20px;
+  }
+
+  .locationThumb ul li {
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+
+  .nameText {
+    display: block;
+    float: none;
+    line-height: normal;
+    padding-bottom: 15px;
+    text-align: center;
+    padding-top: 0px;
+  }
+}

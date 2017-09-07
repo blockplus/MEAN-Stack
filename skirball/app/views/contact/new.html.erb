@@ -1,0 +1,16 @@
+<%= content_for :title, "Contact Us" %>
+
+<%= render_sidebar %>
+<div class="entry">
+  <%= render_flash %>
+  <%= form_tag :contact, id: :contact_form do %>
+    <%= label_tag :name, "Your Name" %>
+    <%= text_field_tag :name, nil, class: "span4", placeholder: "Your Name" %>
+    <%= label_tag :email, "Your Email" %>
+    <%= email_field_tag :email, nil, class: "span4", placeholder: "Your Email" %>
+    <%= label_tag :message, "Your Message" %>
+    <%= text_area_tag :message, nil, rows: 10, class: "span6" %>
+    <div class="clear"></div>
+    <%= submit_tag "Send Your Message" %>
+  <% end %>
+</div>

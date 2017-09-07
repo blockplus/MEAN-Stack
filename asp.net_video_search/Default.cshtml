@@ -1,0 +1,564 @@
+﻿@using Google.Apis.Services;
+@using Google.Apis.YouTube.v3;
+@using Google.Apis.YouTube.v3.Data;
+
+@{
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "Online Search Video";
+        
+    var youtubeService = new YouTubeService(new BaseClientService.Initializer()
+    {
+        ApiKey = @System.Configuration.ConfigurationManager.AppSettings["youtubeApiKey"],
+    });
+
+
+    VideoListResponse videoListResponse = null;
+    var videoListRequest = youtubeService.Videos.List("contentDetails,snippet,statistics");
+
+    videoListRequest.Chart = VideosResource.ListRequest.ChartEnum.MostPopular; // Top Trending
+    videoListRequest.MaxResults = 10;
+
+    videoListResponse = videoListRequest.Execute();
+
+}
+
+
+
+
+<!-- Page Content -->
+<div class="container-fluid rel-div slider_div">
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            @*<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>*@
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active">
+                <img class="slide-image" src="~/Images/slider1.jpg" alt="">
+            </div>
+            @*<div class="item">
+                <img class="slide-image" src="~/Images/slider1.jpg" alt="">
+            </div>
+            <div class="item">
+                <img class="slide-image" src="~/Images/slider1.jpg" alt="">
+            </div>*@
+        </div>
+        @*<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"></a>
+        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next"></a>*@
+    </div>
+    <div class="col-md-12 col-xs-12 abs-pos">
+        <form action="~/search">
+            <div class="input-group srchbtn">
+                <span class="input-group-addon"><img src="~/Images/label-img.png"></span>
+                <input type="text" name="query" class="form-control" placeholder="Search Music, Movies,Sports, Feed, News, Cars and more......" >
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search form-control-feedback"></span></button>
+                </span>
+            </div><!-- /input-group -->
+        </form>
+    </div>
+</div>
+
+<div class="container-fluid rel-div bgwhite-div full-border">
+    <div class="container">
+        <div class="row">
+            <div class="first-heading">
+                <div class="ds pull-left">
+                    <h1>Top Trending</h1>
+                </div>
+                <div class="cat pull-right">
+                    <a href="/search?query=movie trailers" class="navbar-link ">view category</a>
+                </div>
+            </div>            
+            <div class="slide-1 col-md-12">
+            @for (var i = 0; i < videoListResponse.Items.Count; i++)
+            {
+                var item = videoListResponse.Items[i];
+                var watchCount = item.Statistics.ViewCount;
+
+                String watchCountStr = watchCount.ToString();
+                
+                if (watchCount > 1000)
+                {
+                    watchCountStr = Math.Round((double)watchCount / 1000, 1).ToString() + "K";
+                }
+
+                var title = (item.Snippet.Title.Length > 20 ? item.Snippet.Title.Substring(0, 20) + "..." : item.Snippet.Title);
+                var dateDifference = Global.GetAgoString(item.Snippet.PublishedAt.Value);
+
+                if (dateDifference != "Today")
+                {
+                    dateDifference += " ago";
+                }
+
+                <div class="slide col-md-3">
+                    <div class="thumbnail">
+                        <span class="thumb-img">
+                            <a href="/video?id=@item.Id"><img src="@item.Snippet.Thumbnails.High.Url" alt=""></a>
+                        </span>
+                        <div class="caption">
+                            <span class="second-img">
+                                <img src="~/Images/icon-1.png" alt="">
+                            </span>
+                            <h6><a href="/video?id=@item.Id">@title</a> </h6>
+                            <p>submitted @dateDifference ago by <span class="auth">@item.Snippet.ChannelTitle</span></p>
+                            <div class="first-vide-sec">
+                                <label class="labl1">User</label>
+                                <span class="labl2">@watchCountStr watched</span>
+                            </div>                            
+                        </div>
+                    </div>
+                </div>
+            }                
+            </div>
+        </div><!--row-->
+    </div>
+    <hr class="no-margin-bottom"/>
+</div>
+<!-- /.container -->
+
+@{
+
+    // Music Category
+    var playlistItemsRequest = youtubeService.PlaylistItems.List("snippet");
+
+    playlistItemsRequest.PlaylistId = "PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI";// this is the playlist of music
+    playlistItemsRequest.MaxResults = 10;
+
+    var playlistItemsResponse = playlistItemsRequest.Execute();
+}
+
+<div class="container-fluid divbg" id="music">
+    <div class="container">
+        <div class="row">
+            <div class="first-heading">
+                <div class="ds pull-left">
+                    <h1><img src="~/Images/music-main.png">Music</h1>
+                </div>
+                <div class="cat pull-right">
+                    <a href="/search?query=music videos" class="navbar-link ">view category</a>
+                </div>
+            </div>
+
+            <div class="slide-2 col-md-12">                
+            @for (var i = 0; i < playlistItemsResponse.Items.Count; i++)
+            {
+                var item = playlistItemsResponse.Items[i];
+                //var watchCount = item.Statistics.ViewCount;
+
+                //String watchCountStr = watchCount.ToString();                
+
+                //if (watchCount > 1000)
+                //{
+                //    watchCountStr = Math.Round((double)watchCount / 1000, 1).ToString() + "K";
+                //}
+
+                var title = (item.Snippet.Title.Length > 20 ? item.Snippet.Title.Substring(0, 20) + "..." : item.Snippet.Title);
+                var dateDifference = Global.GetAgoString(item.Snippet.PublishedAt.Value);
+
+                if (dateDifference != "Today")
+                {
+                    dateDifference += " ago";
+                }
+
+                <div class="slide col-md-3">
+                    <div class="thumbnail">
+                        <span class="thumb-img">
+                            <a href="/video?id=@item.Snippet.ResourceId.VideoId"><img src="@item.Snippet.Thumbnails.High.Url" alt=""></a>
+                        </span>
+                        <div class="caption">
+                            <span class="second-img">
+                                <img src="~/Images/icon-1.png" alt="">
+                            </span>
+                            <h6><a href="/video?id=@item.Snippet.ResourceId.VideoId">@title</a> </h6>
+                            <p>submitted @dateDifference by <span class="auth">@item.Snippet.ChannelTitle</span></p>                            
+                        </div>
+                    </div>
+                </div>
+            }    
+            </div>
+            <hr class="no-margin-bottom" />
+        </div>
+    </div>
+</div>
+
+@{
+    // Movies Category
+    var playListResponse = Global.searchVideos("latest movie trailers", 10);
+}
+
+<div class="container-fluid divbg" id="movies">
+    <div class="container">
+        <div class="row">
+            <div class="first-heading">
+                <div class="ds pull-left">
+                    <h1><img src="~/Images/main-video.png">Movies</h1>
+                </div>
+                <div class="cat pull-right">
+                    <a href="/search?query=latest movie trailers" class="navbar-link ">view category</a>
+                </div>
+            </div>
+            <div class="slide-3">
+            @for (var i = 0; i < playListResponse.Items.Count; i++)
+            {
+                var item = playListResponse.Items[i];
+
+                var title = (item.Snippet.Title.Length > 20 ? item.Snippet.Title.Substring(0, 20) + "..." : item.Snippet.Title);
+                var dateDifference = Global.GetAgoString(item.Snippet.PublishedAt.Value);
+
+                if (dateDifference != "Today")
+                {
+                    dateDifference += " ago";
+                }
+
+                <div class="slide col-md-3">
+                    <div class="thumbnail">
+                        <span class="thumb-img">
+                            <a href="/video?id=@item.Id.VideoId"><img src="@item.Snippet.Thumbnails.High.Url" alt=""></a>
+                        </span>
+                        <div class="caption">
+                            <span class="second-img">
+                                <img src="~/Images/icon-1.png" alt="">
+                            </span>
+                            <h6><a href="/video?id=@item.Id.VideoId">@title</a> </h6>
+                            <p>submitted @dateDifference by <span class="auth">@item.Snippet.ChannelTitle</span></p>
+                        </div>
+                    </div>
+                </div>
+            }       
+            </div>
+        </div>
+    </div>
+    <hr class="no-margin-bottom"/>
+</div>
+
+<!--    -->
+<div class="container-fluid bgwhite-div">
+    <div class="container">
+        <div class="row">
+            <div class="centr-sec">
+                <div class="col-md-6">
+                    <div class="adv-img">                        
+                        @RenderPage("Ads/300_250TopHomepageLeft.cshtml")
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="adv-img">
+                        @RenderPage("Ads/300_250TopHomepageRight.cshtml")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="no-margin-bottom" />
+</div>
+
+@{
+    // Sports Category
+    playlistItemsRequest = youtubeService.PlaylistItems.List("snippet");
+
+    playlistItemsRequest.PlaylistId = "PL4Yp_5ExVAU0W71_e5qQmRiIHmE1rdQFu";// this is the playlist of Sports
+    playlistItemsRequest.MaxResults = 10;
+
+    playlistItemsResponse = playlistItemsRequest.Execute();
+}
+<div class="container-fluid divbg" id="sports">
+    <div class="container">
+        <div class="row">
+            <div class="first-heading">
+                <div class="ds pull-left">
+                    <h1><img src="~/Images/sports-main.png">Sports</h1>
+                </div>
+                <div class="cat pull-right">
+                    <a href="/search?query=latest sports highlights" class="navbar-link ">view category</a>
+                </div>
+            </div>
+            <div class="slide slide-4">
+            @for (var i = 0; i < playlistItemsResponse.Items.Count; i++)
+            {
+                var item = playlistItemsResponse.Items[i];
+
+                if (@item.Snippet.Thumbnails == null)
+                {
+                    continue;
+                }
+
+                var title = (item.Snippet.Title.Length > 20 ? item.Snippet.Title.Substring(0, 20) + "..." : item.Snippet.Title);
+                var dateDifference = Global.GetAgoString(item.Snippet.PublishedAt.Value);
+
+                if (dateDifference != "Today")
+                {
+                    dateDifference += " ago";
+                }
+
+                <div class="slide col-md-3">
+                    <div class="thumbnail">
+                        <span class="thumb-img">
+                            <a href="/video?id=@item.Snippet.ResourceId.VideoId"><img src="@item.Snippet.Thumbnails.High.Url" alt=""></a>
+                        </span>
+                        <div class="caption">
+                            <span class="second-img">
+                                <img src="~/Images/icon-1.png" alt="">
+                            </span>
+                            <h6><a href="/video?id=@item.Snippet.ResourceId.VideoId">@title</a> </h6>
+                            <p>submitted @dateDifference by <span class="auth">@item.Snippet.ChannelTitle</span></p>
+                        </div>
+                    </div>
+                </div>
+            }
+            </div>
+            <hr class="no-margin-bottom" />
+        </div>
+    </div>
+</div>
+
+@{
+    // Food Category
+    playlistItemsRequest = youtubeService.PlaylistItems.List("snippet");
+
+    playlistItemsRequest.PlaylistId = "PLLyMt4F3FLiEVT5DNUwqfMT81S_ffKsqT";// this is the playlist of Food
+    playlistItemsRequest.MaxResults = 10;
+
+    playlistItemsResponse = playlistItemsRequest.Execute();
+}
+
+<div class="container-fluid divbg" id="food">
+    <div class="container">
+        <div class="row">
+            <div class="first-heading">
+                <div class="ds pull-left">
+                    <h1><img src="~/Images/food-main.png">Food</h1>
+                </div>
+                <div class="cat pull-right">
+                    <a href="/search?query=best of tasty collection" class="navbar-link ">view category</a>
+                </div>
+            </div>
+            <div class="slide-4">
+            @for (var i = 0; i < playlistItemsResponse.Items.Count; i++)
+            {
+                var item = playlistItemsResponse.Items[i];
+
+                var title = (item.Snippet.Title.Length > 20 ? item.Snippet.Title.Substring(0, 20) + "..." : item.Snippet.Title);
+                var dateDifference = Global.GetAgoString(item.Snippet.PublishedAt.Value);
+
+                if (dateDifference != "Today")
+                {
+                    dateDifference += " ago";
+                }
+
+                <div class="slide col-md-3">
+                    <div class="thumbnail">
+                        <span class="thumb-img">                            
+                            <a href="/video?id=@item.Snippet.ResourceId.VideoId"><img src="@item.Snippet.Thumbnails.High.Url" alt=""></a>
+                        </span>
+                        <div class="caption">
+                            <span class="second-img">
+                                <img src="~/Images/icon-1.png" alt="">
+                            </span>
+                            <h6><a href="/video?id=@item.Snippet.ResourceId.VideoId">@title</a> </h6>
+                            <p>submitted @dateDifference by <span class="auth">@item.Snippet.ChannelTitle</span></p>
+                        </div>
+                    </div>
+                </div>
+            }
+            </div>
+        </div>
+
+    </div>
+    <hr class="margin-10" />
+</div>
+
+
+<div class="container-fluid bgwhite-div">
+    <div class="container">
+        <div class="row">
+            <div class="centr-sec">
+                <div class="col-md-6">
+                    <div class="adv-img">
+                        @RenderPage("Ads/300_250BottomHomepageLeft.cshtml")
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="adv-img">
+                        @RenderPage("Ads/300_250BottomHomepageRight.cshtml")
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <hr class="no-margin" />
+</div>
+
+@{
+    // News Category
+    playlistItemsRequest = youtubeService.PlaylistItems.List("snippet,ContentDetails");
+
+    playlistItemsRequest.PlaylistId = "PL3ZQ5CpNulQldOL3T8g8k1mgWWysJfE9w";// this is the playlist of News
+    playlistItemsRequest.MaxResults = 10;
+
+    playlistItemsResponse = playlistItemsRequest.Execute();
+}
+
+<div class="container-fluid divbg" id="news">
+    <div class="container">
+        <div class="row">
+            <div class="first-heading">
+                <div class="ds pull-left">
+                    <h1><img src="~/Images/news-main.png">News</h1>
+                </div>
+                <div class="cat pull-right">
+                    <a href="/search?query=latest cnn news" class="navbar-link ">view category</a>
+                </div>
+            </div>
+            <div class="slide-3">
+            @for (var i = 0; i < playlistItemsResponse.Items.Count; i++)
+            {
+                var item = playlistItemsResponse.Items[i];
+
+                var title = (item.Snippet.Title.Length > 20 ? item.Snippet.Title.Substring(0, 20) + "..." : item.Snippet.Title);
+                var dateDifference = Global.GetAgoString(item.Snippet.PublishedAt.Value);
+
+                if (dateDifference != "Today")
+                {
+                    dateDifference += " ago";
+                }
+
+                //if (@item.Status == null)
+                //{
+                //    continue;
+                //}
+                <div class="slide col-md-3">
+                    <div class="thumbnail">
+                        <span class="thumb-img">
+                            <a href="/video?id=@item.Snippet.ResourceId.VideoId"><img src="@item.Snippet.Thumbnails.High.Url" alt=""></a>
+                        </span>
+                        <div class="caption">
+                            <span class="second-img">
+                                <img src="~/Images/icon-1.png" alt="">
+                            </span>
+                            <h6><a href="/video?id=@item.Snippet.ResourceId.VideoId">@title</a> </h6>
+                            <p>submitted @dateDifference by <span class="auth">@item.Snippet.ChannelTitle</span></p>
+                        </div>
+                    </div>
+                </div>
+            }    
+            </div>
+        </div>
+    </div>
+    <hr class="no-margin-bottom" />
+</div>
+
+@{
+    // Cars Category
+    playListResponse = Global.searchVideos("Top sports cars", 10);
+}
+
+<div class="container-fluid divbg" id="cars">
+    <div class="container">
+        <div class="row">
+            <div class="first-heading">
+                <div class="ds pull-left">
+                    <h1><img src="~/Images/car-main.png">Cars</h1>
+                </div>
+                <div class="cat pull-right">
+                    <a href="/search?query=top sports cars" class="navbar-link ">view category</a>
+                </div>
+            </div>
+            <div class="slide-3">
+            @for (var i = 0; i < playListResponse.Items.Count; i++)
+            {
+                var item = playListResponse.Items[i];
+
+                var title = (item.Snippet.Title.Length > 20 ? item.Snippet.Title.Substring(0, 20) + "..." : item.Snippet.Title);
+                var dateDifference = Global.GetAgoString(item.Snippet.PublishedAt.Value);
+
+                if (dateDifference != "Today")
+                {
+                    dateDifference += " ago";
+                }
+
+                <div class="slide col-md-3">
+                    <div class="thumbnail">
+                        <span class="thumb-img">
+                            <a href="/video?id=@item.Id.VideoId"><img src="@item.Snippet.Thumbnails.High.Url" alt=""></a>
+                        </span>
+                        <div class="caption">
+                            <span class="second-img">
+                                <img src="~/Images/icon-1.png" alt="">
+                            </span>
+                            <h6><a href="/video?id=@item.Id.VideoId">@title</a> </h6>
+                            <p>submitted @dateDifference by <span class="auth">@item.Snippet.ChannelTitle</span></p>
+                        </div>
+                    </div>
+                </div>
+            }        
+            </div>
+        </div>
+    </div>
+    <hr class="no-margin-top" />
+</div>
+<div class="container-fluid divbg1">
+    <div class="container">
+        <div class="row">
+            <div class="first-heading">
+                <div class="ds pull-left">
+                    <h2>BROWSE ALL CATEGORY</h2>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-4 xswidth">
+                <div class="thumbnail img11">
+                    <span class="thumb-img">
+                        <a href="#music"><img src="/Images/music.png" alt=""></a>
+                        <b> Music </b>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-4 xswidth" >
+                <div class="thumbnail img12">
+                    <span class="thumb-img">
+                        <a href="#movies"><img src="/Images/camera.png" alt=""></a>
+                        <b> Movies </b>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-4 xswidth" >
+                <div class="thumbnail img13">
+                    <span class="thumb-img">
+                        <a href="#sports"><img src="/Images/ex.png" alt=""></a>
+                        <b> Sports </b>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-4 xswidth" >
+                <div class="thumbnail img13">
+                    <span class="thumb-img">
+                        <a href="#food"><img src="/Images/burger.png" alt=""></a>
+                        <b> Food </b>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-4 xswidth" >
+                <div class="thumbnail img14">
+                    <span class="thumb-img">
+                        <a href="#news"><img src="/Images/new.png" alt=""></a>
+                        <b> News </b>
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-4 xswidth" >
+                <div class="thumbnail img15">
+                    <span class="thumb-img">
+                        <a href="#cars"><img src="/Images/car.png" alt=""></a>
+                        <b> Cars </b>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- /.container -->

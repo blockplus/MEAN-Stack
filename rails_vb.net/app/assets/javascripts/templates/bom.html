@@ -1,0 +1,80 @@
+
+<div class="bom">
+    <h1 class="text-center" style="color: red;">BILL OF MATERIALS</h1>
+    <h2>CONFIGURATION</h2>
+    <div class="text-center">
+        <input type="text" class="digit" name="pump-digit" id="pump-digit" ng-model="ctx.pumpDigit" ng-change="ctx.onPumpDigitChanged()" readonly>
+        <input type="text" class="digit" name="pressure-digit" id="pressure-digit" ng-model="ctx.pressureDigit" ng-change="ctx.onPressureDigitChanged()" readonly>
+        <input type="text" class="digit" name="hp-digit" id="hp-digit" ng-model="ctx.hpDigit" ng-change="ctx.onHorsepowerDigitChanged()" readonly>
+        <input type="text" class="digit" name="topworks-digit" id="topworks-digit" ng-model="ctx.topworksDigit" ng-change="ctx.onTopworksDigitChanged()" readonly>
+        <input type="text" class="digit" name="accumulator-digit" id="accumulator-digit" ng-model="ctx.accumulatorDigit" ng-change="ctx.onAccumulatorDigitChanged()" readonly>
+        <input type="text" class="digit" name="cert-digit" id="cert-digit" ng-model="ctx.certsDigit" ng-change="ctx.onCertsDigitChanged()" readonly>
+        <input type="text" class="digit" name="voltage-digit" id="voltage-digit" ng-model="ctx.voltageDigit" ng-change="ctx.onVoltageDigitChanged()" readonly>
+        <input type="text" class="digit" name="efficiency-digit" id="efficiency-digit" ng-model="ctx.efficiencyDigit" ng-change="ctx.onEfficiencyDigitChanged()" readonly>
+        <input type="text" class="digit" name="starter-digit" id="starter-digit" ng-model="ctx.starterDigit" ng-change="ctx.onStarterDigitChanged()" readonly>
+        <input type="text" class="digit" name="panel-digit" id="panel-digit" ng-model="ctx.panelDigit" ng-change="ctx.onPanelDigitChanged()" readonly>
+        <input type="text" class="digit" name="door-digit" id="door-digit" ng-model="ctx.doorDigit" ng-change="ctx.onDoorDigitChanged()" readonly>
+        <input type="text" class="digit" name="cover-digit" id="cover-digit" ng-model="ctx.coverDigit" ng-change="ctx.onCoverDigitChanged()" readonly>
+        <input type="text" class="digit" name="cooling-digit" id="cooling-digit" ng-model="ctx.coolingDigit" ng-change="ctx.onCoolingDigitChanged()" readonly>
+        <input type="text" class="digit" name="transducer-digit" id="transducer-digit" ng-model="ctx.transducerDigit" ng-change="ctx.onTransducerDigitChanged()" readonly>
+        <input type="text" class="digit" name="prop-vlv-digit" id="prop-vlv-digit" ng-model="ctx.propVlvDigit" ng-change="ctx.onPropVlvDigitChanged()" readonly>
+        <input type="text" class="digit" name="plc-digit" id="plc-digit" ng-model="ctx.plcDigit" ng-change="ctx.onPlcDigitChanged()" readonly>
+        <input type="text" class="digit" name="oil-grade-digit" id="oil-grade-digit" ng-model="ctx.oilDigit" ng-change="ctx.onOilDigitChanged()" readonly>
+        <input type="text" class="digit" name="pf-digit" id="pf-digit" ng-model="ctx.pfDigit" ng-change="ctx.onPfDigitChanged()" readonly>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- ITEM -->
+            <div class="col-sm-2 text-center">
+                <h4>ITEM</h4>
+                <select size="16" ng-options="item as item for item in ctx.items track by item.id" ng-model="ctx.item" class="list">
+                </select>
+            </div>
+
+            <!-- CCN -->
+            <div class="col-sm-2 text-center">
+                <h4>CCN</h4>
+                <select size="16" ng-options="item as item for item in ctx.ccns track by item.id" ng-model="ctx.ccn" class="list">
+                </select>
+            </div>
+
+            <!-- QTY -->
+            <div class="col-sm-2 text-center">
+                <h4>QTY</h4>
+                <select size="16" ng-options="item as item for item in ctx.qtys track by item.id" ng-model="ctx.qty" class="list">
+                </select>
+            </div>
+
+            <!-- DESCRIPTION -->
+            <div class="col-sm-6 text-center">
+                <h4>DESCRIPTION</h4>
+                <select size="16" ng-options="item as item for item in ctx.descriptions track by item.id" ng-model="ctx.description" class="list">
+                </select>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <p></p>
+            <!-- EXCEL BUTTON-->
+            <div class="col-sm-3">
+                <button ng-click="ctx.updateInputMethod()" ng-disabled="ctx.pteDisabled" ng-csv="ctx.bomData" csv-column-order="['item', 'ccn', 'qty', 'description']" filename="test.csv">PRINT TO EXCEL</button>
+            </div>
+
+            <!-- DOORS-->
+            <div class="col-sm-6">
+                <button ng-click="ctx.cancel()">CONFIGURE PUMP</button>
+            </div>
+
+            <!-- TOP COVER -->
+            <div class="col-sm-3">
+                <button ng-click="ctx.genBOM()">GENERATE BOM</button>
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>

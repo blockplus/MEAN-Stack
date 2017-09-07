@@ -1,0 +1,122 @@
+<div class="page highlight-page content-page">
+
+    <div ng-show="highlight==null" class="col-md-12">
+        <md-progress-circular class="md-warn content-loader" md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+    </div>
+    <div class="row ui-section text-center" ng-if="highlight!=null">
+
+        <div class="content-page-container-fixed-width">
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel content-header-panel highlight-header-panel">
+                            <div>
+                                <div class="header-ribbon cut-ribbon"><i class="material-icons">content_cut</i></div>
+                                <div class="content-name highlight-name"><h1 class="text-truncate">{{highlight.name}}</h1></div>
+                                <mr-social-share class="header-icon pull-right"><i class="material-icons">share</i></mr-social-share>
+                                <span class="header-icon mr-video-starred pull-right" ng-if="userIsAuthenticated" ng-click="toggleStarred()"
+                                      ng-init="toggleStarredIcon = highlight.starred ? 'star' : 'star_border'"
+                                      ng-mouseenter="toggleStarredIcon = toggleBusy ? toggleStarredIcon : (highlight.starred ? 'star_border' : 'star')"
+                                      ng-mouseleave="toggleStarredIcon = toggleBusy ? toggleStarredIcon : (highlight.starred ? 'star' : 'star_border')">
+                                    <i class="material-icons md-24" ng-class="{ 'starred': highlight.starred }">{{ toggleStarredIcon }}</i>
+                                </span>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 col-sm-6 col-xs-6">
+                                    <div class="content-details">
+                                        <a ui-sref="user({userId: highlight.owner.id })">
+                                            <div style="{{ 'background-image: url('+ highlight.owner.avatarUrl +')' }}" class="content-owner-img img-circle"></div>
+                                        </a>
+                                        <div>
+                                            <div class="content-owner-displayname text-truncate">{{ highlight.owner.displayName }}</div>
+                                            <div class="content-created">{{ highlight.created | dateFromMillis }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6 col-xs-6">
+                                    <div class="highlight-view-number"><i class="material-icons">visibility</i> {{ highlight.views }}</div>
+                                    <div ng-if="highlight.place!=null" class="highlight-place"><a ui-sref="place({placeId: highlight.place.id })"><i class="material-icons">place</i> {{ highlight.place.name }}</a></div>
+                                </div>
+                                <div class="col-xs-12 col-md-5 col-sm-12">
+                                    <div class="row content-social text-center">
+                                        <div class="col-xs-4" ng-click="like()"><i class="material-icons" ng-class="{'md-accent': highlight.liked}">favorite</i> <span>{{ highlight.likes }} {{ 'likes' | translate }}</span></div>
+                                        <div class="col-xs-4">
+                                            <mr-highlight-comments highlight-id="highlight.id"><i class="material-icons">comment</i> <span>{{ highlight.comments }} {{ 'comments' | translate }}</span></mr-highlight-comments>
+                                        </div>
+                                        <div class="col-xs-4"><i class="material-icons">people</i> <span>{{ highlight.friendtags != null ? highlight.friendtags.length : 0 }} {{ 'friends' | translate }}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row hashtag-and-views-container" ng-show="highlight.hashtags.length>0">
+                                <hr/>
+                                <div class="col-xs-12 hashtag-container">&NonBreakingSpace;<span class="hashtag" ng-repeat="hashtag in highlight.hashtags">#{{ hashtag }}&NonBreakingSpace;</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="player-container">
+                            <div class="row">
+                                <div class="col-md-12" highlight-player-height-to-watch="highlightPlayerHeight">
+                                    <mr-highlight-player highlight="highlight" on-highlight-player-ready="onHighlightPlayerReady" on-can-play-highlight="onCanPlayHighlight" on-complete-highlight="onCompleteHighlight" on-next-click="onNextClick" on-prev-click="onPrevClick"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="playlist-container">
+                            <div class="row continue-play-container">
+                                <div class="col-md-12">
+                                    <span class="continue-play-label">{{ 'up_next' | translate }}</span>
+                                    <md-switch class="pull-right continue-play-switch md-warn" ng-model="config.continuePlay" aria-label="Continue Play"></md-switch>
+                                    <i class="material-icons pull-right">info</i>
+                                </div>
+                            </div>
+                            <div id="highlight_playlist" class="row playlist-list" ng-attr-highlight-playlist-height-to-watch="!isMobile ? highlightPlayerHeight : undefined">
+                                <div id="{{hl.id}}" class="col-md-12" ng-repeat="hl in playlist track by hl.id">
+                                    <mr-highlight-playlist highlight="hl" on-highlight-click="onHighlightClick" active="playlist[$index].id == highlight.id"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel content-header-panel session-header-panel">
+                            <div>
+                                <div class="header-ribbon movie-ribbon"><i class="material-icons">movie</i></div>
+                                <div class="content-name session-name" ng-class="{'with-tracks-icon':highlight.session.tracks > 0}"><h1 class="text-truncate"><a ui-sref="session({sessionId: highlight.sessionId, clipId: highlight.clipId})">{{highlight.session.name}}</a></h1></div>
+                                <div class="header-icon tracks-icon"><i ng-if="highlight.session.tracks > 0" class="material-icons">satellite</i></div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 col-sm-6 col-xs-6">
+                                    <div class="content-details">
+                                        <a ui-sref="user({userId: highlight.session.owner.id })">
+                                            <div style="{{ 'background-image: url('+ highlight.session.owner.avatarUrl +')' }}" class="content-owner-img img-circle"></div>
+                                        </a>
+                                        <div>
+                                            <div class="content-owner-displayname text-truncate">{{ highlight.session.owner.displayName }}</div>
+                                            <div class="content-created">{{ highlight.session.created | dateFromMillis }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6 col-xs-6">
+                                    <div class="session-clips-number">{{ 'session_clips_count' | translate }}: <strong>{{highlight.session.clips}}</strong></div>
+                                    <div class="session-highlights-number">{{ 'session_highlights_count' | translate }}: <span><strong>{{highlight.session.highlights}} {{ 'session_highlights_created' | translate }}</strong></span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

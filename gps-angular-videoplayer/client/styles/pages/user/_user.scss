@@ -1,0 +1,181 @@
+.user-profile {
+    //  height: 100%;
+    //  overflow-y: auto;
+    padding: 0px 0px;
+//        margin: -15px 0 0;
+
+    .infinite-scrolling-loader-container{
+        padding: 10px 0;
+    }
+
+    .user-sessions {
+        padding: 0 30px;
+        @media (max-width: $screen-xs) {
+            padding: 0 0px;
+        }
+    }
+
+    .user-highlights {
+        padding: 0 30px;
+        @media (max-width: $screen-xs) {
+            padding: 0 0px;
+        }
+    }
+
+    .user-movies {
+        padding: 0 30px;
+        @media (max-width: $screen-xs) {
+            padding: 0 0px;
+        }
+    }
+
+    .user-checkins {
+        padding: 0 30px;
+        @media (max-width: $screen-xs) {
+            padding: 0 0px;
+        }
+    }
+
+    .user-friends {
+        padding: 0 30px;
+        @media (max-width: $screen-xs) {
+            padding: 0 0px;
+        }
+    }
+
+    .add-content-btn {
+        cursor: pointer;
+        position: absolute;
+        bottom: -25px;
+        right: 40px;
+        margin-top: 0px;
+        height: 50px;
+        width: 50px;
+        i {
+            margin-top: 7px;
+        }
+    }
+
+    .profile-header {
+        position: relative;
+        margin: 0 0 15px;
+        padding: 50px 30px 50px;
+        background: url('../images/background/profile.jpg') no-repeat;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: 100% 100%;
+        @media (max-width: $screen-xs) {
+            padding: 25px 15px 25px;
+            margin: 0;
+            background-position: 0px 0px;
+        }
+    }
+
+    .profile-image {
+        display: inline-block;
+        margin-bottom: 10px;
+        vertical-align: middle;
+        height: 120px;
+        width: 120px;
+        //box-shadow: 0 0 0 5px rgba(15,114,181,0.5), 0 0 10px rgba(0,0,0,.2);
+        background-clip: padding-box;
+        background-size: cover;
+        background-position: center center;
+        @media (max-width: $screen-xs) {
+            margin: 0 10px 0 0px;
+            height: 60px;
+            width: 60px;
+        }
+    }
+
+    .profile-header-content {
+        vertical-align: middle;
+
+        @media (max-width: $screen-xs) {
+            display: inline-block;
+            max-width: 200px;
+        }
+    }
+
+    .profile-displayname {
+        color: $color-accent;
+        font-size: 28px;
+        @media (max-width: $screen-xs) {
+            font-size: 18px;
+        }
+    }
+
+    .profile-social {
+        > a {
+            margin-right: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+        }
+        .btn-icon {
+            @media (max-width: $screen-sm) {
+                height: 22px;
+                width: 22px;
+                line-height: 22px;
+            }
+            i {
+                @media (max-width: $screen-sm) {
+                    font-size: 12px;
+                    line-height: 12px;
+                }
+            }
+        }
+    }
+
+    .profile-info {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, .3);
+        line-height: 20px;
+        padding: 10px 30px;
+        color: $bright;
+
+        ul {
+            margin: 0;
+        }
+    }
+
+    img.media-object {
+        border-radius: $border-radius-base;
+    }
+
+    #user-friends {
+        margin-top: 10px;
+        thead {
+            th.user {
+                min-width: 220px;
+            }
+            th.name, th.email {
+                min-width: 130px;
+            }
+            th.dob, th.created {
+                min-width: 120px;
+            }
+            th.gender {
+                min-width: 80px;
+                text-align: center;
+            }
+            th.country_code {
+                min-width: 120px;
+                text-align: center;
+            }
+        }
+        tbody {
+            tr {
+                td.user {
+                    img {
+                        margin-right: 5px;
+                    }
+                }
+                td.gender, td.country_code {
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

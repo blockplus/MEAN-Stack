@@ -1,0 +1,109 @@
+<div class="page movie-page content-page">
+
+    <div ng-show="movie==null" class="col-md-12">
+        <md-progress-circular class="md-warn content-loader" md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+    </div>
+    <div class="row ui-section text-center" ng-if="movie!=null">
+
+        <div class="content-page-container-fixed-width">
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel content-header-panel movie-header-panel">
+                            <div>
+                                <div class="header-ribbon theaters-ribbon"><i class="material-icons">theaters</i></div>
+                                <div class="content-name movie-name"><h1 class="text-truncate">{{movie.name}}</h1></div>
+                                <mr-social-share class="header-icon pull-right"><i class="material-icons">share</i></mr-social-share>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 col-sm-6 col-xs-6">
+                                    <div class="content-details">
+                                        <a ui-sref="user({userId: movie.owner.id })">
+                                            <div style="{{ 'background-image: url('+ movie.owner.avatarUrl +')' }}" class="content-owner-img img-circle"></div>
+                                        </a>
+                                        <div>
+                                            <div class="content-owner-displayname text-truncate">{{ movie.owner.displayName }}</div>
+                                            <div class="content-created">{{ movie.created | dateFromMillis }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6 col-xs-6">
+                                    <div class="movie-view-number"><i class="material-icons">visibility</i> {{ movie.views }}</div>
+                                    <div ng-if="movie.place!=null" class="movie-place"><a ui-sref="place({placeId: movie.place.id })"><i class="material-icons">place</i> {{ movie.place.name }}</a></div>
+                                </div>
+                                <div class="col-xs-12 col-md-5 col-sm-12">
+                                    <div class="row content-social text-center">
+                                        <div class="col-xs-4" ng-click="like()"><i class="material-icons" ng-class="{'md-accent': movie.liked}">favorite</i> <span>{{ movie.likes }} {{ 'likes' | translate }}</span></div>
+                                        <div class="col-xs-4">
+                                            <mr-movie-comments movie-id="movie.id"><i class="material-icons">comment</i> <span>{{ movie.comments }} {{ 'comments' | translate }}</span></mr-movie-comments>
+                                        </div>
+                                        <div class="col-xs-4"><i class="material-icons">people</i> <span>{{ movie.friendtags != null ? movie.friendtags.length : 0 }} {{ 'friends' | translate }}</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row hashtag-and-views-container" ng-show="movie.hashtags.length>0">
+                                <hr/>
+                                <div class="col-xs-12 hashtag-container">&NonBreakingSpace;<span class="hashtag" ng-repeat="hashtag in movie.hashtags">#{{ hashtag }}&NonBreakingSpace;</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="player-container">
+                            <div class="row">
+                                <div class="col-md-12" movie-player-height-to-watch="moviePlayerHeight">
+                                    <mr-movie-player movie="movie" on-movie-player-ready="onMoviePlayerReady" on-can-play-movie="onCanPlayMovie" on-complete-movie="onCompleteMovie" on-next-click="onNextClick" on-prev-click="onPrevClick"></mr-movie-player>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="playlist-container">
+                            <div class="row continue-play-container">
+                                <div class="col-md-12">
+                                    <span class="continue-play-label">{{ 'up_next' | translate }}</span>
+                                    <md-switch class="pull-right continue-play-switch md-warn" ng-model="config.continuePlay" aria-label="Continue Play"></md-switch>
+                                    <i class="material-icons pull-right">info</i>
+                                </div>
+                            </div>
+                            <div id="movie_playlist" class="row playlist-list" ng-attr-movie-playlist-height-to-watch="!isMobile ? moviePlayerHeight : undefined">
+                                <div id="{{hl.id}}" class="col-md-12" ng-repeat="hl in playlist track by hl.id">
+                                    <mr-movie-playlist movie="hl" on-movie-click="onMovieClick" active="playlist[$index].id == movie.id"></mr-movie-playlist>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row movie-highlights">
+                    <div class="col-md-12">
+                        <section class="panel">
+                            <div class="panel-body">
+                                <div class="title-block">
+                                    <h4>{{ 'movie_highlights_list' | translate }}</h4>
+                                </div>
+                                <div class="movie-highlights-list">
+                                    <div class="row">
+                                        <div class="col-md-12" ng-show="movie.highlights.length == 0">
+                                            <div class="text-center text-truncate"><i class="zmdi zmdi-view-list"></i> {{ 'nodata_found' | translate }}</div>
+                                        </div>
+                                        <div class="col-md-12 movie-highlight" ng-repeat='hl in movie.highlights track by $index'>
+                                            <span class="movie-timing">{{ hl._timeStart | date : 'mm:ss' }} - {{ hl._timeEnd | date : 'mm:ss' }}</span><a class="movie-name" ui-sref="highlight({highlightId: hl.id })">{{hl.name}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

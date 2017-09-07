@@ -1,0 +1,37 @@
+<%= content_for :title, "Your Account" %>
+
+<div class="entry">
+  <%= render_flash %>
+  <% if @account.errors.any? %>
+    <div class="alert alert-error">
+      <div>
+        <ul>
+          <% @account.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+  <%= form_for @account, :url => :account, :method => :post, html: { :class => 'account alignleft' } do |f| %>
+    <h2>Create an account</h2>
+    <%= f.label :name, "Name" %>
+    <%= f.text_field :name, class: "span4", placeholder: "Your Name" %>
+    <%= f.label :email, "Email Address" %>
+    <%= f.email_field :email, class: "span4", placeholder: "Email Address" %>
+    <%= f.label :password, "Password" %>
+    <%= f.password_field :password, class: "span2", placeholder: "*****************" %>
+    <div class="clear"></div>
+    <%= f.submit "Sign-Up", :class => "big" %>
+  <% end %>
+  <%= form_tag :login, :class => 'account alignleft', id: 'login_form' do %>
+    <h2>Already have an account?</h2>
+    <%= label_tag :email, "Email Address" %>
+    <%= email_field_tag :email, nil, class: "span4", placeholder: "Email Address" %>
+    <%= label_tag :password, "Password" %>
+    <%= password_field_tag :password, nil, class: "span2", placeholder: "*****************" %>
+    <div class="clear"></div>
+    <%= submit_tag "Sign In", :class => "big" %>
+    <label>Forgot your password? Please call 212-507-9580</label>
+  <% end %>
+</div>

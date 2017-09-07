@@ -1,0 +1,28 @@
+DEFAULTS: &DEFAULTS
+  course: $LABEL
+  teacher: jeff
+
+default:
+  <<: *DEFAULTS
+
+history:
+  <<: *DEFAULTS
+
+science:
+  <<: *DEFAULTS
+
+early_bird:
+  <<: *DEFAULTS
+
+not_early_bird:
+  <<: *DEFAULTS
+
+forty_dollar_course:
+  <<: *DEFAULTS
+
+sixty_dollar_course:
+  <<: *DEFAULTS
+  
+four_week_course:
+  <<: *DEFAULTS
+

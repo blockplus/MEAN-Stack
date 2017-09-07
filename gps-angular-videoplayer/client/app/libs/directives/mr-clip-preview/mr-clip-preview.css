@@ -1,0 +1,139 @@
+.mr-clip-preview {
+    position: relative;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    width: 100%;
+    overflow: hidden;
+}
+
+.mr-clip-preview .info{
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.mr-clip-preview .time,
+.mr-clip-preview .position {
+    display: inline-block;
+    position: relative;
+}
+
+.mr-clip-preview .time
+{
+    background: rgba(0,0,0, 0.6);
+}
+
+.mr-clip-preview .time p {
+    margin-bottom: 0;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    line-height: 12px;
+    padding: 6px 6px;
+}
+
+.mr-clip-preview .position {
+    background: rgba(255, 255, 255, 0.7);
+    margin-left: -5px;
+}
+
+.mr-clip-preview .position p {
+    font-size: 12px;
+    margin-bottom: 0;
+    line-height: 12px;
+    padding: 6px 6px;
+    font-weight: normal;
+    color: #444;
+}
+
+.mr-clip-preview .mr-clip-preview-sprite {
+    position: absolute;
+    width: 100%;
+}
+
+.mr-clip-preview-delete {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    color: white;
+    opacity: 0.8;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0.8)";
+    filter: alpha(opacity=0.8);
+    cursor: pointer;
+}
+
+.mr-clip-preview-delete:hover {
+    opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=1)";
+    filter: alpha(opacity=1);
+}
+
+.mr-clip-preview-mask {
+    position: absolute;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background: #000;
+    opacity: 0.5;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0.5)";
+    filter: alpha(opacity=0.5);
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    -ms-transition: opacity 0.2s ease-in-out;
+    -o-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+}
+
+
+.mr-clip-preview:hover .mr-clip-preview-mask,
+.mr-clip-preview.active .mr-clip-preview-mask {
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+}
+
+.mr-clip-preview:hover .mr-clip-preview-indicator {
+    position: absolute;
+    pointer-events: none;
+    width: 3px;
+    height: 100%;
+    top: 0px;
+    background: #0F72B5;
+    display: none;
+}
+
+.mr-clip-preview:hover .mr-clip-preview-indicator {
+    display: block;
+}
+
+.mr-clip-preview a{
+    height: 100%;
+    width: 100%;
+    border-radius: 0px;
+}
+
+.video-list-thumbs .mr-clip-preview a>img{
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    left: 0px !important;
+    transform: none !important;
+    -ms-transform: none !important;
+    -webkit-transform: none !important;
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -ms-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* IE/Edge */
+    user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+}

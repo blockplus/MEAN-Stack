@@ -1,0 +1,21 @@
+{
+	"strict": true,
+	"undef": true,
+	"unused": false,
+	"node": true,
+	"esnext" :true,
+	"proto":true,
+	"eqnull":true,
+	"boss":true,
+	"node":true,
+	"globals": {
+		"describe": true,
+		"it": true,
+		"beforeEach": true,
+		"afterEach": true,
+		"window": true,
+		"document": true,
+		"regeneratorRuntime":true,
+		"history":true
+	}
+}

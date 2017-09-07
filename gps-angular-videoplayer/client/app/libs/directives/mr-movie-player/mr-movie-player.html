@@ -1,0 +1,26 @@
+<div class="videoangular-container">
+    <videogular vg-theme="config.theme" vg-player-ready="onPlayerReady($API)" vg-can-play="onCanPlay()" vg-complete="onCompleteVideo()" vg-auto-play="config.autoPlay" vg-preload="config.preload">
+        <vg-media vg-src="config.sources">
+        </vg-media>
+        <vg-controls vg-autohide="config.autoHide" vg-autohide-time="config.autoHideTime">
+            <vg-play-pause-button class="mr-movie-player-custom-button"></vg-play-pause-button>
+            <i class="material-icons mr-movie-player-custom-button" ng-click="onPrevClick()">skip_previous</i>
+            <i class="material-icons mr-movie-player-custom-button" ng-click="onNextClick()">skip_next</i>
+            <vg-scrub-bar>
+                <vg-scrub-bar-buffer></vg-scrub-bar-buffer>
+                <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+            </vg-scrub-bar>
+            <vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
+            <vg-volume>
+                <vg-mute-button></vg-mute-button>
+                <vg-volume-bar></vg-volume-bar>
+            </vg-volume>
+            <vg-fullscreen-button></vg-fullscreen-button>
+        </vg-controls>
+
+        <vg-overlay-play></vg-overlay-play>
+        <!--<vg-buffering></vg-buffering>-->
+        <vg-poster vg-url='config.plugins.poster' ng-if='!config.autoPlay'></vg-poster>
+
+    </videogular>
+</div>

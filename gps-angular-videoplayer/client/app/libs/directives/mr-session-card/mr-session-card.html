@@ -1,0 +1,41 @@
+<div class="card bg-white">
+    <div class="card-content">
+        <div ng-if="isTimelineCard" class="tl-action-description color-danger text-truncate" ng-init="actionDescription = timelineCtrl.getActionDescription(timelineObj)"
+             ng-if="actionDescription!=null" ng-bind-html="actionDescription"></div>
+        <div ng-if="isTimelineCard" class="tl-action-header">
+            <a ui-sref="user({userId: session.owner.id })">
+                <div style="{{ 'background-image: url('+ session.owner.avatarUrl +')' }}" class="tl-action-performer-img img-circle"></div>
+            </a>
+            <div class="tl-action-owner">
+                <div class="card-title text-truncate">{{ session.owner.displayName }}</div>
+                <div class="card-subtitle">{{ session.created | dateFromMillis }}</div>
+            </div>
+            <mr-social-share url="getShareUrl()" class="pull-right"><i class="material-icons">share</i></mr-social-share>
+        </div>
+        <div ng-if="isTimelineCard" class="session-title text-truncate"><a ui-sref="session({sessionId: session.id})">{{ session.name }}</a></div>
+        <div ng-if="!isTimelineCard">
+            <div class="card-title text-truncate"><a ui-sref="session({sessionId: session.id})">{{ session.name }}</a><mr-social-share url="getShareUrl()" class="pull-right"><i class="material-icons">share</i></mr-social-share></div>
+            <p class="card-subtitle">{{ session.created | dateFromMillis }}</p>
+        </div>
+        <a ui-sref="session({sessionId: session.id})">
+            <div class="row card-thumbnails">
+                <div class="col-xs-6"><img alt="" ng-src="{{ getThumbnail(0) }}" class="img-responsive"></div>
+                <div class="col-xs-6" ng-if="session.clips > 1"><img alt="" ng-src="{{ getThumbnail(1) }}" class="img-responsive"></div>
+            </div>
+        </a>
+        <div class="row">
+            <div class="col-md-{{ isTimelineCard ? '9' : '8'}} text-truncate session-place"><a ui-sref="place({placeId: session.place.id })"><i ng-if="session.place!=null" class="material-icons">place</i> {{ session.place.name }}</a></div>
+            <div class="col-md-{{ isTimelineCard ? '3' : '4'}}">
+                <div class="pull-right"><i ng-if="session.tracks > 0" class="material-icons tracks-icon">satellite</i> <span class="clips-number">{{ session.clips }} <i class="material-icons">movie</i></span></div>
+            </div>
+        </div>
+        <hr style="margin-top: 10px">
+        <div class="row card-social text-center">
+            <div class="col-xs-4" ng-click="like()"><i class="material-icons" ng-class="{'md-accent': session.liked}">favorite</i> <span>{{ session.likes }} {{ 'likes' | translate }}</span></div>
+            <div class="col-xs-4">
+                <mr-session-comments session-id="session.id"><i class="material-icons">comment</i> <span>{{ session.comments }} {{ 'comments' | translate }}</span></mr-session-comments>
+            </div>
+            <div class="col-xs-4"><i class="material-icons">people</i> <span>{{ session.friendtags!=null ? session.friendtags.length : 0 }} {{ 'friends' | translate }}</span></div>
+        </div>
+    </div>
+</div>

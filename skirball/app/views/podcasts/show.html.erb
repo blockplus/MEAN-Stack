@@ -1,0 +1,21 @@
+<%= content_for :title, link_to("Podcasts", :podcasts) %>
+<%= render_sidebar %>
+
+<div class="entry">
+  <%= render_flash %>
+  <h1><%= @podcast.title %></h1>
+  <p class="details"><%= @podcast.subtitle %></p>
+  <p>
+    <strong>Published on <%= @podcast.published_on.strftime("%B %-d, %Y") %></strong>
+    <% if @podcast.keywords.present? %>
+      <br><strong>Keywords: <%= @podcast.keywords %></strong>
+    <% end %>
+  </p>
+  <p><%= @podcast.notes.html_safe %></p>
+  <p><%= content_tag :audio, nil, src: @podcast.file.url %></p>
+  <%= link_to "DOWNLOAD", podcast_url(@podcast, :mp3), :class => 'button big register' %>
+  <% if @podcast.itunes_url.present? %>
+    <%= link_to "LISTEN ON ITUNES", @podcast.itunes_url, :class => 'button big register', :target => "_blank" %>
+  <% end %>
+  <div class="clear"></div>
+</div>

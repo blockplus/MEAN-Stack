@@ -1,0 +1,14 @@
+<% if @cart.line_items.present? %>
+  <div class="alignright">
+    <%= form_tag :cart, id: :coupon_form do %>
+      <h2>Select a Discount:</h2>
+      <% Coupon.all.each do |discount| %>
+        <%= label_tag "coupon_#{discount.id}" do %>
+          <%= radio_button_tag :coupon_id, discount.id, @cart.discount == discount %> <%= discount.title %>
+        <% end %>
+      <% end %> 
+      <br>
+      <%= submit_tag "Apply Discounts" %>
+    <% end %>
+  </div>
+<% end %>

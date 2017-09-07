@@ -1,0 +1,204 @@
+<div class="page user-profile">
+
+    <div class="row ui-section">
+        <div class="col-md-12">
+            <header class="profile-header text-center">
+
+                <div style="{{ 'background-image: url('+ user.avatarUrl +')' }}" class="img-circle profile-image"></div>
+                <div class="profile-header-content text-truncate">
+                    <span class="profile-displayname">{{ user.displayName }}</span>
+                </div>
+
+                <!--<div class="profile-info">-->
+                <!--<ul class="list-unstyled list-inline">-->
+                <!--<li><i class="fa fa-video-camera"></i> Films <span class="text-muted">(39)</span></li>-->
+                <!--<li><i class="fa fa-image"></i> Photos <span class="text-muted">(63)</span</li>-->
+                <!--<li><i class="fa fa-bookmark"></i> Collections <span class="text-muted">(55)</span</li>-->
+                <!--<li><i class="fa fa-check"></i> Tasks <span class="text-muted">(34)</span</li>-->
+                <!--</ul>-->
+                <!--</div>-->
+                <span class="add-content-btn btn-icon btn-icon-round btn-danger" ng-if="showAddFriend" ng-click="requestFriendship()"><i class="material-icons md-36">add</i></span>
+                <span class="add-content-btn btn-icon btn-icon-round btn-danger" ng-if="showPendingAccept" ng-click="acceptFriendship()"><i class="material-icons md-36">done</i></span>
+            </header>
+
+            <md-tabs md-selected="tabSelectedIndex" md-dynamic-height md-border-bottom md-autoselect md-enable-disconnect>
+
+                <!-- ACTIVITIES TAB -->
+                <md-tab label="{{ 'profile_actions' | translate }}">
+                    <div class="user-timeline">
+                        <div class="ui-timeline-container">
+                            <section class="ui-timeline" infinite-scroll='timeline.nextPage()' infinite-scroll-disabled='timeline.disabled' infinite-scroll-distance='0'>
+                                <!-- no timeline actions -->
+                                <article class="tl-item" ng-show="timeline.data.length == 0 && !timeline.busy">
+                                    <div class="tl-body">
+                                        <div class="tl-entry">
+                                            <div class="tl-caption">
+                                                <a class="btn btn-primary btn-block">{{ 'timeline_today' | translate }}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="tl-item" ng-if="timeline.data.length == 0 && !timeline.busy">
+                                    <div class="tl-body">
+                                        <div class="tl-entry">
+                                            <div class="tl-time">&nbsp;</div>
+                                            <div class="tl-icon btn-icon-round btn-icon btn-icon-thin btn-info"><i class="zmdi zmdi-info"></i></div>
+                                            <div class="tl-content">
+                                                <h4 class="tl-tile text-primary">{{ 'nodata_found' | translate }}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <!-- timeline actions -->
+                                <article class="tl-item" ng-repeat-start="timelineObj in timeline.data" ng-init="timeline.evaluateDay(timelineObj)" ng-show="timeline.isFirstItemOfTheDay(timelineObj)">
+                                    <div class="tl-body">
+                                        <div class="tl-entry">
+                                            <div class="tl-caption">
+                                                <a class="btn btn-primary btn-block">{{ timeline.getTimelineDayHeader(timelineObj) }}</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="tl-item" ng-repeat-end ng-class="{ 'alt': true }">
+                                    <div class="tl-body">
+                                        <div class="tl-entry" ng-init="timelineEntryType = timeline.getTimelineEntryType(timelineObj)">
+                                            <!-- contents -->
+                                            <mr-checkin-card ng-if="timelineEntryType == TimelineEntryTypes._CHECKIN" checkin="timelineObj.checkin" is-timeline-card="true" timeline-obj="timelineObj" timeline-controller="timeline"></mr-checkin-card>
+                                            <mr-highlight-card ng-if="timelineEntryType == TimelineEntryTypes._HIGHLIGHT" highlight="timelineObj.highlight" is-timeline-card="true" timeline-obj="timelineObj" timeline-controller="timeline"></mr-highlight-card>
+                                            <mr-movie-card ng-if="timelineEntryType == TimelineEntryTypes._MOVIE" movie="timelineObj.movie" is-timeline-card="true" timeline-obj="timelineObj" timeline-controller="timeline"></mr-movie-card>
+                                            <mr-session-card ng-if="timelineEntryType == TimelineEntryTypes._SESSION" session="timelineObj.session" is-timeline-card="true" timeline-obj="timelineObj" timeline-controller="timeline"></mr-session-card>
+                                            <mr-user-card ng-if="timelineEntryType == TimelineEntryTypes._USER" user="timelineObj.user" is-timeline-card="true" timeline-obj="timelineObj" timeline-controller="timeline"></mr-user-card>
+                                            <!-- content deleted -->
+                                            <div ng-if="timelineEntryType == TimelineEntryTypes._CONTENT_DELETED">
+                                                <div class="tl-time">{{ timeline.getTimelineEntryTime(timelineObj) }}</div>
+                                                <div class="tl-icon btn-icon-round btn-icon btn-icon-thin btn-info"><i class="material-icons md-18">delete</i></div>
+                                                <div class="tl-content">
+                                                    <h4 class="tl-tile text-danger">{{ 'content_deleted' | translate }}</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </article>
+                            </section>
+                        </div>
+                        <div class="row">
+                            <div ng-show="timeline.busy" class="col-md-12 text-center">
+                                <md-progress-circular class="md-warn card-loader" md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+                            </div>
+                        </div>
+                    </div>
+                </md-tab>
+
+                <!-- SESSIONS TAB -->
+                <md-tab label="{{ 'profile_sessions' | translate }}">
+                    <div class="user-sessions">
+                        <div class="row" infinite-scroll='sessions.nextPage()' infinite-scroll-disabled='sessions.disabled' infinite-scroll-distance='0'>
+                            <div class="col-md-12 session-card" ng-if="sessions.data.length == 0 && !sessions.busy">
+                                <div class="card bg-white">
+                                    <div class="card-content">
+                                        <div class="card-title text-center text-truncate"><i class="zmdi zmdi-view-list"></i> {{ 'nodata_found' | translate }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 session-card" ng-repeat='session in sessions.data track by session.id'>
+                                <mr-session-card session="session" is-timeline-card="false"></mr-session-card>
+                            </div>
+                            <div ng-show="sessions.busy" class="col-md-12 text-center infinite-scrolling-loader-container">
+                                <md-progress-circular class="md-warn card-loader" md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+                            </div>
+                        </div>
+                    </div>
+                </md-tab>
+
+                <!-- MOVIE TAB -->
+                <md-tab label="{{ 'profile_movies' | translate }}">
+                    <div class="user-movies">
+                        <div id="user-movies" class="row" infinite-scroll='movies.nextPage()' infinite-scroll-disabled='movies.disabled' infinite-scroll-distance='0'>
+                            <div class="col-md-12 movie-card" ng-if="movies.data.length == 0 && !movies.busy">
+                                <div class="card bg-white">
+                                    <div class="card-content">
+                                        <div class="card-title text-center text-truncate"><i class="zmdi zmdi-view-list"></i> {{ 'nodata_found' | translate }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 movie-card" ng-repeat='movie in movies.data'>
+                                <mr-movie-card movie="movie" is-timeline-card="false"></mr-movie-card>
+                            </div>
+                            <div ng-show="movies.busy" class="col-md-12 text-center infinite-scrolling-loader-container">
+                                <md-progress-circular class="md-warn card-loader" md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+                            </div>
+                        </div>
+                    </div>
+                </md-tab>
+
+                <!-- HIGHLIGHTS TAB -->
+                <md-tab label="{{ 'profile_highlights' | translate }}">
+                    <div class="user-highlights">
+                        <div class="row" infinite-scroll='highlights.nextPage()' infinite-scroll-disabled='highlights.disabled' infinite-scroll-distance='0'>
+                            <div class="col-md-12 highlight-card" ng-if="highlights.data.length == 0 && !highlights.busy">
+                                <div class="card bg-white">
+                                    <div class="card-content">
+                                        <div class="card-title text-center text-truncate"><i class="zmdi zmdi-view-list"></i> {{ 'nodata_found' | translate }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 highlight-card" ng-repeat='highlight in highlights.data'>
+                                <mr-highlight-card highlight="highlight" is-timeline-card="false"></mr-highlight-card>
+                            </div>
+                            <div ng-show="highlights.busy" class="col-md-12 text-center infinite-scrolling-loader-container">
+                                <md-progress-circular class="md-warn card-loader" md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+                            </div>
+                        </div>
+                    </div>
+                </md-tab>
+
+                <!-- CHECKINS TAB -->
+                <md-tab label="{{ 'profile_checkins' | translate }}">
+                    <div class="user-checkins">
+                        <div id="user-checkins" class="row" infinite-scroll='checkins.nextPage()' infinite-scroll-disabled='checkins.disabled' infinite-scroll-distance='0'>
+                            <div class="col-md-12 checkin-card" ng-if="checkins.data.length == 0 && !checkins.busy">
+                                <div class="card bg-white">
+                                    <div class="card-content">
+                                        <div class="card-title text-center text-truncate"><i class="zmdi zmdi-view-list"></i> {{ 'nodata_found' | translate }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 checkin-card" ng-repeat='checkin in checkins.data'>
+                                <mr-checkin-card checkin="checkin" is-timeline-card="false"></mr-checkin-card>
+                            </div>
+                            <div ng-show="checkins.busy" class="col-md-12 text-center infinite-scrolling-loader-container">
+                                <md-progress-circular class="md-warn card-loader" md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+                            </div>
+                        </div>
+                    </div>
+                </md-tab>
+
+                <!-- FRIENDS TAB -->
+                <md-tab label="{{ 'profile_friends' | translate }}">
+                    <div class="user-friends">
+                        <div id="user-friends" class="row" infinite-scroll='friends.nextPage()' infinite-scroll-disabled='friends.disabled' infinite-scroll-distance='0'>
+                            <div class="col-md-12 user-card" ng-if="friends.data.length == 0 && !friends.busy">
+                                <div class="card bg-white">
+                                    <div class="card-content">
+                                        <div class="card-title text-center text-truncate"><i class="zmdi zmdi-view-list"></i> {{ 'nodata_found' | translate }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 user-card" ng-repeat='friend in friends.data'>
+                                <mr-user-card user="friend" is-timeline-card="false"></mr-user-card>
+                            </div>
+                            <div ng-show="friends.busy" class="col-md-12 text-center infinite-scrolling-loader-container">
+                                <md-progress-circular class="md-warn card-loader" md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+                            </div>
+                        </div>
+                    </div>
+                </md-tab>
+
+            </md-tabs>
+        </div>
+    </div>
+
+</div>

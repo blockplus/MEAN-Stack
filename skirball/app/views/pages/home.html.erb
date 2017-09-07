@@ -1,0 +1,61 @@
+<%= render_flash %>
+<div class="grid">
+	<div class="column">
+	<div class="box wide"><%= image_tag "home_grid1.jpg" %><div class="hover">Courses<a href="<%= url_for :courses %>"></a></div></div>
+	<div class="box"><%= image_tag "home_grid2.jpg" %><div class="hover">News<a href="<%= url_for :news_items %>"></a></div></div> 	
+	<div class="box"><%= image_tag "home_grid3.jpg" %></div>
+	<div class="box"><%= image_tag "home_grid4.jpg" %></div>		
+	<div class="box"><%= image_tag "home_grid10.jpg" %><div class="hover">Calendar<a href="<%= url_for :calendar %>"></a></div></div>
+	</div>
+	<div class="column">
+    <ul class="bxslider">
+      <% @slides.each do |slide| %>
+        <li>
+          <div class="box square">
+            <%= image_tag slide.image.url(:default) %>
+            <div class="highlight">
+              <%= slide.title %>
+              <%= link_to "Read More", slide.link, :class => "button" %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+	<div class="box"><%= image_tag "home_grid7.jpg" %></div> 	
+	<div class="box"><%= image_tag "home_grid8.jpg" %><div class="hover">Interact<a href="<%= page_url('social-media') %>"></a></div></div>
+	</div>
+	<div class="column">
+	<div class="box"><%= image_tag "home_grid9.jpg" %></div>		
+	<div class="box"><%= image_tag "home_grid5.jpg" %><div class="hover">Faculty<a href="<%= url_for :teachers %>"></a></div></div>
+	<div class="box"><%= image_tag "home_grid11.jpg" %><div class="hover">Donate<a href="<%= url_for :donate %>"></a></div></div>		
+	<div class="box"><%= image_tag "home_grid12.jpg" %></div>
+	<div class="box"><%= image_tag "home_grid13.jpg" %></div>		
+	<div class="box"><%= image_tag "home_grid14.jpg" %><div class="hover">Podcasts<a href="<%= url_for :podcasts %>"></a></div></div>
+	</div>
+<div class="clear"></div>
+</div>		
+<script>
+$('.bxslider').bxSlider({
+  controls: false,
+  hideControlOnEnd: true,
+  auto: true
+});
+$(document).ready(function() {
+    $('#nav li').hover(function() {
+        $(this).children('.children').show();        
+    }, function() {
+        $(this).children('.children').hide();
+    });        
+});
+$(document).ready(function() {
+    $('.box').hover(function() {
+        $(this).children('.hover').show();        
+    }, function() {
+        $(this).children('.hover').hide();
+    });        
+});
+$(".hover, button").click(function(){
+     window.location=$(this).find("a").attr("href"); 
+     return false;
+     });
+</script>

@@ -1,0 +1,176 @@
+<!DOCTYPE html> 
+<html>
+	<head>
+		<title>Soumission Fertilisation Provost</title>
+		
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+		
+		<link rel="stylesheet" href="http://fp.traficguru.com/form/css/demo.css">
+		<link rel="stylesheet" href="http://fp.traficguru.com/form/css/sky-forms.css">
+		<link rel="stylesheet" href="http://fp.traficguru.com/form/css/sky-forms-green.css">
+		<!--[if lt IE 9]>
+			<link rel="stylesheet" href="http://fp.traficguru.com/form/css/sky-forms-ie8.css">
+		<![endif]-->
+		
+		<script src="http://fp.traficguru.com/form/js/jquery-1.9.1.min.js"></script>
+		<script src="http://fp.traficguru.com/form/js/jquery.form.min.js"></script>
+		<script src="http://fp.traficguru.com/form/js/jquery.validate.min.js"></script>		
+		<!--[if lt IE 10]>
+			<script src="http://fp.traficguru.com/form/js/jquery.placeholder.min.js"></script>
+		<![endif]-->		
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="http://fp.traficguru.com/form/js/sky-forms-ie8.js"></script>
+		<![endif]-->
+	</head>
+	
+	<body class="bg-green">
+		<div class="body">
+			<form action="demo-contacts.php" method="post" id="sky-form" class="sky-form" accept-charset="UTF-8">
+				<header>MontVert.com </header>
+				
+				<fieldset>					
+					<div class="row">
+						<section class="col col-6">
+							<label class="label">Prénom &amp; Nom</label>
+							<label class="input">
+								<i class="icon-append icon-user"></i>
+								<input type="text" name="name" id="name">
+							</label>
+						</section>
+						<section class="col col-6">
+						  <label class="label">Courriel</label>
+							<label class="input">
+								<i class="icon-append icon-envelope-alt"></i>
+								<input type="email" name="email" id="email">
+							</label>
+						</section>
+				  </div>
+					<section>
+						<label class="checkbox"><input type="checkbox" name="newsletter"  id="newsletter" checked>
+						<i></i>Je désir recevoir des conseils par courriels</label>
+					</section>
+					<section>
+						<label class="label">Adresse</label>
+						<label class="input">
+							<i class="icon-append icon-map-marker"></i>
+							<input type="text" name="address" placeholder="">
+						</label>
+					</section>
+					<section>
+						<p>
+						  <label class="label">Ville</label>
+						  <label class="input">
+						    <i class="icon-append icon-map-marker"></i>
+						    <input type="text" name="ville" placeholder="">
+					      </label>
+					  </p>
+						
+				    </section>
+                     <section>
+						<label class="label">Code postal</label>
+						<label class="input">
+							<i class="icon-append icon-map-marker"></i>
+							<input type="text" name="code" placeholder="">
+						</label>
+					</section>
+					<section>
+						<label class="label">Téléphone</label>
+						<label class="input">
+							<i class="icon-append icon-phone"></i>
+							<input type="tel" name="phone" placeholder="">
+						</label>
+					</section>
+                    
+         
+					<section>
+						<label class="label">Spécifiez pour quel service vous désirez avoir une demande de soumission.</label>
+						<label class="textarea">
+							<i class="icon-append icon-comment"></i>
+							<textarea rows="4" name="message" id="message"></textarea>
+						</label>
+					</section>
+					
+					<section>
+						<label class="checkbox"><input type="checkbox" name="copy"  id="copy" checked>
+						<i></i>Envoyer une confirmation à mon adresse courriel</label>
+					</section>
+			  </fieldset>
+				
+				<footer>
+					<button type="submit" class="button">Envoyer la demande de soumission</button>
+				</footer>
+				
+				<div class="message">
+					<i class="icon-ok"></i>
+					<p>Votre message a été envoyé avec succès!</p>
+				</div>
+		  </form>			
+		</div>
+		
+		<script type="text/javascript">
+			$(function()
+			{
+				// Validation
+				$("#sky-form").validate(
+				{					
+					// Rules for form validation
+					rules:
+					{
+						name:
+						{
+							required: true
+						},
+						email:
+						{
+							required: true,
+							email: true
+						},
+						message:
+						{
+							required: true,
+							minlength: 10
+						}
+					},
+										
+					// Messages for form validation
+					messages:
+					{
+						name:
+						{
+							required: 'SVP entrer votre nom',
+						},
+						email:
+						{
+							required: 'SVP entrez votre adresse courriel',
+							email: 'SVP entrer une adresse courriel valide'
+						},
+						message:
+						{
+							required: 'SVP entrez votre message'
+						}
+					},
+										
+					// Ajax form submition					
+					submitHandler: function(form)
+					{
+						$(form).ajaxSubmit(
+						{
+							success: function()
+							{
+								$("#sky-form").addClass('submited');
+							}
+						});
+					},
+					
+					// Do not change code below
+					errorPlacement: function(error, element)
+					{
+						error.insertAfter(element.parent());
+					}
+				});
+			});			
+		</script>
+	</body>
+</html>

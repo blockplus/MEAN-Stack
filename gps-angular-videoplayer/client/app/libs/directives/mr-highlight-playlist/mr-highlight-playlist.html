@@ -1,0 +1,13 @@
+<div class="mr-highlight-playlist" ng-class="{active: active}">
+    <a ng-click="click()">
+        <img ng-src="{{::getThumbnail(highlight)}}" class="img-responsive"/>
+    </a>
+    <div class="title-info">
+        <span class="title"><p class="text-truncate">{{::highlight.name}}</p></span>
+    </div>
+    <div class="time-info">
+        <span class="time"><p>{{::highlight.duration | duration}}</p></span>
+    </div>
+    <div class="mr-highlight-playlist-mask"></div>
+
+</div>

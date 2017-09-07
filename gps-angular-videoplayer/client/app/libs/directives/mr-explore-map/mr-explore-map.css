@@ -1,0 +1,10 @@
+.explore-map-container {
+    height: 100%;
+    width: 100%;
+}
+
+.map-loading {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+}

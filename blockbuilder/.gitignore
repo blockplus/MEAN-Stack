@@ -1,0 +1,8 @@
+node_modules
+public/build/js
+public/build/css
+*.swp
+.DS_Store
+.DS_Store?
+secrets.json
+dump.rdb

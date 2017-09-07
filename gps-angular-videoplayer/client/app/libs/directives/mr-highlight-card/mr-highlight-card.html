@@ -1,0 +1,57 @@
+<div class="card bg-white">
+    <div class="card-content">
+        <div ng-if="isTimelineCard" class="tl-action-description color-danger text-truncate" ng-init="actionDescription = timelineCtrl.getActionDescription(timelineObj)"
+             ng-show="actionDescription!=null" ng-bind-html="actionDescription"></div>
+        <div class="tl-action-header" ng-if="isTimelineCard">
+            <a ui-sref="user({userId: highlight.owner.id })">
+                <div style="{{ 'background-image: url('+ highlight.owner.avatarUrl +')' }}" class="tl-action-performer-img img-circle"></div>
+            </a>
+            <div class="tl-action-owner">
+                <div class="card-title text-truncate">{{ highlight.owner.displayName }}</div>
+                <div class="card-subtitle">{{ highlight.created | dateFromMillis }}</div>
+            </div>
+            <mr-social-share url="getShareUrl()" class="pull-right"><i class="material-icons">share</i></mr-social-share>
+        </div>
+        <div ng-if="!isTimelineCard">
+            <div class="row">
+                <div class="card-title text-truncate col-sm-9">
+                    <a ui-sref="highlight({highlightId: highlight.id})">{{ highlight.name }}</a>
+                </div>
+                <div class="col-sm-3">
+                    <mr-social-share url="getShareUrl()" class="pull-right"><i class="material-icons">share</i></mr-social-share>
+                    <span class="mr-video-starred pull-right" ng-if="userIsAuthenticated" ng-click="toggleStarred()"
+                          ng-init="toggleStarredIcon = highlight.starred ? 'star' : 'star_border'"
+                          ng-mouseenter="toggleStarredIcon = toggleBusy ? toggleStarredIcon : (highlight.starred ? 'star_border' : 'star')"
+                          ng-mouseleave="toggleStarredIcon = toggleBusy ? toggleStarredIcon : (highlight.starred ? 'star' : 'star_border')">
+                        <i class="material-icons" ng-class="{ 'starred': highlight.starred }">{{ toggleStarredIcon }}</i>
+                     </span>
+                </div>
+            </div>
+            <p class="card-subtitle">{{ highlight.created | dateFromMillis }}</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <a ui-sref="highlight({highlightId: highlight.id})">
+                    <div class="card-thumbnails">
+                        <img alt="" ng-src="{{ getThumbnail() }}" class="img-responsive">
+                        <div ng-if="isTimelineCard" class="thumbnail-title text-truncate">{{ highlight.name}}</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9 hashtag-container"><span class="hashtag" ng-repeat="hashtag in highlight.hashtags">#{{ hashtag }}&NonBreakingSpace;</span></div>
+            <div class="col-md-3">
+                <div class="pull-right highlight-views"><span>{{ highlight.views }}</span> <i class="material-icons">visibility</i></div>
+            </div>
+        </div>
+        <hr style="margin-top: 10px">
+        <div class="row card-social text-center">
+            <div class="col-xs-4" ng-click="like()"><i class="material-icons" ng-class="{'md-accent': highlight.liked}">favorite</i> <span>{{ highlight.likes }} {{ 'likes' | translate }}</span></div>
+            <!--<div class="col-xs-4"><i class="material-icons">comment</i> <span>{{ highlight.comments }} {{ 'comments' | translate }}</span></div>-->
+            <div class="col-xs-4"><mr-highlight-comments highlight-id="highlight.id"><i class="material-icons">comment</i> <span>{{ highlight.comments }} {{ 'comments' | translate }}</span></mr-highlight-comments></div>
+            <div class="col-xs-4"><i class="material-icons">people</i> <span>{{ highlight.friendtags!=null ? highlight.friendtags.length : 0 }} {{ 'friends' | translate }}</span></div>
+        </div>
+    </div>
+</div>

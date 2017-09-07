@@ -1,0 +1,70 @@
+.mr-session-preview {
+    background-color: #FFFFFF;
+}
+
+.mr-session-preview .mr-video-container {
+    position: relative;
+}
+
+.mr-session-preview .mr-video-icon {
+    background-color: #0F72B5;
+    color: #fff;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 48px;
+    height: 48px;
+    padding: 6px 6px;
+}
+
+.mr-session-preview a:hover .mr-video-icon {
+    background-color: #DA322C;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.mr-session-preview .mr-video-title {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 12px;
+    padding: 3px 5px 3px 5px;
+}
+
+.mr-session-preview .mr-video-title p {
+    margin-bottom: 0px;
+    font-weight: 300;
+}
+
+.mr-session-preview .mr-video-stats span{
+    color: rgba(0, 0, 0, 0.87);
+    font-weight: 300;
+}
+
+.mr-session-preview .mr-info  {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    font-size: 12px;
+}
+
+.mr-session-preview .mr-timetaken  {
+
+}
+
+.mr-session-preview .mr-clips  {
+    margin-right: 12px;
+}
+
+.mr-session-preview .mr-duration  {
+
+}
+
+md-card.mr-session-preview md-card-content {
+    padding: 10px;
+}

@@ -1,0 +1,19 @@
+<div class="page explore-page">
+    <mr-last-sessions></mr-last-sessions>
+    <mr-last-highlights></mr-last-highlights>
+
+
+    <div class="explore-map-and-search-container">
+        <div class="search-container">
+            <mr-input-hashtags selected-hashtags="selectedHashtags" require-match="true" placeholder="{{ 'hint_search' | translate }}"></mr-input-hashtags>
+        </div>
+        <div class="map-container">
+            <mr-explore-map on-update-bounds="onUpdateBounds" on-place-click="onPlaceClick"></mr-explore-map>
+        </div>
+    </div>
+    <div class="explore-contents-container">
+        <div class="explore-content-container highlight-card" ng-repeat='highlight in highlights'>
+            <mr-highlight-card highlight="highlight" is-timeline-card="false"></mr-highlight-card>
+        </div>
+    </div>
+</div>

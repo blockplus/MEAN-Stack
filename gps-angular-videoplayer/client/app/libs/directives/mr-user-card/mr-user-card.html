@@ -1,0 +1,17 @@
+<div class="card bg-white">
+    <div class="card-content">
+        <div class="user-header">
+            <a ui-sref="user({userId: user.id })"><div style="{{ 'background-image: url('+ user.avatarUrl +')' }}" class="user-img img-circle"></div></a>
+            <div class="user-details">
+                <div class="card-title text-truncate">{{ user.displayName }}</div>
+                <div class="card-subtitle">{{ user.dob | dateFromMillis }}</div>
+            </div>
+        </div>
+
+        <div class="row user-sports-container">
+            <div class="col-xs-3 user-sport-container" ng-repeat="sport in user.sports">
+                <div class="user-sport-icon btn-icon-round btn-icon btn-icon-thin btn-danger"><i class="{{getSportIcon(sport)}}"/></div>
+            </div>
+        </div>
+    </div>
+</div>

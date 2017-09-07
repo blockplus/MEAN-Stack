@@ -1,0 +1,108 @@
+@media print {
+   .no-print{
+        display:none;
+    }
+}
+
+/**
+  * BACKGROUND IMAGES MIXIN
+  */
+
+
+$image-path: '../../images' !default;
+$fallback-extension: 'png' !default;
+$retina-suffix: '@2x';
+@mixin background-image($name, $size:false){
+  @if($size){
+    background-size: $size;
+  }
+  background-image: url("#{$image-path}/#{$name}.#{$fallback-extension}");
+  @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+    background-image: url("#{$image-path}/#{$name}#{$retina-suffix}.#{$fallback-extension}");
+  }
+}
+
+@mixin gender-button-variant($background, $border) {
+  color: $reverse;
+  background-color: $background;
+  border-color: $border;
+  &:hover,
+  &:focus,
+  &:active {
+    color: $reverse;
+    text-decoration: none;
+    background-color: darken($background, 8%);
+    border-color: darken($border, 12%)
+  }
+}
+
+.btn-gender-female { @include gender-button-variant(#EA73A0, #EA73A0); }
+.btn-gender-male { @include gender-button-variant(#00c7f7, #00c7f7); }
+
+
+/**
+  * Commons
+  */
+
+.hashtag {
+    color: #0A6FB3;
+}
+
+.text-truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.md-accent {
+    color: $color-accent !important;
+}
+
+md-progress-circular {
+    display: inline-block;
+}
+
+.infinite-scrolling-loader{
+    margin: 0 auto;
+    color: $color-accent;
+}
+
+.infinite-scrolling-empty-data {
+    height: 100%;
+}
+
+._md-label{
+    color: $dark-lighter;
+}
+
+.form-input-with-icon {
+    display: table;
+
+    &.md-block{
+        width: 100%;
+    }
+
+    .fiwi-icon, .fiwi-input {
+        display: table-cell;
+        vertical-align: middle;
+
+        &.fiwi-valign-top {
+            vertical-align: top;
+        }
+    }
+
+    .fiwi-icon {
+        width: 40px;
+
+        i {
+            vertical-align: middle;
+            color: $brand-primary;
+        }
+
+        &.fiwi-valign-top {
+            i {
+                margin-top: 10px;
+            }
+        }
+    }
+}

@@ -1,0 +1,349 @@
+/*!
+ * Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+.body-landing {
+    #content {
+        background-color: white;
+        margin: 0;
+    }
+
+    .landing-page {
+
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 700;
+        color: #1275b8;
+        padding-top: 5px;
+
+        h1 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            color: #dd2a30;
+        }
+        h2,
+        h4,
+        h5,
+        h6 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 700;
+            color: #1275b8;
+        }
+        h3 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 500;
+        }
+
+        a {
+            cursor: pointer;
+        }
+
+        .align-center {
+            text-align: center
+        }
+        .align-center img {
+            margin: auto;
+        }
+
+        .align-left {
+            text-align: left
+        }
+
+        .h2rosso {
+            color: #dd2a30;
+        }
+
+        .h2blu {
+            color: #0d73b1;
+        }
+
+        .h2nero {
+            color: #2c2c2c;
+        }
+
+        .h2nerobig {
+            color: #2c2c2c;
+            font-size: 40px;
+        }
+
+        .topnav {
+            font-size: 14px;
+        }
+
+        .lead {
+            font-size: 18px;
+            font-weight: 400;
+            color: #515151;
+        }
+
+        .lead-home {
+            font-size: 20px;
+            font-weight: 400;
+            color: #515151;
+        }
+
+        .lead-red {
+            font-size: 26px;
+            font-weight: bold;
+            color: #da322c;
+        }
+
+        .lead-giga {
+            font-size: 40px;
+            font-weight: 400;
+            color: #515151;
+            text-align: right
+        }
+
+        .lead-tour {
+            font-size: 14px;
+            font-weight: 400;
+            color: #515151;
+        }
+
+        .scopri {
+            font-size: 18px;
+            font-weight: 400;
+            color: #0d73b1;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .intro-header {
+            padding-top: 50px; /* If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
+            padding-bottom: 50px;
+            text-align: center;
+            color: #F6F9FC;
+            background: url(../img/intro-bg.jpg) no-repeat center center;
+            background-size: cover;
+        }
+
+        .intro-message {
+            position: relative;
+            padding-top: 20%;
+            padding-bottom: 20%;
+        }
+
+        .intro-message > h1 {
+            margin: 0;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+            font-size: 5em;
+        }
+
+        .intro-divider {
+            width: 400px;
+            border-top: 1px solid #F6F9FC;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .intro-message > h3 {
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+        }
+
+        @media(max-width: 767px) {
+            .intro-message {
+                padding-bottom: 15%;
+            }
+
+            .intro-message > h1 {
+                font-size: 3em;
+            }
+
+            ul.intro-social-buttons > li {
+                display: block;
+                margin-bottom: 20px;
+                padding: 0;
+            }
+
+            ul.intro-social-buttons > li:last-child {
+                margin-bottom: 0;
+            }
+
+            .intro-divider {
+                width: 100%;
+            }
+        }
+
+        .network-name {
+            text-transform: uppercase;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .content-section-a {
+            padding: 50px 0;
+            background-color: #F6F9FC;
+        }
+
+        .content-section-a-home {
+            padding: 10px 0;
+            background-color: #F6F9FC;
+        }
+        .content-section-b {
+            padding: 50px 0;
+            border-top: 1px solid #e7e7e7;
+            border-bottom: 1px solid #e7e7e7;
+        }
+
+        .content-section-b-home {
+            padding: 10px 0;
+        }
+
+        .section-heading {
+            margin-bottom: 30px;
+        }
+
+        .section-heading-spacer {
+            float: left;
+            width: 200px;
+            border-top: 3px solid #e7e7e7;
+        }
+
+        .banner {
+            padding: 100px 0;
+            color: #F6F9FC;
+
+            background-size: cover;
+        }
+
+        .banner h2 {
+            margin: 0;
+            text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+            font-size: 3em;
+        }
+
+        .banner ul {
+            margin-bottom: 0;
+        }
+
+        .banner-social-buttons {
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .btn-facebook {
+            background: #3B5A9D;
+            color: #fff
+        }
+
+        @media(max-width: 1199px) {
+            ul.banner-social-buttons {
+                float: left;
+                margin-top: 15px;
+            }
+        }
+
+        @media(max-width: 767px) {
+            .banner h2 {
+                margin: 0;
+                text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+                font-size: 3em;
+            }
+
+            ul.banner-social-buttons > li {
+                display: block;
+                margin-bottom: 20px;
+                padding: 0;
+            }
+
+            ul.banner-social-buttons > li:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        footer {
+            padding: 50px 0;
+            background-color: #f8f8f8;
+        }
+
+        p.copyright {
+            margin: 15px 0 0;
+        }
+
+        /* BOX HOME */
+        .main_box {
+            padding: 50px 14px;
+            position: relative;
+        }
+        .images_box img {
+            width: 100%;
+        }
+        .images_box {
+            float: left;
+        }
+
+        .stap_box {
+            background: #fff none repeat scroll 0 0;
+            bottom: -111px;
+            left: 80px;
+            margin: 0 auto;
+            padding: 45px 37px;
+            position: absolute;
+            width: 57%;
+            color: #444;
+        }
+
+        .no-padding {
+            padding: 0;
+        }
+
+        .stap_box h4 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: #444;
+        }
+        .stap_box p {
+            font-size: 17px;
+            line-height: 22px;
+        }
+        .step_2 {
+            bottom: auto;
+            left: auto;
+            right: 66px;
+            top: -8px;
+            width: 48%;
+            z-index: 999;
+            padding: 48px 40px 55px;
+        }
+        .de_top_padding {
+            padding-top: 100px;
+        }
+        .step_3 {
+            bottom: auto;
+            top: -8px;
+            width: 39%;
+            z-index: 999;
+            left: 0;
+            right: 0;
+        }
+
+        .btn-facebook {
+            color: #fff;
+            background-color: #335397;
+            border-color: #335397;
+            color: white !important;
+        }
+        .btn {
+            display: inline-block;
+            margin-bottom: 0;
+            font-weight: normal;
+            text-align: center;
+            vertical-align: middle;
+            touch-action: manipulation;
+            cursor: pointer;
+            background-image: none;
+            border: 1px solid transparent;
+            white-space: nowrap;
+            padding: 8px 12px;
+            font-size: 14px;
+            line-height: 1.42857;
+            border-radius: 2px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    }
+}

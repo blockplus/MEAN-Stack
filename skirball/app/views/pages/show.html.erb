@@ -1,0 +1,6 @@
+<%= content_for :title, @page.title %>
+<%= render_sidebar %>
+<div class="entry">
+  <%= render_flash %>
+  <%= @page.content.html_safe %>
+</div>

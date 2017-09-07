@@ -1,0 +1,26 @@
+<%= content_for :title, "Donate" %>
+<%= render_sidebar %>
+<div class="entry">
+  <%= render_flash %>
+  <div class="column">
+    <%= @page.content.html_safe %>
+	</div>
+  <div class="column2">
+    <h2>Select a Donation Level and See How Your Gift Can Help</h2>
+    <% @donations.each_with_index do |donation, i| %>
+      <%= link_to create_donation_path(donation.amount.to_i) do %>
+        <%= image_tag "SKIRBALLpurple#{i % 4 + 1}.jpg", class: "alignleft" %>
+      <% end %>
+      <p class="details"><%= link_to number_to_currency(donation.amount), create_donation_path(donation.amount.to_i) %></p>
+      <p><%= donation.title.html_safe %></p>
+      <div class="clear"></div>
+    <% end %>
+    <%= image_tag "SKIRBALLpurple#{@donations.count % 4 + 1}.jpg", class: "alignleft" %>
+		<p class="details"> Provide General Support</p>
+    <%= form_tag :donation_from_form, :method => :get, :id => :custom_donation do %>
+      <%= text_field_tag :amount, nil, class: "span1", placeholder: "$", size: 30 %>
+      <%= submit_tag "Donate", :class => :big %>
+    <% end %>
+    <div class="clear"></div>
+  </div>
+</div>

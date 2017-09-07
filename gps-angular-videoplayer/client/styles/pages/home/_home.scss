@@ -1,0 +1,148 @@
+.home-page {
+
+    @media (min-width: 1200px){
+        .container {
+            width: 1024px;
+        }
+    }
+//    body {
+//        font-family: 'Lato', sans-serif;
+//        color: white;
+//        font-size: 17px;
+//    }
+
+    .header{
+        margin-top:20px;
+        margin-bottom:20px;
+    }
+
+    .left_header {
+        float: left;
+        margin-left: 10px;
+    }
+
+    .right_header {
+        color: black;
+        float: right;
+        text-align: right;
+        margin-right: 30px;
+        margin-top: 10px;
+    }
+
+    .row_how_to{
+        margin-bottom:30px;
+        margin-top:40px;
+    }
+
+    .title_howto {
+        font-family: 'Asap', sans-serif;
+        color: #12407c;
+        text-align: center;
+        font-size: 28px;
+        font-weight: bold;
+        line-height: 32px;
+    }
+
+    .block_who_we_are {
+        margin-bottom: 40px;
+        margin-top: 30px;
+    }
+
+    .title_who_we_are {
+        color: #113f7a;
+        font-size: 47px;
+        font-weight: bold;
+        font-family: 'Asap', sans-serif;
+    }
+
+    .body_who_we_are {
+        font-family: 'Asap', sans-serif;
+        color: #b02125;
+        font-size: 24px;
+        line-height: 27px;
+    }
+
+    .block_join_the_community {
+        background-color: #ede39c;
+        padding: 15px;
+        text-align: center;
+        margin-right: 40px;
+        margin-left: 40px;
+    }
+
+    .title_join_the_community {
+        font-family: 'Asap', sans-serif;
+        color: #113f7a;
+        font-size: 28px;
+        font-weight: bold;
+        line-height: 36px;
+        margin-bottom:10px;
+    }
+
+    .column_how_to {
+        margin-left: 25px;
+        margin-right: 20px;
+        text-align: center;
+    }
+
+    .body_howto {
+        color: black;
+        font-size: 18px;
+        text-align: center;
+        margin-top: 10px;
+        font-family: 'Asap', sans-serif;
+    }
+
+    .block_intro {
+        font-family: 'Asap', sans-serif;
+        text-align: center;
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+
+
+
+    .title_intro {
+        font-family: 'Asap', sans-serif;
+        color: #0f4078;
+        font-size: 42px;
+        font-weight: bold;
+    }
+
+    .body_intro {
+        font-family: 'Asap', sans-serif;
+        color: #b02125;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .footer_testo{
+        background-color: #1273b6;
+
+        color: #FFFFFF;
+        font-size:12px;
+        padding-top:34px;
+        padding-bottom:54px;
+    }
+
+    /* unvisited link */
+    .footer_testo a:link {
+        color: #FFFFFF;
+    }
+
+    /* visited link */
+    .footer_testo a:visited {
+        color: #FFFFFF;
+    }
+
+    /* mouse over link */
+    .footer_testo a:hover {
+        color: #FFFFFF;
+    }
+
+    /* selected link */
+    .footer_testo a:active {
+        color: #FFFFFF;
+    }
+
+}

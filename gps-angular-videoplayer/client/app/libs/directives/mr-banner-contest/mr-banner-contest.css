@@ -1,0 +1,50 @@
+mr-banner-contest .panel {
+    border-color: #0F72B5;
+}
+
+mr-banner-contest .panel-heading {
+    background-color: #0F72B5;
+    color: white;
+    text-align: center;
+    text-transform: none !important;
+}
+
+mr-banner-contest .panel-body {
+    padding: 10px;
+}
+
+mr-banner-contest .panel-title{
+    font-size: 16px !important;
+}
+
+@media (min-width: 768px) and (max-width: 991px){
+    mr-banner-contest .panel-title{
+        font-size: 14px !important;
+    }
+}
+
+mr-banner-contest .row-fluid [class^="col-"] {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+mr-banner-contest .btn{
+    text-transform: uppercase;
+}
+
+mr-banner-contest .prize img{
+    /*width: 100%;*/
+}
+
+mr-banner-contest .prize p{
+    color: #0F72B5;
+    text-align: center;
+    margin: 5px -5px 10px;
+}
+
+@media (min-width: 768px) and (max-width: 991px){
+    mr-banner-contest .prize p{
+        font-size: 12px;
+        line-height: 14px;
+    }
+}

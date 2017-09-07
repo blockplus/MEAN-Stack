@@ -1,0 +1,52 @@
+<div id="top">
+The Skirball Center for Adult Jewish Learning at Temple Emanu-El
+  <ul>
+    <li class="mailinglist"><a href="http://visitor.r20.constantcontact.com/manage/optin/ea?v=001bAhAGGXw8y_k2T49lcfJFg%3D%3D" target="_blank">Mailing List</a></li> 
+    <li class="twitter"><a href="https://twitter.com/jewishlearning" class="twitter"></a></li>
+    <li class="facebook"><a href="https://www.facebook.com/jewishlearning" class="facebook"></a></li>
+    <li><%= link_to "Donate", :donate %></li>
+    <li><%= link_to "Register", logged_in? ? courses_url : login_url %></li>
+    <li class="cart"><%= link_to '', :cart, class: "cart" %></li>
+    <li class="account"><%= link_to '', :account, class: "account" %></li>
+  </ul>
+</div>
+<div id="nav">
+<div class="content">
+<%= link_to root_url do %>
+  <%= image_tag "logo.png", class: "logo" %>
+<% end %>
+<ul><li class="parent"><%= link_to "Meet Us", '#' %>
+  <ul class="children">
+    <li><%= link_to "Mission and Vision", page_url("mission-and-vision") %></li>
+    <li><%= link_to "Staff", page_url("staff") %></li>
+    <li><%= link_to "Faculty", :faculty %></li>
+    <li><%= link_to "Who Studies Here?", page_url("who-studies-here") %></li>
+    <li><%= link_to "News", :news %></li>
+  </ul>
+  </li>
+  <li class="parent"><%= link_to "Study", "#" %>
+  <ul class="children">
+    <li><%= link_to "Courses", :courses %></li>
+    <li><%= link_to "Events", :events %></li>
+    <li><%= link_to "Request a Guide", :request_guide %></li>
+  </ul>
+  </li>
+  <li class="parent"><%= link_to "Interact", '#' %>
+  <ul class="children">
+    <li><%= link_to "Calendar", :calendar %></li>
+    <li><%= link_to "Social Media", page_url("social-media") %></li>
+    <li><%= link_to "Podcasts", :podcasts %></li>
+    <li><%= link_to "Videos", :videos %></li>
+  </ul>
+  </li>
+  <li class="parent"><%= link_to "Connect", '#' %>
+    <ul class="children">
+      <li><%= link_to "FAQ", page_url("faq") %></li>
+      <li><%= link_to "Support Our Work", :donate %></li>
+      <li><%= link_to "Address/Directions", page_url("address-directions") %></li>
+      <li><%= link_to "Contact Us", :contact %></li>
+    </ul>
+  </li>
+</ul>
+</div>
+</div>

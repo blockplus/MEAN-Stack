@@ -1,0 +1,40 @@
+<section class="panel panel-default">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form name="sendCommentForm" onsubmit="send()" action="javascript:void(0);">
+                    <div class="form-group">
+                        <md-input-container class="md-block">
+                            <label ng-show="comment==null || comment==''">{{ 'hint_comment' | translate }}</label>
+                            <input ng-model="comment" aria-label="{{ 'hint_comment' | translate }}"/>
+                        </md-input-container>
+                        <md-button class="md-icon-button md-warn" aria-label="send" ng-click="send()"><i class="material-icons">send</i></md-button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 comments-container">
+                <div infinite-scroll='comments.nextPage()' infinite-scroll-disabled='comments.disabled' infinite-scroll-distance='0' infinite-scroll-parent="true">
+                    <div class="no-comment-container" ng-if="comments.data.length == 0 && !comments.busy">{{ 'no_comments' | translate }}</div>
+                    <div class="comment-container" ng-repeat='comment in comments.data' ng-class-odd="'alt'">
+                        <a ui-sref="user({userId: comment.owner.id })">
+                            <div style="{{ 'background-image: url('+ comment.owner.avatarUrl +')' }}" class="comment-author-img img-circle"></div>
+                        </a>
+                        <div class="comment-data">
+                            <div class="comment-author-displayname text-truncate">{{ comment.owner.displayName }}</div>
+                            <div class="comment-date">{{ comment.created | dateFromMillis }}</div>
+                            <div class="comment-content">{{ comment.comment }}</div>
+                        </div>
+                    </div>
+                    <div style="clear:both;"></div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <md-progress-circular ng-show="comments.busy" class="md-warn infinite-scrolling-loader" md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

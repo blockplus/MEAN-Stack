@@ -1,0 +1,8 @@
+<%= content_for :title, "Videos" %>
+<%= render_sidebar %>
+<div class="entry">
+  <%= render_flash %>
+  <% @videos.each do |video| %>
+    <%= render partial: "single", locals: {video: video} %>
+  <% end %>
+</div>

@@ -1,0 +1,15 @@
+default:
+  title: A default event
+  description: A default event description
+  time: 5pm
+  date: <%= 1.week.from_now %>
+  location: default
+  price: 100
+
+fifty_dollar_event:
+  title: An event for 50 dollars
+  description: A description
+  time: 6 pm
+  date: <%= Date.today %>
+  location: default
+  price: 50.0

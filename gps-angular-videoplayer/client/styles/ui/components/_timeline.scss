@@ -1,0 +1,276 @@
+$TL_content_bg:         rgba(255,255,255,.9);
+
+.ui-timline-container {
+    padding: 15px;
+
+
+}
+
+.ui-timline-left {
+    .ui-timeline {
+        &:before {
+            left: 0;
+        }
+
+        .tl-item {
+            &:before {
+                @media (min-width: $screen-sm) {
+                    display: none;
+                }
+            }
+
+            .tl-caption {
+                @media (min-width: $screen-sm) {
+                    margin-left: -55px;
+                }
+            }
+
+
+            .tl-body {
+                .tl-time {
+                    @media (min-width: $screen-sm) {
+                        left: auto;
+                        right: 15px;
+                        color: $gray-light;
+                    }
+                }            
+            }
+        }
+    }
+}
+
+.ui-timeline {
+    display: table;
+    position: relative;
+    table-layout: fixed; // ensure same width
+    width: 100%;
+    border-spacing: 0;
+    border-collapse:collapse;
+    &:before {
+        background-color: darken($gray-lighter, 10%);
+        bottom: 0px;
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 30px;
+        width: 1px;
+        z-index: 0;
+        @media (min-width: $screen-sm) {
+            left: 50%;
+        }
+    }
+
+    .tl-item {
+        display: table-row;
+        margin-bottom: 5px;
+        &:before {
+            display: none;
+            content: "";
+            @media (min-width: $screen-sm) {
+                display: block;
+                width: 50%;
+            }
+        }
+
+        .tl-caption {
+            width: 150px;
+            margin-left: -55px;
+            @media (min-width: $screen-sm) {
+                margin-left: -110px;
+            }
+
+        }
+
+        &.alt {
+            @media (min-width: $screen-sm) {
+                text-align: right;
+                &:before {
+                    display: none;
+                }
+                &:after {
+                    content: "";
+                    display: block;
+                    width: 50%;                
+                }
+
+                .tl-body {
+                    .tl-entry {
+                        margin: 0 35px 15px 0;
+                    }
+                    .tl-time {
+                        right: -220px;
+                        left: auto;
+                        text-align: left;
+                    }
+                    .tl-icon {
+                        right: -53px;
+                        left: auto;
+                    }
+                    .tl-content {
+                        &:after {
+                            right: -16px;
+                            left: auto;
+                            border: 8px solid transparent;
+                            border-left: 8px solid $TL_content_bg;
+                            border-top: 8px solid $TL_content_bg;
+                        }
+                    }
+                }
+            }
+        }
+
+        .tl-body {
+            display: table-cell;
+            width: 50%;
+            vertical-align: top;
+
+            .tl-entry {
+                position: relative;
+                min-height: 50px;
+                margin: 0 0 15px 36px;
+            }
+            .tl-time {
+                z-index: 1;
+                position: absolute;
+                left: auto;
+                right: 15px;
+                top: 0;
+                width: 150px;
+                color: $gray-light;
+                line-height: 35px;
+                text-align: right;
+                @media (min-width: $screen-sm) {
+                    left: -220px;
+                    right: auto;
+                    color: $text-color;
+                }
+            }
+            .tl-icon {
+                position: absolute;
+                cursor: default;
+                left: -53px;
+                top: 0;
+            }
+            .tl-title {}
+            .tl-content {
+                position: relative;
+                padding: 15px;
+                border-radius: $border-radius-base;
+                background-color: $TL_content_bg;
+                &:after {
+                    content: " ";
+                    line-height: 0;
+                    position: absolute;
+                    left: -16px;
+                    top: 0;
+                    border: 8px solid transparent;
+                    border-right: 8px solid $TL_content_bg;
+                    border-top: 8px solid $TL_content_bg;
+                }
+
+                //material cards override
+                .card {
+                    margin: 0px;
+                    box-shadow: none;
+                    .card-content {
+                        padding: 5px;
+                    }
+
+                    i {
+                        vertical-align: middle;
+                        font-size: 16px;
+                        @media (min-width: $screen-lg) {
+                            font-size: 20px;
+                        }
+                    }
+
+                    .tl-action-description {
+                        display: block;
+                        margin-bottom: 10px;
+                        text-align: left;
+                        font-style: italic;
+                        font-size: 16px;
+                        @media (min-width: $screen-sm) and (max-width: $screen-lg) {
+                            font-size: 14px;
+                        }
+                        .tl-action-performer {
+                            font-weight: bold;
+                        }
+                    }
+
+                    .tl-action-header {
+                        display: block;
+                        text-align: left;
+                        margin-bottom: 10px;
+
+                        > div, a {
+                            display: inline-block;
+                            vertical-align: middle;
+                        }
+
+                        .tl-action-performer-img {
+                            height: 43px;
+                            width: 43px;
+                            box-shadow: 0 0 0 5px rgba(255,255,255,.5), 0 0 10px rgba(0,0,0,.2);
+                            background-clip: padding-box;
+                            background-size: cover;
+                            background-position: center center;
+                            @media (min-width: $screen-lg) {
+                                height: 50px;
+                                width: 50px;
+                            }
+                        }
+
+                        .tl-action-owner {
+                            margin-left: 15px;
+                            .card-title {
+                                line-height: 20px;
+                                font-size: 14px;
+                                @media (min-width: $screen-lg) {
+                                    line-height: 24px;
+                                    font-size: 18px;
+                                }
+                            }
+                            .card-subtitle {
+                                font-size: 12px;
+                                @media (min-width: $screen-lg) {
+                                    font-size: 14px;
+                                }
+                            }
+                        }
+                    }
+
+                    .card-thumbnails {
+                        position: relative;
+                        .thumbnail-title {
+                            position: absolute;
+                            top: 0;
+                            color: white;
+                            background-color: rgba(0,0,0,0.3);
+                            width: 100%;
+                            display: block;
+                            text-align: center;
+                            padding: 8px 10px;
+                            font-size: 16px;
+                            font-weight: 500;
+                            @media (min-width: $screen-lg) {
+                                font-size: 20px;
+                            }
+                        }
+                    }
+
+                    .card-social {
+                        span {
+                            vertical-align: middle;
+                            @media (min-width: $screen-lg) {
+                                font-size: 14px;
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+

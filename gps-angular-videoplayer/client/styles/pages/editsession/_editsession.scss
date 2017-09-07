@@ -1,0 +1,19 @@
+.editsession-page {
+
+    form {
+        padding-top: 20px;
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+    }
+
+    md-input-container {
+        margin: 10px 0;
+    }
+
+    mr-input-friends,
+    mr-input-hashtags {
+        display: block;
+    }
+}

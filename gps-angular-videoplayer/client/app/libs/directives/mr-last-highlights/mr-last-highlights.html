@@ -1,0 +1,11 @@
+<div class="row mr-last-highlights">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" ng-repeat="highlight in highlights track by highlight.id">
+                <mr-highlight-preview highlight="highlight" play-button-over-with-image
+                      on-play-click="goToHighlightPage" on-image-click="goToHighlightPage">
+                </mr-highlight-preview>
+            </div>
+        </div>
+    </div>
+</div>

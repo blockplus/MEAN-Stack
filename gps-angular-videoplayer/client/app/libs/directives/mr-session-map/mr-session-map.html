@@ -1,0 +1,8 @@
+<div id="sessionMapContainer" ng-class="{ 'map-fullscreen': isFullscreen }">
+    <leaflet id="sessionMap" defaults="defaults" event-broadcast="events" center="center" geojson="trackLayer" markers="markers" paths="paths" height="100%" width="100%"></leaflet>
+    <div class="map-custom-buttons">
+        <button class="map-custom-btn" ng-click="onCenter()"><i class="material-icons">my_location</i></button>
+        <button class="map-custom-btn" ng-click="toggleFullscreen()"><i class="material-icons">fullscreen</i></button>
+    </div>
+    <md-progress-circular class="md-warn map-loading" md-mode="indeterminate" md-diameter="40" ng-if="loading"></md-progress-circular>
+</div>

@@ -1,0 +1,111 @@
+mr-highlight-comments {
+    cursor: pointer;
+}
+
+.mr-highlight-comments-modal .panel {
+    margin-bottom: 0px;
+}
+
+.mr-highlight-comments-modal form .form-group md-input-container {
+    width: 85%;
+    display: inline-block;
+    margin: 10px 0 0 0;
+}
+
+.mr-highlight-comments-modal form .form-group md-button {
+    display: inline-block;
+    vertical-align: top;
+    width: 15%;
+}
+
+.mr-highlight-comments-modal .comments-container {
+    min-height: 300px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.mr-highlight-comments-modal .no-comment-container {
+    text-align: center;
+}
+
+.mr-highlight-comments-modal .comment-container {
+    display: table;
+    width: 100%;
+    text-align: left;
+    direction: ltr;
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+.mr-highlight-comments-modal .comment-container.alt {
+    text-align: right;
+    direction: rtl;
+}
+
+.mr-highlight-comments-modal .comment-container > div,
+.mr-highlight-comments-modal .comment-container > a {
+    display: table-cell;
+    vertical-align: top;
+ }
+
+.mr-highlight-comments-modal .comment-container > a {
+    width: 43px;
+}
+
+.mr-highlight-comments-modal .comment-container .comment-author-img {
+    height: 43px;
+    width: 43px;
+    box-shadow: 0 0 0 5px rgba(255,255,255,.5), 0 0 10px rgba(0,0,0,.2);
+    background-clip: padding-box;
+    background-size: cover;
+    background-position: center center;
+}
+
+@media (min-width: 1200px) {
+    .mr-highlight-comments-modal .comment-container > a {
+        width: 50px;
+    }
+
+    .mr-highlight-comments-modal .comment-container .comment-author-img {
+        height: 50px;
+        width: 50px;
+    }
+}
+
+.mr-highlight-comments-modal .comment-container .comment-data {
+    padding-left: 15px;
+}
+.mr-highlight-comments-modal .comment-container.alt .comment-data {
+    padding-left: 0px;
+    padding-right: 15px;
+}
+
+.mr-highlight-comments-modal .comment-container .comment-data .comment-author-displayname {
+    line-height: 18px !important;
+    font-size: 14px !important;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.54);
+}
+@media (min-width: 1200px) {
+
+    .mr-highlight-comments-modal .comment-container .comment-data .comment-author-displayname {
+        line-height: 24px;
+        font-size: 18px;
+    }
+}
+
+.mr-highlight-comments-modal .comment-container .comment-data .comment-date {
+    font-size: 12px !important;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+@media (min-width: 1200px) {
+
+    .mr-highlight-comments-modal .comment-container .comment-data .comment-date {
+        font-size: 14px;
+    }
+}
+
+.mr-highlight-comments-modal .comment-container .comment-data .comment-content {
+    direction: ltr;
+}

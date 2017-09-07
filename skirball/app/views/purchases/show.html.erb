@@ -1,0 +1,5 @@
+<%= content_for :title, "Purchases" %>
+<div class="entry">
+  <%= render_flash %>
+  <%= @purchase.receipt.html_safe %>
+</div>

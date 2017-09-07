@@ -1,0 +1,44 @@
+// Place all the styles related to the Main controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.digit {
+  width: 32px;
+  padding: 3px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.bom {
+  padding: 20px;
+}
+
+.configuration {
+  padding: 20px;
+  width: 1400px;
+}
+
+button {
+  color: red;
+  font-weight: bold;
+}
+
+label.disabled {
+  color: grey;
+}
+
+.list {
+  width: 100%;
+}
+
+button:disabled {
+  color: grey;
+}
+
+input[type="radio"] {
+  margin-right: 5px;
+}
+
+.section {
+  font-weight: bold;
+}
+

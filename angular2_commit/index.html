@@ -1,0 +1,89 @@
+<!doctype html>
+<!--[if lt IE 8]>         <html class="no-js lt-ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <base href="/">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Web Application</title>
+        <meta name="description" content="Responsive Admin Web App">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,600,300,700" rel="stylesheet" type="text/css">
+        <!-- Needs images, font... therefore can not be part of main.css -->
+        <link rel="stylesheet" href="themify-icons/themify-icons.min.css">
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+        <!-- end Needs images -->
+
+            
+        <link rel="stylesheet" href="styles/main.css">
+
+        
+                <!--ANGULAR 2 stuff-->
+
+              <!-- IE required polyfills, in this exact order -->
+      <script src="node_modules/es6-shim/es6-shim.min.js"></script>
+      <script src="node_modules/systemjs/dist/system-polyfills.js"></script>
+      <script src="node_modules/angular2/es6/dev/src/testing/shims_for_IE.js"></script>   
+
+      <script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+      <script src="node_modules/systemjs/dist/system.src.js"></script>
+      <script src="node_modules/rxjs/bundles/Rx.js"></script>
+      <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+
+       <!-- Add the router library -->
+      <script src="node_modules/angular2/bundles/router.dev.js"></script>
+
+      <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.34.1/es6-shim.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.20/system-polyfills.js"></script>
+      <script src="https://unpkg.com/angular2/es6/dev/src/testing/shims_for_IE.js"></script> -->
+
+      <!-- Angular polyfill required everywhere -->
+      <!-- <script src="https://code.angularjs.org/2.0.0-beta.8/angular2-polyfills.js"></script> -->
+
+      <!-- <script src="https://code.angularjs.org/tools/system.js"></script> -->
+      <!-- <script src="https://code.angularjs.org/tools/typescript.js"></script> -->
+<!--       <script src="https://code.angularjs.org/2.0.0-beta.8/Rx.js"></script>
+      <script src="https://code.angularjs.org/2.0.0-beta.8/angular2.dev.js"></script>
+      <script src="https://code.angularjs.org/2.0.0-beta.8/router.dev.js"></script>
+      <script src="https://code.angularjs.org/2.0.0-beta.8/http.dev.js"></script> -->
+
+      <!-- 2. Configure SystemJS -->
+      <script>
+        System.config({
+          packages: {        
+            app: {
+              format: 'register',
+              defaultExtension: 'js'
+            }
+          }
+        });
+        System.import('app/main')
+          .then(null, console.error.bind(console));
+        // System.config({
+        //   transpiler: 'typescript', 
+        //   typescriptOptions: { emitDecoratorMetadata: true }, 
+        //   packages: {
+        //     'api': {defaultExtension: 'ts'}, 
+        //     'app': {defaultExtension: 'ts'} 
+        //   } 
+        // });
+        // System.import('app/main')
+        //   .then(null, console.error.bind(console));
+      </script>
+        
+        
+        
+    </head>
+    <body id="app" class="app">
+        <!--[if lt IE 9]>
+            <div class="lt-ie9-bg">
+                <p class="browsehappy">You are using an <strong>outdated</strong> browser.</p>
+                <p>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            </div>
+        <![endif]-->
+
+        <app-begin></app-begin>
+
+    </body>
+</html>

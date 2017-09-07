@@ -1,0 +1,12 @@
+<%= content_for :title, "News" %>
+<%= render_sidebar %>
+<div class="entry">
+  <%= render_flash %>
+  <% @news_items.each do |item| %>
+    <h2><%= item.title %></h2>
+    <p class="details"><%= item.created_at.strftime('%B %-d, %Y') %></p>
+    <p><%= item.preview %></p>
+    <%= link_to "Read More", item.url, target: "_blank", :class => "button" %>
+  <% end %>
+</div>
+<br>

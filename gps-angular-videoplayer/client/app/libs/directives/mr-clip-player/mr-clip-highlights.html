@@ -1,0 +1,10 @@
+<div>
+    <div ng-repeat="h in highlights" ng-mouseenter="h.showtitle=true" ng-mouseleave="h.showtitle=false">
+        <div ng-class="getClass(h)" class="highlight-container" ng-click="onClick(h)"
+             ng-style="{width:getWidthPercentage(h) + '%', left:getLeftPercentage(h) + '%'}">
+            <img ng-src="{{h.owner.avatarUrl}}">
+        </div>
+        <div ng-show="h.showtitle" class="hl-title" ng-style="getTitleStyle(h)"><span class="display-name">{{h.owner.displayName}}</span><span>{{h.name}}</span>
+        </div>
+    </div>
+</div>

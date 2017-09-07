@@ -1,0 +1,31 @@
+<%= content_for :title, "Faculty" %>
+
+<div class="leftsidebar names">
+  <% @teachers.each do |teacher| %>
+    <div class="listing">
+      <%= image_tag teacher.image.url(:default), class: "alignleft" %>
+      <%= link_to teacher.name, teacher_path(teacher) %>
+    </div>
+  <% end %>
+</div>
+<%= render_sidebar %>
+<div class="entry">
+  <%= render_flash %>
+  <%= image_tag @teacher.image.url(:default), class: "alignleft faculty" %>
+  <% if @teacher.testimonial.present? %>
+    <div class="quote_outer">
+      <div class="quote">"<%= @teacher.testimonial %>"</div>
+    </div>
+  <% end %>
+  <div class="clear"></div>
+  <p><%= @teacher.biography.html_safe %></p>
+  <% if @teacher.courses.live.present? %>
+    <p class="purple"><strong>COURSES TAUGHT THIS SEMESTER</strong></p>
+    <% @teacher.courses.live.each do |course| %>
+      <p><%= link_to course.title, course_path(course) %></p>
+      <% unless @teacher.courses.last == course %>
+        <hr>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

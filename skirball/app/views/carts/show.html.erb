@@ -1,0 +1,178 @@
+<%= content_for :title, "Your Cart" %>
+<div class="entry">
+  <div id="cart">
+      <%= render_flash %>
+      <% if @cart.line_items.present? %>
+        <% @cart.line_items.each do |item| %>
+          <h3><%= link_to item.title, course_path(item.course) %></h3>
+          <table id="cart" class="table table-striped">
+            <thead>
+              <tr>
+                <th class="purple" colspan="2">
+                  Course Information <br/>
+                  <span class="member_notice"><strong>If you are a current member of Temple Emanu-El,</strong> you may choose the Temple Member Discount Fee.</span>
+                </th>
+                <th width="10%"></th>
+                <th class="purple" width="10%">Price</th>
+              </tr>
+
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <%= link_to line_items_path(item), :method => :delete do %><i class="icon-remove"></i><% end %>
+                  <%= link_to course_path(item.course) do %>
+                    <%= "#{item.course.semester.title}: #{item.course.day_of_week} #{item.course.start_time} - #{item.course.end_time}, #{item.course.teachers.map(&:name).to_sentence}" %> 
+                  <% end %>
+                </td>
+                <td width="35%">
+                  <%= form_tag update_line_item_quantity_path(item.id), :id => "quantity_form" do %>
+                    <%= hidden_field_tag 'line_item_id', item.id %>
+                    <%=
+                        @standard_sel = "selected"
+                        @discount_sel = ""
+                        if (item.fee_type !=1 )
+                          @discount_sel = "selected"
+                          @standard_sel = ""
+                        end
+                    %>
+
+                    <select name="fee" id="fee" style="vertical-align: top" class="fee_type">
+                      <option value="1" <%= @standard_sel %>>Standard Course Fee</option>
+                    <% if item.course.ignore_discount != true %>
+                      <option value="2" <%= @discount_sel %>>Temple Member Discount Fee*</option>
+                    <% end %>
+                    </select>
+
+                    <%= number_field_tag :quantity, item.quantity, class: 'span1' %>
+                    <%= submit_tag "Update" %>
+                  <% end %>
+                </td>
+                <td class="right">Cost:</td>
+                <td><%= number_to_currency item.total %></td>
+              </tr>
+              <% if @cart.discount.present? && item.discountable? %>
+                <tr id="shipping">
+                  <td colspan=3 class="right"><%= discount_label @cart.discount %>:</td>
+                  <td>
+                    <% if @cart.discount.rule == "amount" %>
+                      <%= number_to_currency( @cart.discount.amount / @cart.line_items.count ) %>
+                    <% else %>
+                      <%= number_to_currency( @cart.calculate_amount(item.total) ) %>
+                    <% end %>
+                  </td>
+                </tr>
+                <tr id="total">
+                  <td></td>
+                  <td></td>
+                  <td class="right">Subtotal:</td>
+                  <td>
+                    <% if @cart.discount.rule == "amount" %>
+                      <%= number_to_currency( item.total - (@cart.discount.amount / @cart.line_items.count) ) %>
+                    <% else %>
+                      <%= number_to_currency( item.total - @cart.calculate_amount(item.total) ) %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        <% end %>
+      <% end %>
+      <% if @cart.event_items.present? %>
+        <h3><%= link_to "Events", :calendar %></h3>
+        <% @cart.event_items.each do |item| %>
+          <table id="cart" class="table table-striped">
+            <thead>
+              <tr>
+                <th class="purple">Event Information</th>
+                <th width="20%"></th>
+                <th width="10%"></th>
+                <th class="purple" width="10%">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <%= link_to event_items_path(item), :method => :delete do %><i class="icon-remove"></i><% end %>
+                  <%= link_to item.title, event_path(item.event) %>
+                </td>
+                <td>
+                  <%= form_tag update_event_item_quantity_path(item.id), :id => "quantity_form" do %>
+                    <%= number_field_tag :quantity, item.quantity, class: 'span1' %>
+                    <%= submit_tag "Update" %>
+                  <% end %>
+                </td>
+                <td>Cost:</td>
+                <td><%= number_to_currency item.total %></td>
+              </tr>
+            </tbody>
+          </table>
+        <% end %>
+      <% end %>    
+      <% if @cart.donation.present? %>
+        <h3><%= link_to "Donation", :donate %></h3>
+        <table id="cart" class="table table-striped">
+          <thead>
+            <tr>
+              <th class="purple">Donation Information</th>
+              <th width="10%"></th>
+              <th class="purple" width="10%">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <%= link_to :donation, :method => :delete do %><i class="icon-remove"></i><% end %>
+                <%= @donation_title %>
+              </td>
+              <td>Amount:</td>
+              <td><%= number_to_currency @cart.donation.amount %></td>
+            </tr>
+          </tbody>
+        </table>
+      <% else %>
+        <h3>Would you like to donate to Skirball’s scholarship fund?</h3>
+        <div>
+          Please assist another student to become an adult Jewish learner.<br>
+          We appreciate your donation of
+          <%= form_tag :donation_from_form, :method => :get, :id => :in_cart_donation do %>
+            <%= text_field_tag :amount, nil, class: "span1", placeholder: "$", size: 30 %>
+            <%= submit_tag "Donate", :class => :big %>
+          <% end %>
+        </div>
+      <% end %>    
+      <table id="cart" class="table table-striped">
+        <thead>
+          <tr>
+            <th></th>
+            <th width="10%"></th>
+            <th width="10%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @cart.discount.present? && @cart.calculate_discount > 0%>
+            <tr>
+              <td></td>
+              <td><strong>Subtotal:</strong></td>
+              <td><%= number_to_currency( @cart.discountable_subtotal + @cart.nondiscountable_total) %></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><strong>Discount:</strong></td>
+              <td><%= number_to_currency @cart.calculate_discount %></td>
+            </tr>
+          <% end %>
+          <tr>
+            <td></td>
+            <td><strong>Total:</strong></td>
+            <td><%= number_to_currency @cart.total %></td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- removed the discount form for summer 2014 and extracted it to a partial in _discount_form.html.erb -->
+      <%= render 'payment_form' %>
+      <div class="clear"></div>	
+  </div>
+</div>
+>

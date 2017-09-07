@@ -1,0 +1,52 @@
+/**
+  * Material Design Tab Overrides
+  */
+md-tabs .md-tab.md-active {
+  color: $brand-primary;
+}
+
+md-tabs md-ink-bar {
+  color: $brand-primary;
+  background-color: $brand-primary;
+}
+
+/**
+  * Material Design Contact chips
+  */
+
+.md-virtual-repeat-container.md-autocomplete-suggestions-container{
+    z-index: 1050;
+}
+.md-contact-suggestion .md-contact-name {
+    position: relative;
+    top: 6px;
+}
+.md-contact-chips .md-chips .md-chip .md-contact-name {
+    height: 30px;
+}
+
+/**
+  * Material Design input colors
+  */
+md-chips.md-default-theme .md-chips.md-focused,
+md-chips .md-chips.md-focused{
+    box-shadow: 0 2px $brand-primary;
+}
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-has-value label,
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused label,
+md-input-container:not(.md-input-invalid).md-input-has-value label,
+md-input-container:not(.md-input-invalid).md-input-focused label{
+    color: $brand-primary;
+}
+md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input,
+md-input-container:not(.md-input-invalid).md-input-focused .md-input{
+    border-color: $brand-primary;
+}
+md-input-container.md-default-theme.md-input-invalid.md-input-focused label,
+md-input-container.md-input-invalid.md-input-focused label{
+    color: $color-accent;
+}
+md-input-container.md-default-theme.md-input-invalid .md-input,
+md-input-container.md-input-invalid .md-input{
+    border-color: $color-accent;
+}

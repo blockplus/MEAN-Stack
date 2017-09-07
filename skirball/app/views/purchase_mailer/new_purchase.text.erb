@@ -1,0 +1,42 @@
+Thank you for registering with Skirball for this coming semester.
+
+<% if @purchase.courses.present? %>
+    Our records show you are registered for the following course(s):
+
+    <% @purchase.courses.each do |course| %>
+        "<%= course.title %>" on <%= course.day_of_week %>, <%= course.start_time %> - <%= course.end_time %> beginning <%= course.class_dates.first.start_time.strftime("%m/%d/%Y") %>.
+
+        The course will take place at <%= course.location.address %>.
+
+    <% end %>
+<% end %>
+<% if @purchase.events.present? %>
+    Our records show you are registered for the following event(s):
+
+    <% @purchase.events.each do |event| %>
+        "<%= event.title %>" on <%= event.date.strftime('%m/%d/%Y') %> starting at <%= event.time %>
+
+        This event will take place at <%= event.location.address %>.
+
+    <% end %>
+<% end %>
+<% if @purchase.total > 0 %>
+    Your total for this purchase is <%= number_to_currency @purchase.total %>, which will be charged to your credit card.
+
+<% end %>
+You registered with the following contact information:
+
+<%= "#{@purchase.first_name} #{@purchase.last_name}" %>
+<%= @purchase.account.email %>
+<%= @purchase.address %>
+<% if @purchase.address2.present? %>
+    <%= @purchase.address2 %>
+    <%= "#{@purchase.city}, #{@purchase.state} #{@purchase.zip}" %>
+<% else %>
+    <%= "#{@purchase.city}, #{@purchase.state} #{@purchase.zip}" %>
+<% end %>
+
+If you have any questions please contact our Registrar at: 212-507.9580 or email:
+info@adultjewishlearning.org.
+
+We look forward to seeing you soon!

@@ -1,0 +1,99 @@
+.mr-movie-playlist {
+    position: relative;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    width: 100%;
+    overflow: hidden;
+}
+
+.mr-movie-playlist .title-info{
+    display: inline-block;
+    width: 100%;
+    position: absolute;
+    line-height: 14px;
+    top: 0px;
+    left: 0px;
+}
+
+.mr-movie-playlist .time-info{
+    display: inline-block;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+.mr-movie-playlist .title,
+.mr-movie-playlist .time {
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    background: rgba(0,0,0, 0.6);
+}
+
+.mr-movie-playlist .title p,
+.mr-movie-playlist .time p {
+    margin-bottom: 0;
+    font-size: 10px;
+    font-weight: bold;
+    color: #fff;
+    line-height: 10px;
+    padding: 4px 4px;
+}
+
+@media (max-width: 767px) {
+    .mr-movie-playlist .title,
+    .mr-movie-playlist .time {
+        padding: 5px;
+    }
+    .mr-movie-playlist .title p,
+    .mr-movie-playlist .time p {
+        font-size: 16px;
+    }
+}
+.mr-movie-playlist-mask {
+    position: absolute;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background: #000;
+    opacity: 0.5;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0.5)";
+    filter: alpha(opacity=0.5);
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    -ms-transition: opacity 0.2s ease-in-out;
+    -o-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+}
+
+
+.mr-movie-playlist:hover .mr-movie-playlist-mask,
+.mr-movie-playlist.active .mr-movie-playlist-mask {
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+}
+
+.mr-movie-playlist a{
+    height: 100%;
+    width: 100%;
+    border-radius: 0px;
+}
+
+.mr-movie-playlist a > img{
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    transform: none;
+    -ms-transform: none;
+    -webkit-transform: none;
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -ms-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+}

@@ -1,0 +1,36 @@
+<%= semantic_form_for [:admin, @course] do |f| %>
+  <%= f.inputs do %>
+    <%= f.input :title %>
+    <%= f.input :subtitle %>
+    <%= f.input :description %>
+    <%= f.input :teachers, as: :check_boxes, :collection => Teacher.live.sort_by{ |teacher| teacher.last_name } %>
+    <%= f.input :semester %>
+    <%= f.input :subjects, as: :check_boxes %>
+    <%= f.input :state, as: :radio, collection: %w(open closed) %>
+    <%= f.input :standard_course_fee  %>
+    <%= f.input :temple_member_discount_fee %>
+    <%= f.input :ignore_discount %>
+    <%= f.input :image %>
+  <% end %>
+  <%= f.inputs name: "Event Details" do %>
+    <%= f.input :day_of_week, as: :select, collection: Date::DAYNAMES %>
+    <%= f.input :start_date, :as => :date_picker %>
+    <%= f.input :end_date, :as => :date_picker %>
+    <%= f.input :custom_dates %>
+    <%= f.input :start_time %>
+    <%= f.input :end_time %>
+    <%= f.input :location %>
+  <% end %>
+  <%= f.actions %>
+<% end %>
+<script>
+  $(document).ready(function(){
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
+    var csrf_param = $('meta[name=csrf-param]').attr('content');
+    var params;
+    if (csrf_param !== undefined && csrf_token !== undefined) {
+      params = csrf_param + "=" + encodeURIComponent(csrf_token);
+    }
+    $('#course_description').redactor({shortcuts: false, imageUpload: '/admin/upload/?' + params})
+  })
+</script>

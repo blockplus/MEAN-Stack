@@ -1,0 +1,24 @@
+<section class="panel panel-default">
+    <div class="panel-body">
+        <div class="title-block">
+            <h4 class="pull-left">{{ 'editmovie_timeline' | translate }}</h4>
+            <a class="clear-btn pull-right"
+               ng-class="{'not-active': timelineHighlights.length==0}"
+               ng-disabled="timelineHighlights.length==0"
+               ng-click="clearTimeline()">{{ 'editmovie_clear_timeline_btn' | translate }}</a>
+        </div>
+        <div id="timeline_highlights" class="timeline-highlight-list-owerflow">
+            <div class="timeline-highlight-list-container" as-sortable="sortable.options" ng-model="timelineHighlights">
+                <div id="thl-{{hl.position}}" class="timeline-highlight-entry" ng-repeat="hl in timelineHighlights" as-sortable-item>
+                    <div as-sortable-item-handle>
+                        <mr-highlight-playlist active="true" highlight="hl" on-highlight-click="removeHighlightFromTimeline"/>
+                    </div>
+                </div>
+                <div ng-if="timelineHighlights.length==0" id="timeline-info" class="timeline-info"><span>{{ 'editmovie_timeline_info' | translate }}</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <button ui-wave class="btn btn-w-lg btn-primary" ng-click="onPublishClick()">{{ 'editmovie_publish_btn' | translate }}</button>
+    </div>
+</section>

@@ -1,0 +1,36 @@
+.explore-page {
+    height: calc(100% - 5px);
+    box-sizing: border-box;
+    padding-bottom: 0px;
+
+    .explore-map-and-search-container {
+        display: inline-block;
+        box-sizing: border-box;
+        padding-right: 20px;
+        width: 70%;
+        height: 100%;
+
+        .search-container {
+            margin-bottom: 10px;
+        }
+
+        .map-container {
+            height: calc(100% - 58px);
+            width: 100%;
+        }
+    }
+    .explore-contents-container {
+        display: inline-block;
+        box-sizing: border-box;
+        width: 29%;
+        height: 100%;
+        overflow-y: auto;
+        vertical-align: top;
+
+        .explore-content-container {
+            .card {
+                margin-top: 0px;
+            }
+        }
+    }
+}

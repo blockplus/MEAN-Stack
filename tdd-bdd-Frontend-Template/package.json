@@ -1,0 +1,31 @@
+{
+  "name": "tddbddFrontendTemplate",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {  
+    "less": "cat src/less/*.less > build/app.less.temp && lessc -x ./build/app.less.temp > ./build/css/app.css && del /f build/app.less.temp",
+    "uglify": "cat src/js/lib/*.js src/js/*.js > build/app.js.temp && uglifyjs2 -o build/js/app.min.js build/app.js.temp && del /f build/app.js.temp",
+    "jade": "jade --out build/ src/jade/index.jade",
+    "build": "npm run less && npm run uglify && npm run jade",
+    "start": "npm run build",
+    "test": "mocha-phantomjs test/runner.html",
+    "watch": "supervisor --watch src,test --extensions less,js,jade --no-restart-on exit --exec npm -- run build"
+  },
+  "repository": "",
+  "author": "Sergei Z.",
+  "private": true,
+  "license": "MIT",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "supervisor": "*",
+    "jshint": "~1.1.0",
+    "less": "~1.3.3",
+    "jade": "*",
+    "mocha": "~1.9.0",
+    "chai": "*",
+    "phantomjs": "*",
+    "mocha-phantomjs": "*",
+    "uglify-js2": "*"
+  }
+}

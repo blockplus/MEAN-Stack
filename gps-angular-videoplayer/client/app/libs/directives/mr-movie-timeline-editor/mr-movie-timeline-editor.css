@@ -1,0 +1,101 @@
+mr-movie-timeline-editor .panel-footer {
+    text-align: right;
+}
+
+mr-movie-timeline-editor .timeline-highlight-list-owerflow {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0 10px;
+    display: inline-block;
+}
+
+mr-movie-timeline-editor .timeline-highlight-list-owerflow .as-sortable-item,
+mr-movie-timeline-editor .timeline-highlight-list-owerflow .as-sortable-placeholder {
+    display: inline-block !important;
+    float: left;
+    margin: 0 10px 0 0;
+    width: 200px !important;
+}
+
+mr-movie-timeline-editor .timeline-highlight-list-owerflow .as-sortable-placeholder {
+    border-radius: 0px;
+}
+
+mr-movie-timeline-editor .timeline-highlight-list-owerflow .as-sortable-item,
+.timeline-highlight-list-container.as-sortable-drag .as-sortable-item {
+    border: none;
+    background-color: transparent;
+}
+
+mr-movie-timeline-editor .timeline-highlight-list-owerflow .timeline-highlight-list-container:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+mr-movie-timeline-editor .timeline-highlight-list-owerflow .timeline-highlight-list-container .timeline-highlight-dragdrop-entry {
+    width: 200px;
+    background-color: #EDF0F1;
+    text-align: center;
+    color: #A5AEB1;
+    display: table;
+    float: right;
+}
+
+mr-movie-timeline-editor .timeline-highlight-list-owerflow .timeline-highlight-list-container .timeline-highlight-dragdrop-entry span {
+    display: table-cell;
+    vertical-align: middle;
+    cursor: default;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* IE/Edge */
+    user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+mr-movie-timeline-editor .timeline-highlight-list-owerflow .timeline-highlight-list-container .timeline-info {
+    background-color: #EDF0F1;
+    text-align: center;
+    color: #A5AEB1;
+    display: table;
+    float: right;
+}
+
+mr-movie-timeline-editor .timeline-highlight-list-owerflow .timeline-highlight-list-container .timeline-info span {
+    display: table-cell;
+    vertical-align: middle;
+    cursor: default;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* IE/Edge */
+    user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+.mr-movie-creator-modal form {
+    padding-top: 20px;
+}
+
+.mr-movie-creator-modal md-input-container {
+    margin: 0px;
+}
+
+.mr-movie-creator-modal mr-input-friends,
+.mr-movie-creator-modal mr-input-hashtags {
+    display: block;
+}
+
+.mr-movie-creator-modal .movie-friends-selector {
+    margin-top: 20px;
+}
+
+.mr-movie-creator-modal .movie-music-switch {
+    margin-top: 25px;
+}

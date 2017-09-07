@@ -1,0 +1,76 @@
+<header class="top-header clearfix">
+    <div ui-preloader></div>
+
+    <div class="logo">
+        <a ui-sref="home">
+            <div class="logo-image"></div>
+        </a>
+        <!--<p class="pull-right">$digests <input id="digestlog" type="text" value="0"/></p>-->
+    </div>
+
+    <div class="top-nav">
+        <ul class="nav-left list-unstyled">
+            <li>
+                <a ui-sref="homepage" mobile-toggle-menu md-button aria-label="mobile-toggle-menu" class="visible-xs"><i class="material-icons">menu</i></a>
+            </li>
+        </ul>
+
+        <div class="unlogged-nav pull-right" ng-if="!isAuthenticated">
+            <div>
+                <button class="btn btn-facebook" ng-click="loginByFacebook()"><i class="fa fa-facebook"></i> {{ 'action_signin_with_facebook' | translate }}</button>
+            </div>
+        </div>
+        <ul class="nav-right pull-right list-unstyled" ng-if="isAuthenticated">
+
+            <li class="dropdown notifications-dropdown" uib-dropdown is-open="status.isopenNotifications" ng-controller="NotificationsCtrl">
+                <a href="javascript:;" class="dropdown-toggle" uib-dropdown-toggle ng-disabled="disabled" md-button aria-label="notifications">
+                    <i class="material-icons">notifications</i>
+                    <span ng-if="notificationsCount > 0" class="badge badge-danger">{{ notificationsCount }}</span>
+                </a>
+                <div class="uib-dropdown-menu with-arrow panel panel-default dropdown-menu-scaleIn pull-right">
+                    <div class="panel-heading" ng-if="notifications.data.length == 0 && !notifications.busy">{{ 'no_notifications' | translate }}</div>
+                    <ul class="list-group">
+                        <div class="notifications-container">
+                            <div infinite-scroll='notifications.nextPage()' infinite-scroll-disabled='notifications.disabled' infinite-scroll-distance='0' infinite-scroll-parent="true">
+                                <li class="list-group-item" ng-repeat='notification in notifications.data' ng-class-odd="'alt'">
+                                    <a ng-href="{{notifications.getNotificationUiSref(notification)}}" class="media" ng-click="notifications.markAsRead(notification)">
+                                        <div class="media-body">
+                                            <span class="notification-date text-muted block">{{notifications.getNotificationDateInfo(notification)}}</span>
+                                            <span class="notification-content block" ng-class="{'readed': notification.readed}" ng-bind-html="notifications.getText(notification)"></span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <div class="infinite-scrolling-loader-container">
+                                    <md-progress-circular ng-show="!notifications.disabled && notifications.busy" class="md-warn infinite-scrolling-loader" md-mode="indeterminate" md-diameter="20"></md-progress-circular>
+                                </div>
+                            </div>
+                        </div>
+                    </ul>
+                </div>
+            </li>
+
+            <li class="dropdown text-normal nav-profile" uib-dropdown is-open="status.isopenProfile">
+                <a href="javascript:;" class="dropdown-toggle" uib-dropdown-toggle ng-disabled="disabled" md-button aria-label="profile">
+                    <img ng-src="{{userProfile.avatarUrl}}" alt="" class="img-circle img30_30">
+                    <span class="hidden-xs">
+                        <span>{{ userProfile.displayName }}</span>
+                    </span>
+                </a>
+                <ul class="uib-dropdown-menu with-arrow pull-right dropdown-menu-scaleIn">
+                    <li>
+                        <a ui-sref="user({userId: userProfile.id })">
+                            <i class="material-icons">person</i>
+                            <span>{{ 'menu_item_profile' | translate }}</span>
+                        </a>
+                    </li>
+                    <li data-ng-controller="authCtrl">
+                        <a ng-click="logout()">
+                            <i class="material-icons">exit_to_app</i>
+                            <span>{{ 'action_logout' | translate }}</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</header>

@@ -1,0 +1,401 @@
+mr-clip-player {
+    text-align: initial;
+}
+
+.mr-clip-player-custom-button {
+    display: table-cell;
+    width: 32px;
+    cursor: pointer;
+    color: white;
+}
+
+.highlight-editor {
+    position: absolute;
+    display: block;
+    z-index: 51;
+    bottom: 0;
+    width: 100%;
+}
+
+/* edit session bar*/
+.edit-session-bar {
+    padding: 10px 15px;
+    background-color: #303132;
+    position: relative;
+    top: 0;
+    height: 53px;
+    color: #FFFFFF;
+}
+.create-highlight-btn-container{
+    text-align: right;
+}
+.edit-session-bar .playback-rate-dropbdown-container{
+    text-align: left;
+}
+.range-selectors-container{
+    text-align: center;
+}
+.edit-session-bar .playback-rate-dropbdown-container .dropdown-toggle {
+    padding: 0 6px;
+    min-width: 0px;
+}
+.edit-session-bar .playback-rate-dropbdown-container .dropdown-toggle:focus{
+    color: white;
+}
+.edit-session-bar .playback-rate-dropbdown-container .dropdown.open .dropdown-toggle,
+.edit-session-bar .playback-rate-dropbdown-container .dropdown-toggle:hover {
+    color: #303132 !important;
+    background-color: white;
+}
+.edit-session-bar .playback-rate-dropbdown-container i.history-icon{
+    line-height: 32px;
+    font-size: 24px;
+}
+.edit-session-bar .dropdown-menu{
+    min-width: 0px;
+}
+.edit-session-bar .dropdown-menu li a{
+    padding: 2px 12px;
+    text-align: center;
+    cursor: pointer;
+}
+.edit-session-bar button#create-highlight-btn {
+    margin-top: -2px;
+}
+.edit-session-bar button#create-highlight-btn i{
+    margin-top: -2px;
+    font-size: 24px;
+}
+.edit-session-bar .range-selector-btn-col {
+    padding: 0 5px;
+}
+.edit-session-bar div.range-selector-btn {
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: #FFFFFF;
+    border: 2px solid #FFFFFF;
+    transition: all 0.25s ease 0s;
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+    outline: none;
+    cursor: pointer;
+}
+.edit-session-bar div.range-selector-btn.selected, .edit-session-bar div.range-selector-btn:hover {
+    color: white !important;
+    opacity: 1;
+}
+.edit-session-bar div.range-selector-btn.blue {
+    margin-right: 5px;
+    border-color: #0F72B5;
+}
+.edit-session-bar div.range-selector-btn.blue.selected, .edit-session-bar div.range-selector-btn.blue:hover {
+    background-color: #0F72B5;
+}
+.edit-session-bar div.range-selector-btn.yellow {
+    margin-right: 5px;
+    border-color: #F2E7B2;
+}
+.edit-session-bar div.range-selector-btn.yellow.selected, .edit-session-bar div.range-selector-btn.yellow:hover {
+    background-color: #F2E7B2;
+}
+.edit-session-bar div.range-selector-btn.red {
+    margin-right: 5px;
+    border-color: #DA322C;
+}
+.edit-session-bar div.range-selector-btn.red.selected, .edit-session-bar div.range-selector-btn.red:hover {
+    background-color: #DA322C;
+}
+
+.videoangular-container.floating {
+    position: fixed!important;
+    top: 20px;
+    right: 20px;
+    width: 40%;
+    z-index: 200;
+    border: 4px solid #eee;
+    border-radius: 4px;
+    box-shadow: 1px 1px 4px;
+}
+.videoangular-container.floating .edit-session-bar {
+    padding: 5px 20px 0px 20px;
+    height: 32px;
+}
+.videoangular-container.floating .edit-session-bar [class^="col-"] {
+    padding: 0 5px;
+}
+.videoangular-container.floating .edit-session-bar i.history-icon{
+    line-height: 20px;
+    font-size: 18px;
+}
+.videoangular-container.floating .edit-session-bar .dropdown-toggle {
+    padding: 0px;
+    min-height: 22px;
+    min-width: 22px;
+}
+.videoangular-container.floating .edit-session-bar .dropdown-menu li a{
+    padding: 2px 6px;
+    font-size: 10px;
+}
+.videoangular-container.floating .edit-session-bar div.range-selector-btn {
+    font-size: 10px;
+    padding: 2px 12px;
+}
+.videoangular-container.floating .edit-session-bar button#create-highlight-btn {
+    margin-top: 0px;
+    line-height: 20px;
+    min-height: 0px;
+    height: 22px;
+    width: 22px;
+}
+.videoangular-container.floating .edit-session-bar button#create-highlight-btn i{
+    margin-top: -2px;
+    font-size: 12px;
+}
+
+@media (min-width: 992px) and (max-width: 1199px){
+    .edit-session-bar .dropdown-toggle {
+        padding: 0px;
+    }
+    .edit-session-bar button#create-highlight-btn {
+        margin-left: -13px;
+    }
+    .edit-session-bar .dropdown-menu li a{
+        padding: 2px 6px;
+        font-size: 13px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px), screen and (max-width: 479px){
+    .edit-session-bar {
+        padding: 5px 20px;
+        height: 32px;
+    }
+    .edit-session-bar [class^="col-"] {
+        padding: 0 5px;
+    }
+    .edit-session-bar i.history-icon{
+        line-height: 20px;
+        font-size: 18px;
+    }
+    .edit-session-bar .dropdown-toggle {
+        padding: 0px;
+        min-height: 22px;
+        min-width: 22px;
+    }
+    .edit-session-bar .dropdown-menu li a{
+        padding: 2px 6px;
+        font-size: 10px;
+    }
+    .edit-session-bar div.range-selector-btn {
+        font-size: 10px;
+        padding: 2px 12px;
+    }
+    .edit-session-bar button#create-highlight-btn {
+        margin-top: 0px;
+        line-height: 20px;
+        min-height: 0px;
+        height: 22px;
+        width: 22px;
+    }
+    .edit-session-bar button#create-highlight-btn i{
+        margin-top: -2px;
+        font-size: 12px;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 767px){
+    .edit-session-bar {
+        padding: 6px 15px;
+        height: 42px;
+    }
+    .edit-session-bar i.history-icon{
+        line-height: 28px;
+        font-size: 20px;
+    }
+    .edit-session-bar .dropdown-toggle {
+        padding: 0px;
+        min-height: 30px;
+        min-width: 24px;
+    }
+    .edit-session-bar .dropdown-menu li a{
+        padding: 2px 6px;
+        font-size: 13px;
+    }
+    .edit-session-bar div.range-selector-btn {
+        font-size: 13px;
+        padding: 4px 12px;
+    }
+    .edit-session-bar button#create-highlight-btn {
+        margin-top: 0px;
+        line-height: 20px;
+        min-height: 0px;
+        height: 30px;
+        width: 30px;
+    }
+    .edit-session-bar button#create-highlight-btn i{
+        margin-top: -2px;
+        font-size: 14px;
+    }
+}
+
+/* progress bar */
+.video-progress-bar {
+    position: relative;
+    top: 0px;
+    margin: 0 175px 0 96px;
+}
+.video-progress-bar .selectrange {
+    cursor: move;
+    position: absolute;
+    height: 12px;
+    background-color: white;
+    border-radius: 2px;
+    top: -31px;
+    box-shadow: 0px 0px 2px 1px #888;
+    border: 1px solid black;
+    opacity: 0.8;
+    z-index: 10;
+}
+
+.video-progress-bar .zoom-timeline {
+    position: absolute;
+    height: 10px;
+    background-color: aqua;
+    border-radius: 2px;
+    top: -30px;
+    box-shadow: 0px 0px 2px 1px #428bca;
+    border: 1px solid seagreen;
+    opacity: 0.8;
+    z-index: 9;
+    width: 100%;
+}
+
+.preview-thumbnail {
+    position: absolute;
+    height: 45px;
+    border: 1px solid white;
+    top: -100px;
+    opacity: 1;
+    z-index: 9;
+    width: 80px;
+    left: 50px;
+}
+
+.preview-thumbnail img{
+    width: 100%;
+    height: 100%;
+}
+
+/* clip highlight */
+mr-clip-highlights {
+    position: absolute;
+    display: block;
+    z-index: 9;
+    top: -26px;
+    margin: 0 175px 0 96px;
+}
+mr-clip-highlights > div {
+    width: 100%;
+    position: relative;
+}
+mr-clip-highlights .highlight-container {
+    position: absolute;
+    height: 2px;
+    border: 0px solid black;
+    border-radius: 0px;
+    cursor: pointer;
+    z-index: 4;
+    outline: none;
+}
+mr-clip-highlights .highlight-container.red {
+    /*border-color: #DA322C;*/
+    border-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(218, 50, 44, 0.3);
+}
+mr-clip-highlights .highlight-container.red:hover, mr-clip-highlights .highlight-container.red.selected {
+    background-color: rgba(218, 50, 44, 0.7);
+}
+mr-clip-highlights .highlight-container.yellow {
+    /*border-color: #F2E7B2;*/
+    border-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(242, 231, 178, 0.3);
+}
+mr-clip-highlights .highlight-container.yellow:hover, mr-clip-highlights .highlight-container.yellow.selected {
+    background-color: rgba(242, 231, 178, 0.7);
+}
+mr-clip-highlights .highlight-container.blue {
+    /*border-color: #0F72B5;*/
+    border-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(15, 114, 181, 0.3);
+}
+mr-clip-highlights .highlight-container.blue:hover, mr-clip-highlights .highlight-container.blue.selected {
+    background-color: rgba(15, 114, 181, 0.7);
+}
+mr-clip-highlights .highlight-container.green {
+    /*border-color: #99BE71;*/
+    border-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(153, 190, 113, 0.3);
+}
+mr-clip-highlights .highlight-container.green:hover, mr-clip-highlights .highlight-container.green.selected {
+    background-color: rgba(153, 190, 113, 0.7);
+}
+mr-clip-highlights .highlight-container:hover {
+    z-index: 5;
+}
+mr-clip-highlights .highlight-container img {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 2px;
+    left: 0px;
+}
+mr-clip-highlights .hl-title {
+    position: absolute;
+    background-color: #313131;
+    color: white;
+    top: -19px;
+    border-radius: 0px;
+    padding: 0 4px;
+    z-index: 5;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 60%;
+}
+mr-clip-highlights .hl-title .display-name {
+    margin-right: 3px;
+    color: #DA322C;
+    font-weight: normal;
+}
+
+/* highlight creator modal */
+.mr-highlight-creator-modal .modal-header h3{
+    margin-top: 10px;
+}
+.mr-highlight-creator-modal .modal-body img{
+    margin-bottom: 30px;
+}
+.md-autocomplete-suggestions li{
+    /*line-height: 14px;*/
+}
+
+.mr-highlight-creator-modal md-input-container {
+    margin: 0px;
+}
+
+.mr-highlight-creator-modal mr-input-friends,
+.mr-highlight-creator-modal mr-input-hashtags {
+    display: block;
+}
+
+.mr-highlight-creator-modal .movie-friends-selector {
+    margin-top: 20px;
+}
+
+.hidden-bar {
+    position: absolute; width: 100%;   height: 8px;
+    background-color: transparent;
+    z-index: 11;
+}

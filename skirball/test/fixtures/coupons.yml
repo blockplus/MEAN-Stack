@@ -1,0 +1,19 @@
+DEFAULTS: &DEFAULTS
+  title: $LABEL
+  rule: 'percent'
+
+five_percent_off:
+  amount: 5.0
+  <<: *DEFAULTS
+
+ten_percent_off:
+  amount: 10.0
+  <<: *DEFAULTS
+
+twenty_five_percent_off:
+  amount: 25.0
+  <<: *DEFAULTS
+
+fifty_percent_off:
+  amount: 50.0
+  <<: *DEFAULTS

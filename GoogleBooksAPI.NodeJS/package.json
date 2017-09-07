@@ -1,0 +1,31 @@
+{
+  "name": "googlebooksapi",
+  "description": "Access to Google Books",
+  "url": "https://github.com/sagens42/GoogleBooksAPI.NodeJS",
+  "keywords": [
+    "google",
+    "books",
+    "api", 
+    "javascript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/sagens42/GoogleBooksAPI.NodeJS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sagens42/GoogleBooksAPI.NodeJS"
+  },
+  "engines": {
+    "node": ">=0.4.1"
+  },
+  "author": {
+    "name": "Sergei Zholudev",
+    "email": "zholudev.s@gmail.com",
+    "url": "http://sagens.me"
+  },
+  "dependencies": {
+    "googleclientlogin": "*",
+    "restler": "*"
+  },
+  "version": "0.0.1"
+}

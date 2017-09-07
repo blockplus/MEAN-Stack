@@ -1,0 +1,75 @@
+<h3>Thank you for registering with The Temple Emanu-El Skirball Center for this coming semester.</h3>
+
+<% if @purchase.account_courses.present? %>
+    <p>Our records show you are registered for the following <%= %q(course).pluralize(@purchase.account_courses.count) %>:</p>
+
+    <% @purchase.account_courses.each do |ac| %>
+        <h3><%= link_to ac.course.title, ac.course %></h3>
+        <p>
+          <strong>When:</strong> <%= ac.course.day_of_week.pluralize %> from <%= ac.course.start_time %> - <%= ac.course.end_time %> beginning <%= ac.course.class_dates.first.start_time.strftime("%m/%d/%Y") %><br>
+          <strong>Where:</strong> At <%= ac.course.location.address %>
+        </p>
+        <% if ac.additional_attendees.present? %>
+            <p>You also registered the following <%= %q(person).pluralize(ac.additional_attendees.count) %>:</p>
+            <ul>
+              <% ac.additional_attendees.each do |attendee| %>
+                  <li><%= "#{attendee['name']} (#{attendee['phone']}, #{attendee['email']})" %></li>
+              <% end %>
+            </ul>
+        <% end %>
+    <% end %>
+<% end %>
+
+<% if @purchase.account_events.present? %>
+    <p>Our records show you are registered for the following <%= %q(event).pluralize(@purchase.account_events.count) %>:</p>
+
+    <% @purchase.account_events.each do |ae| %>
+        <h3><%= link_to ae.event.title, ae.event %></h3>
+        <p>
+          <strong>When:</strong> <%= ae.event.date.strftime('%m/%d/%Y') %> starting at <%= ae.event.time %><br>
+          <strong>Where:</strong> At <%= ae.event.location.address %>
+        </p>
+        <% if ae.additional_attendees.present? %>
+            <p>You also registered the following <%= %q(person).pluralize(ae.additional_attendees.count) %>:</p>
+            <ul>
+              <% ae.additional_attendees.each do |attendee| %>
+                  <li><%= "#{attendee['name']} (#{attendee['phone']}, #{attendee['email']})" %></li>
+              <% end %>
+            </ul>
+        <% end %>
+    <% end %>
+<% end %>
+
+<p>
+  You registered with the following information:<br>
+  <%= "#{@purchase.first_name} #{@purchase.last_name}" %><br>
+  <% %w(email phone).each do |contact| %>
+      <%= @purchase.send(contact.to_sym) %><%= " (preferred)" if @purchase.contact_preference == contact %><br>
+  <% end %>
+  <%= @purchase.address %><br>
+  <% if @purchase.address2.present? %>
+      <%= @purchase.address2 %><br>
+  <% end %>
+  <%= "#{@purchase.city}, #{@purchase.state} #{@purchase.zip}" %>
+</p>
+<p>
+  <% if @purchase.total > 0 %>
+      Your total for this purchase is <strong><%= number_to_currency @purchase.total %></strong>, which will be charged to your credit card.<br>
+  <% end %>
+  <em>You can view your receipt for this purchase online at <%= link_to purchase_url(@purchase) %></em>
+
+<p>
+  Welcome to The Temple Emanu-El Skirball Center. We look forward to greeting you!<br>
+  If you have any questions please contact our registrar at: <strong>212.507.9580</strong> or email: <strong>info@adultjewishlearning.org</strong>.
+  <br>
+</p>
+<hr>
+<p>
+  The Temple Emanu-El Skirball Center<br>
+  One East 65th Street<br>
+  New York, NY 10065<br>
+  212.507.9580<br><br>
+
+  www.emanuelskirballnyc.org
+</p>
+

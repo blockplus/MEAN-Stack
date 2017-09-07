@@ -1,0 +1,278 @@
+<!doctype html>
+<!--[if lt IE 8]>
+<html class="no-js lt-ie8"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+    <title>MondayReplay</title>
+    <base href="/"/>
+    <meta name="description" content="Have you got a GoPro? Upload your sport sessions: share, explore and check in!">
+    <meta name="keywords" content="GoPro Sport ActionCam Video Highlight Session Social Friends">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/manifest.json">
+
+    <!-- Needs images, font... therefore can not be part of main.css -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,500,700,300,300italic,500italic|Roboto+Condensed:400,300' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles/loader.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.css">
+    <link rel="stylesheet" href="bower_components/Leaflet.extra-markers/dist/css/leaflet.extra-markers.min.css">
+    <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css"/>
+    <link rel="stylesheet" href="bower_components/videogular-themes-default/videogular.min.css"/>
+    <link rel="stylesheet" href="bower_components/ng-sortable/dist/ng-sortable.min.css"/>
+    <link rel="stylesheet" href="bower_components/ng-sortable/dist/ng-sortable.style.min.css"/>
+    <!-- end Needs images -->
+
+    <!-- build:css({.tmp,client}) styles/main.css -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-highlight-playlist/mr-highlight-playlist.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-highlight-player/mr-highlight-player.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-highlight-preview/mr-highlight-preview.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-clip-player/mr-clip-player.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-clip-preview/mr-clip-preview.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-session-map/mr-session-map.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-wizard-startnow/mr-wizard-startnow.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-highlight-comments/mr-highlight-comments.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-checkin-comments/mr-checkin-comments.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-session-comments/mr-session-comments.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-explore-map/mr-explore-map.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-social-share/mr-social-share.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-place-map/mr-place-map.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-movie-playlist/mr-movie-playlist.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-movie-player/mr-movie-player.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-movie-timeline-editor/mr-movie-timeline-editor.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-movie-comments/mr-movie-comments.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-banner-contest/mr-banner-contest.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-last-highlights/mr-last-highlights.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-last-sessions/mr-last-sessions.css">
+    <link rel="stylesheet" href="app/libs/directives/mr-session-preview/mr-session-preview.css">
+
+    <link rel="stylesheet" href="styles/bootstrap.css">
+    <link rel="stylesheet" href="styles/ui.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+
+</head>
+<body data-ng-app="app"
+      id="app"
+      class="app"
+      data-custom-page
+      data-ng-controller="AppCtrl"
+      data-ng-class=" { 'layout-boxed': main.layout === 'boxed',
+                            'nav-collapsed-min': main.isMenuCollapsed
+          } ">
+<!--[if lt IE 9]>
+<div class="lt-ie9-bg">
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser.</p>
+    <p>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+</div>
+<![endif]-->
+
+<div id="loader-container"></div>
+
+<header data-ng-include=" 'app/layout/header.html' "
+        id="header"
+        class="header-container bg-white"
+        data-ng-class="{ 'header-fixed': main.fixedHeader}"></header>
+
+<div class="main-container">
+    <aside data-ng-include=" 'app/layout/sidebar.html' "
+           id="nav-container"
+           class="nav-container nav-vertical bg-dark"
+           data-ng-class="{ 'nav-fixed': main.fixedSidebar}">
+    </aside>
+
+    <div id="content" class="content-container">
+        <section data-ui-view
+                 class="view-container {{main.pageTransition.class}}"></section>
+    </div>
+    <div class="main-container-mask" toggle-page-filter></div>
+</div>
+
+
+<!-- build:js scripts/vendor.js -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="bower_components/angular-messages/angular-messages.min.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<!-- endbuild -->
+
+
+<!-- build:js scripts/ui.js -->
+<script src="bower_components/angular-material/angular-material.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="bower_components/angular-scroll/angular-scroll.min.js"></script>
+<!--<script src="bower_components/angular-dragdrop/src/angular-dragdrop.min.js"></script>-->
+<script src="bower_components/angular-validation-match/dist/angular-validation-match.min.js"></script>
+<script src="bower_components/angular-duration-format/dist/angular-duration-format.js"></script>
+<script src="bower_components/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
+<script src="bower_components/angular-translate/angular-translate.min.js"></script>
+<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+<script src="bower_components/angular-media-queries/match-media.js"></script>
+<script src="bower_components/ngScrollSpy/dist/ngScrollSpy.min.js"></script>
+
+<script src="bower_components/ng-sortable/dist/ng-sortable.min.js"></script>
+<script src="bower_components/ng-facebook/ngFacebook.js"></script>
+<script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.min.js"></script>
+<script src="bower_components/toastr/toastr.min.js"></script>
+<script src="bower_components/jquery.scrollTo/jquery.scrollTo.min.js"></script>
+
+<script src="bower_components/videogular/videogular.js"></script>
+<script src="bower_components/videogular-controls/vg-controls.min.js"></script>
+<script src="bower_components/videogular-buffering/vg-buffering.min.js"></script>
+<script src="bower_components/videogular-overlay-play/vg-overlay-play.min.js"></script>
+<script src="bower_components/videogular-poster/vg-poster.min.js"></script>
+
+<script src="bower_components/underscore/underscore-min.js"></script>
+<script src="bower_components/leaflet/dist/leaflet.js"></script>
+<script src="bower_components/ui-leaflet/dist/ui-leaflet.min.js"></script>
+<script src="bower_components/Leaflet.awesome-markers/dist/leaflet.awesome-markers.js"></script>
+<script src="bower_components/Leaflet.extra-markers/dist/js/leaflet.extra-markers.min.js"></script>
+<script src="bower_components/rbush/rbush.js"></script>
+<script src="bower_components/jquery-steps/build/jquery.steps.min.js"></script>
+<script src="bower_components/highcharts/highcharts.js"></script>
+<script src="bower_components/angularjs-socialshare/dist/angular-socialshare.min.js"></script>
+<!-- endbuild -->
+
+
+<!-- build:js scripts/app.js -->
+<!-- inject:js -->
+<script src="config/ConfigDevelopment.js"></script>
+<script src="config/AnalyticsDevelopment.js"></script>
+<script src="app/app.module.js"></script>
+<script src="app/core/core.module.js"></script>
+<script src="app/layout/layout.module.js"></script>
+<script src="app/page/page.module.js"></script>
+<script src="app/ui/ui.module.js"></script>
+<script src="app/page/about/about.module.js"></script>
+<script src="app/page/contactus/contactus.module.js"></script>
+<script src="app/page/contest0/contest0.module.js"></script>
+<script src="app/page/contest1/contest1.module.js"></script>
+<script src="app/page/editmovie/editmovie.module.js"></script>
+<script src="app/page/editsession/editsession.module.js"></script>
+<script src="app/page/explore/explore.module.js"></script>
+<script src="app/page/faq/faq.module.js"></script>
+<script src="app/page/highlight/highlight.module.js"></script>
+<script src="app/page/home/home.module.js"></script>
+<script src="app/page/movie/movie.module.js"></script>
+<script src="app/page/place/place.module.js"></script>
+<script src="app/page/privacypolicy/privacypolicy.module.js"></script>
+<script src="app/page/session/session.module.js"></script>
+<script src="app/page/team/team.module.js"></script>
+<script src="app/page/termsandconditions/termsandconditions.module.js"></script>
+<script src="app/page/upload/upload.module.js"></script>
+<script src="app/page/user/user.module.js"></script>
+<script src="app/page/userfeed/userfeed.module.js"></script>
+<script src="app/page/worldfeed/worldfeed.module.js"></script>
+<script src="app/core/app.config.js"></script>
+<script src="app/core/app.controller.js"></script>
+<script src="app/core/app.filter.js"></script>
+<script src="app/core/auth.controller.js"></script>
+<script src="app/core/config.route.js"></script>
+<script src="app/core/i18n.js"></script>
+<script src="app/core/notifications.controller.js"></script>
+<script src="app/core/root.controller.js"></script>
+<script src="app/layout/layout.controller.js"></script>
+<script src="app/layout/layout.directive.js"></script>
+<script src="app/layout/sidebar.directive.js"></script>
+<script src="app/page/page.controller.js"></script>
+<script src="app/page/page.directive.js"></script>
+<script src="app/ui/ui.service.js"></script>
+<script src="app/libs/api/Authentication.js"></script>
+<script src="app/libs/api/Checkin.js"></script>
+<script src="app/libs/api/Clip.js"></script>
+<script src="app/libs/api/Contest.js"></script>
+<script src="app/libs/api/Dropbox.js"></script>
+<script src="app/libs/api/Friend.js"></script>
+<script src="app/libs/api/Hashtag.js"></script>
+<script src="app/libs/api/Highlight.js"></script>
+<script src="app/libs/api/Movie.js"></script>
+<script src="app/libs/api/Notification.js"></script>
+<script src="app/libs/api/Place.js"></script>
+<script src="app/libs/api/Session.js"></script>
+<script src="app/libs/api/Timeline.js"></script>
+<script src="app/libs/api/Track.js"></script>
+<script src="app/libs/api/User.js"></script>
+<script src="app/libs/factory/AssetsManager.js"></script>
+<script src="app/libs/factory/CheckinUtils.js"></script>
+<script src="app/libs/factory/Digest.js"></script>
+<script src="app/libs/factory/UserManager.js"></script>
+<script src="app/page/about/about.controller.js"></script>
+<script src="app/page/contactus/contactus.controller.js"></script>
+<script src="app/page/contest0/contest0.controller.js"></script>
+<script src="app/page/contest1/contest1.controller.js"></script>
+<script src="app/page/editmovie/editmovie.controller.js"></script>
+<script src="app/page/editsession/editsession.controller.js"></script>
+<script src="app/page/explore/explore.controller.js"></script>
+<script src="app/page/faq/faq.controller.js"></script>
+<script src="app/page/highlight/highlight.controller.js"></script>
+<script src="app/page/highlight/highlight.directive.js"></script>
+<script src="app/page/home/home.controller.js"></script>
+<script src="app/page/movie/movie.controller.js"></script>
+<script src="app/page/movie/movie.directive.js"></script>
+<script src="app/page/place/place.controller.js"></script>
+<script src="app/page/privacypolicy/privacypolicy.controller.js"></script>
+<script src="app/page/session/session.controller.js"></script>
+<script src="app/page/session/session.directive.js"></script>
+<script src="app/page/team/team.controller.js"></script>
+<script src="app/page/termsandconditions/termsandconditions.controller.js"></script>
+<script src="app/page/upload/upload.controller.js"></script>
+<script src="app/page/user/user.controller.js"></script>
+<script src="app/page/userfeed/userfeed.controller.js"></script>
+<script src="app/page/worldfeed/worldfeed.controller.js"></script>
+<script src="app/libs/directives/mr-banner-contest/mr-banner-contest.js"></script>
+<script src="app/libs/directives/mr-checkin-card/mr-checkin-card.js"></script>
+<script src="app/libs/directives/mr-checkin-comments/mr-checkin-comments.js"></script>
+<script src="app/libs/directives/mr-clip-player/mr-clip-player.js"></script>
+<script src="app/libs/directives/mr-clip-preview/mr-clip-preview.js"></script>
+<script src="app/libs/directives/mr-explore-map/mr-explore-map.js"></script>
+<script src="app/libs/directives/mr-highlight-card/mr-highlight-card.js"></script>
+<script src="app/libs/directives/mr-highlight-comments/mr-highlight-comments.js"></script>
+<script src="app/libs/directives/mr-highlight-player/mr-highlight-player.js"></script>
+<script src="app/libs/directives/mr-highlight-playlist/mr-highlight-playlist.js"></script>
+<script src="app/libs/directives/mr-highlight-preview/mr-highlight-preview.js"></script>
+<script src="app/libs/directives/mr-input-friends/mr-input-friends.js"></script>
+<script src="app/libs/directives/mr-input-hashtags/mr-input-hashtags.js"></script>
+<script src="app/libs/directives/mr-last-highlights/mr-last-highlights.js"></script>
+<script src="app/libs/directives/mr-last-sessions/mr-last-sessions.js"></script>
+<script src="app/libs/directives/mr-movie-card/mr-movie-card.js"></script>
+<script src="app/libs/directives/mr-movie-comments/mr-movie-comments.js"></script>
+<script src="app/libs/directives/mr-movie-player/mr-movie-player.js"></script>
+<script src="app/libs/directives/mr-movie-playlist/mr-movie-playlist.js"></script>
+<script src="app/libs/directives/mr-movie-timeline-editor/mr-movie-timeline-editor.js"></script>
+<script src="app/libs/directives/mr-place-map/mr-place-map.js"></script>
+<script src="app/libs/directives/mr-session-card/mr-session-card.js"></script>
+<script src="app/libs/directives/mr-session-chart/mr-session-chart.js"></script>
+<script src="app/libs/directives/mr-session-comments/mr-session-comments.js"></script>
+<script src="app/libs/directives/mr-session-map/mr-session-map.js"></script>
+<script src="app/libs/directives/mr-session-preview/mr-session-preview.js"></script>
+<script src="app/libs/directives/mr-social-share/mr-social-share.js"></script>
+<script src="app/libs/directives/mr-user-card/mr-user-card.js"></script>
+<script src="app/libs/directives/mr-wizard-startnow/mr-wizard-startnow.js"></script>
+<!-- endinject -->
+<!-- build:js scripts/app.js -->
+
+</body>
+</html>

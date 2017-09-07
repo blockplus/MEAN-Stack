@@ -1,0 +1,7 @@
+mr-wizard-startnow .panel {
+    margin-bottom: 0px;
+}
+
+mr-wizard-startnow .wizard > .content {
+    min-height: 150px;
+}

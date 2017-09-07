@@ -1,0 +1,124 @@
+
+.user-timeline {
+//    height: 100%;
+//    overflow-y: auto;
+    padding: 0 30px;
+    @media (min-width: $screen-xs) {
+        min-height: 400px;
+    }
+
+    @media (max-width: $screen-xs) {
+        padding: 0 5px;
+    }
+
+    .feed-page-banner {
+        position: absolute;
+        top: 65px;
+        width: 320px;
+        right: calc((100% / 2) - 320px - 200px);
+
+        @media (min-width: 992px) and (max-width: 1199px){
+            right: calc((100% / 2) - 320px - 135px);
+        }
+        @media (min-width: 768px) and (max-width: 991px){
+            width: 250px;
+            right: calc((100% / 2) - 250px - 95px);
+        }
+
+        .tl-entry {
+            margin: 0 !important;
+
+            .tl-content {
+                padding: 0;
+
+                &:after {
+                    border: none;
+                }
+            }
+        }
+    }
+
+    .feed-page-banner-affix {
+        position: fixed;
+        top: 100px;
+        right: calc((100% / 2) - 30px - 320px - 200px) ;
+
+        @media (min-width: 992px) and (max-width: 1199px){
+            right: calc((100% / 2) - 30px - 320px - 135px) ;
+        }
+        @media (min-width: 768px) and (max-width: 991px){
+            right: calc((100% / 2) - 30px - 250px - 95px) ;
+        }
+
+    }
+
+    .ui-timeline-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 15px 19px;
+        @media (max-width: $screen-xs) {
+            padding: 15px 0px 15px 19px;
+        }
+    }
+
+    .checkin-card {
+        .comment {
+            height: 20px;
+            p {
+              -webkit-line-clamp: 1;
+            }
+        }
+
+        .sport-icon, .condition-icon {
+            height: 14px;
+            @media (min-width: $screen-md) {
+                height: 21px;
+            }
+            @media (min-width: $screen-lg) {
+                height: 26px;
+            }
+        }
+    }
+
+    .session-card {
+        .session-title {
+            margin-top: 10px;
+            margin-bottom: 10px;
+            text-align: left;
+            font-size: 16px;
+            @media (min-width: $screen-md) {
+                font-size: 18px;
+                margin-top: 15px;
+            }
+            @media (min-width: $screen-lg) {
+                margin-bottom: 15px;
+                font-size: 22px;
+                font-weight: 500;
+            }
+        }
+    }
+
+    .highlight-card, .movie-card {
+        .hashtag-container{
+            text-align: left;
+        }
+    }
+
+    .user-card {
+        .tl-action-header {
+            margin-bottom: 0px !important;
+        }
+
+        .logo-image {
+            width: 37px;
+            height: 43px;
+            margin: 0 10px 0 0px;
+            @include background-image("logo/logo", 37px 43px);
+            @media (min-width: $screen-lg) {
+                width: 43px;
+                height: 50px;
+                @include background-image("logo/logo", 43px 50px);
+            }
+        }
+    }
+}

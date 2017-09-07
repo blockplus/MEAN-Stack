@@ -1,0 +1,7 @@
+<%= content_for :title, link_to("Videos", :videos) %>
+<%= render_sidebar %>
+<div class="entry">
+  <%= render_flash %>
+  <%= render partial: "single", locals: {video: @video} %>
+</div>
+

@@ -1,0 +1,2 @@
+module MailingListSignupHelper
+end

@@ -1,0 +1,133 @@
+<div class="page session-page content-page">
+
+    <div ng-show="clip==null" class="row">
+        <div class="col-md-12">
+            <md-progress-circular class="md-warn content-loader" md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+        </div>
+    </div>
+    <div class="row ui-section text-center" ng-if="clip!=null">
+
+        <div class="content-page-container-fixed-width">
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel content-header-panel session-header-panel">
+                            <div>
+                                <div class="header-ribbon movie-ribbon"><i class="material-icons">movie</i></div>
+                                <div class="content-name session-name" ng-class="{'with-tracks-icon':session.tracks > 0, 'with-edit-icon':iamOwner}"><h1 class="text-truncate">{{session.name}}</h1></div>
+                                <div class="header-icon tracks-icon"><i ng-if="session.tracks > 0" class="material-icons">satellite</i></div>
+                                <mr-social-share class="header-icon pull-right"><i class="material-icons">share</i></mr-social-share>
+                                <a ng-if="iamOwner" class="pull-right header-icon" ui-sref="editsession({sessionId: session.id })"><i class="material-icons">edit</i></a>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 col-sm-6 col-xs-6">
+                                    <div class="content-details">
+                                        <a ui-sref="user({userId: session.owner.id })">
+                                            <div style="{{ 'background-image: url('+ session.owner.avatarUrl +')' }}" class="content-owner-img img-circle"></div>
+                                        </a>
+                                        <div>
+                                            <div class="content-owner-displayname text-truncate">{{ session.owner.displayName }}</div>
+                                            <div class="content-created">{{ session.created | dateFromMillis }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6 col-xs-6">
+                                    <div class="session-clips-number">{{ 'session_clips_count' | translate }}: <strong>{{session.clips}}</strong></div>
+                                    <div class="session-highlights-number">{{ 'session_highlights_count' | translate }}: <span ng-click="scrollToSessionHighlight()"><strong>{{session.highlights}} {{ 'session_highlights_created' | translate }}</strong></span></div>
+                                </div>
+                                <div class="col-xs-12 col-md-5 col-sm-12">
+                                    <div class="row content-social text-center">
+                                        <div class="col-xs-4" ng-click="like()"><i class="material-icons" ng-class="{'md-accent': session.liked}">favorite</i> <span>{{ session.likes }} {{ 'likes' | translate }}</span></div>
+                                        <div class="col-xs-4">
+                                            <mr-session-comments session-id="session.id"><i class="material-icons">comment</i> <span>{{ session.comments }} {{ 'comments' | translate }}</span></mr-session-comments>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <i class="material-icons">people</i> <span>{{ session.friendtags != null ? session.friendtags.length : 0 }} {{ 'friends' | translate }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="clip-player-container">
+                            <div class="row">
+                                <div class="col-md-12" clip-player-height-to-watch="clipPlayerHeight">
+                                    <mr-clip-player clip="clip" edit-mode="true" is-floating="mapStatus.isFullscreen"
+                                                    on-clip-player-ready="onClipPlayerReady" on-complete-clip="onCompleteClip"
+                                                    on-update-time="onUpdateTime" on-next-click="onNextClick"
+                                                    on-prev-click="onPrevClick" on-highlight-created="onHighlightCreated"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clip-playlist-container">
+                            <div id="session_clips" class="row clip-playlist-list" ng-attr-clip-playlist-height-to-watch="!isMobile ? clipPlayerHeight : undefined">
+                                <div id="{{clip.id}}" class="col-md-12" ng-repeat="clip in clipPlaylist track by clip.id">
+                                    <mr-clip-preview clip="clip" on-clip-click="sessionClipClick" on-clip-delete="onDeleteClip" position="$index" owner="session.ownerId == userProfile.id" active="clipPlaylist[currentClipIndex].id == clip.id"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row maps-container" ng-if="gpsInfo">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <mr-session-map session="session" clips="clipPlaylist" current-clip="clip" current-clip-position="currentClipPosition" is-fullscreen="mapStatus.isFullscreen"
+                                                track="track" track-properties="trackProperties" selected-track-point-index="selectedTrackPointIndexChart"
+                                                on-clip-click="sessionClipClick" on-track-click="onTrackClickMap" on-track-over="onTrackOverMap" on-track-out="onTrackOutMap"></mr-session-map>
+                                <div class="map-sync-lock-box" ng-if="iamOwner">
+                                    <md-switch class="md-warn" ng-model="synch.lock" aria-label="Synch Lock" ng-change="onGpsLockChange()">{{ 'session_sync_lock' | translate }}</md-switch>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row chart-container" ng-if="gpsExtraInfo">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <mr-session-chart session="session" clips="clipPlaylist" current-clip="clip" current-clip-position="currentClipPosition" track-properties="trackProperties" selected-track-point-index="selectedTrackPointIndexMap" on-clip-click="sessionClipClick" on-track-over="onTrackOverChart"
+                                                  on-track-out="onTrackOutChart" on-track-click="onTrackClickChart"></mr-session-chart>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row highlight-playlist-container" id="session_highlights">
+                    <div class="col-md-12">
+                        <section class="panel panel-default">
+                            <div class="panel-body">
+                                <h4>{{ 'session_highlights' | translate }}</h4>
+                                <div class="row highlight-playlist-list" infinite-scroll='highlightPlaylist.nextPage()' infinite-scroll-disabled='highlightPlaylist.disabled' infinite-scroll-distance='0'>
+                                    <div class="col-md-12" ng-show="highlightPlaylist.data.length == 0 && !highlightPlaylist.busy">
+                                        <div class="text-center text-truncate"><i class="zmdi zmdi-view-list"></i> {{ 'nodata_found' | translate }}</div>
+                                    </div>
+                                    <div class="col-md-4 highlight-card" ng-repeat='hl in highlightPlaylist.data track by hl.id'>
+                                        <mr-highlight-preview highlight="hl" play-button-over-with-image starring-enabled
+                                                on-play-click="highlightPlaylist.goToHighlightPage" on-image-click="highlightPlaylist.goToHighlightPage">
+                                        </mr-highlight-preview>
+                                    </div>
+                                    <div ng-show="highlightPlaylist.busy" class="col-md-12">
+                                        <md-progress-circular class="md-warn card-loader" md-mode="indeterminate" md-diameter="40"></md-progress-circular>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

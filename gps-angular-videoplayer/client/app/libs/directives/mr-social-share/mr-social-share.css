@@ -1,0 +1,37 @@
+mr-social-share {
+    cursor: pointer;
+}
+
+.mr-social-share-modal .modal-dialog {
+    width: 300px;
+}
+
+.mr-social-share-modal .panel {
+    padding: 10px;
+    margin-bottom: 0px;
+}
+
+.mr-social-share-modal h3 {
+    margin-top: 0px;
+    color: #9e9e9e;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.mr-social-share-modal a {
+    display: block;
+    cursor: pointer;
+    margin-top: 20px;
+    vertical-align: middle;
+    align-items: center;
+}
+
+.mr-social-share-modal a:hover {
+    text-decoration: none;
+}
+
+.mr-social-share-modal a .social-name {
+    color: #212121;
+    margin-left: 24px;
+    font-size: 16px;
+}

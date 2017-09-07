@@ -1,0 +1,64 @@
+default:
+  title: Default
+  subtitle: Default Subtitle
+  description: <p>A short description</p>
+
+history:
+  title: History
+  subtitle: History Subtitle
+  description: <p>A short description</p>
+  state: open
+  cost: 290.00
+  early_bird_cost: 240.00
+  semester: summer
+
+science:
+  title: Science
+  subtitle: Science Subtitle
+  description: <p>A short description</p>
+  state: open
+  cost: 290.00
+  early_bird_cost: 240.00
+  semester: summer
+
+early_bird:
+  title: early bird 
+  subtitle: science subtitle
+  description: <p>a short description</p>
+  state: open
+  cost: 80.00
+  early_bird_cost: 40.00
+  semester: early_bird
+
+not_early_bird:
+  title: not early bird 
+  subtitle: science subtitle
+  description: <p>a short description</p>
+  state: open
+  cost: 80.00
+  early_bird_cost: 40.00
+  semester: early_bird
+  early_bird_ends_at: <%= 1.week.ago %>
+
+forty_dollar_course:
+  title: Science
+  subtitle: Science Subtitle
+  description: <p>A short description</p>
+  state: open
+  cost: 40.00
+  early_bird_cost: 40.00
+  semester: summer
+
+sixty_dollar_course:
+  title: Science
+  subtitle: Science Subtitle
+  description: <p>A short description</p>
+  state: open
+  cost: 60.00
+  early_bird_cost: 60.00
+  
+four_week_course:
+  title: Four Week Course
+  subtitle: Science Subtitle
+  description: Description
+  semester: four_week_semester

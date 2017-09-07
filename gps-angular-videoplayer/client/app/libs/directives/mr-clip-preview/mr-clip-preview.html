@@ -1,0 +1,14 @@
+<div class="mr-clip-preview" ng-class="{active: active}">
+    <a ng-click="click()">
+        <img ng-if="!clip.formats.sprite320" ng-src="{{clipThumbnail(clip)}}" class="img-responsive mr-clip-preview-thumbnail {{clip.status}}" draggable="false"/>
+        <img ng-if="clip.formats.sprite320" ng-src="{{clipSprite(clip)}}" class="img-responsive mr-clip-preview-sprite {{clip.status}}" draggable="false"/>
+    </a>
+    <div ng-show="clip.formats.sprite320" class="mr-clip-preview-indicator"></div>
+    <div class="info">
+        <span class="time"><p>{{clip.duration | duration}}</p></span>
+        <span class="position"><p>{{position+1}}</p></span>
+    </div>
+    <i ng-if="owner" ng-click="deleteClick()" class="material-icons mr-clip-preview-delete">delete</i>
+    <div class="mr-clip-preview-mask"></div>
+
+</div>

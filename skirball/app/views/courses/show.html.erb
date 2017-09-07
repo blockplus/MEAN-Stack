@@ -1,0 +1,26 @@
+<%= content_for :title, "Courses" %>
+<div class="view">
+  <%= link_to "View Online Course Guide", :courses, :class => "button course-guide" %>
+  <%= link_to "View Printed Course Guide", :catalog, :class => "button big course-guide" %>
+</div>
+<%= content_for :custom_head do %>
+  <meta property="og:description" content="<%= strip_tags @course.description %>" />
+  <meta property="description" content="<%= strip_tags @course.description %>" />
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-51df0ee722e2335c"></script>
+<% end %>
+
+<%= render "sort_filter" %>
+<%= render_sidebar %>
+<%= render 'sidebar_listings' %>
+<div class="entry">
+  <%= render_flash %>
+  <%= render partial: 'course', locals: { course: @course } %>
+  <a href="#" class="addthis_button_compact big register button">Share <span class="italic">this course</span></a>
+  <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};var addthis_share = { email_template: "new_template" }</script>
+  <% if @course.open? %>
+    <%= link_to "Register", create_line_item_path(@course.id), :class => "button big register" %>
+  <% end %>
+  <div class="clear"></div>
+  <br>
+</div>
+

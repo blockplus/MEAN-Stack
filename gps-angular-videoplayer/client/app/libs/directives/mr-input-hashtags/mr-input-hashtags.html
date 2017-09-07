@@ -1,0 +1,20 @@
+<div>
+    <md-chips ng-model="ctrl.selectedHashtags" md-autocomplete-snap md-require-match="ctrl.requireMatch" id="hashtag-chip">
+        <md-autocomplete
+                id="auto-complete"
+                md-selected-item="ctrl.selectedItem"
+                md-search-text="ctrl.searchText"
+                md-items="item in ctrl.querySearch(ctrl.searchText)"
+                md-item-text="item"
+                md-search-text-change="ctrl.onSearchTextChange()"
+                ng-keydown="ctrl.onKeyDown($event)"
+                placeholder="{{ctrl.placeholder}}">
+            <span md-highlight-text="searchText">{{item}}</span>
+        </md-autocomplete>
+        <md-chip-template>
+        <span>
+          <strong>{{$chip}}</strong>
+        </span>
+        </md-chip-template>
+    </md-chips>
+</div>

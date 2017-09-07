@@ -1,0 +1,30 @@
+<div class="page upload-page">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="media">
+                <div class="media-left">
+                    <img class="media-object" src="images/dropbox-icon.svg" alt="Dropboxicon">
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">{{'upload_dropbox' | translate}}</h4>
+                    <p>{{'upload_connected_dropbox_description_1' | translate}}</p>
+                    <p>{{'upload_connected_dropbox_description_2' | translate}}</p>
+                    <ol>
+                        <li>{{'upload_connected_dropbox_description_2_step_1' | translate}}</li>
+                        <li>{{'upload_connected_dropbox_description_2_step_2' | translate}}</li>
+                    </ol>
+                    <p>{{'upload_connected_dropbox_description_3' | translate}}</p>
+                    <p>{{'upload_connected_dropbox_description_4' | translate}}</p>
+                    <p>{{'upload_connected_dropbox_description_5' | translate}}</p>
+                    <p>{{'upload_connected_dropbox_description_6_p1' | translate}}<a ui-sref="faq">{{'upload_connected_dropbox_description_6_faq' | translate}}</a>{{'upload_connected_dropbox_description_6_p2' | translate}}<a href="mailto:upload@mondayreplay.com">{{'upload_connected_dropbox_description_6_mail' |
+                        translate}}</a>{{'upload_connected_dropbox_description_6_p3' | translate}}<a target="_blank" href="https://telegram.me/joinchat/BJsvmgdWJVUESjdGfMsLWg">{{'upload_connected_dropbox_description_6_telegram' | translate}}</a></p>
+                    <p>{{'upload_connected_dropbox_description_7' | translate}}</p>
+
+                    <button ui-wave class="btn btn-w-lg btn-dropbox" ng-click="connect()" ng-if="!userProfile.dropboxId">{{ 'action_connect' | translate }}</button>
+                    <button ui-wave class="btn btn-w-lg btn-dropbox" ng-click="disconnect()" ng-if="userProfile.dropboxId">{{ 'action_disconnect' | translate }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

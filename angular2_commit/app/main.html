@@ -1,0 +1,95 @@
+        <section id="header" class="header-container header-fixed bg-white">
+			<header class="top-header clearfix">
+
+				<!-- Logo -->
+				<div class="logo bg-dark">
+					<a href="#/">
+						<span class="logo-text">Commit!</span>
+					</a>
+				</div>
+
+				<!-- needs to be put after logo to make it work -->
+				<div class="menu-button" toggle-off-canvas>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</div>
+
+				<div class="top-nav">
+					<ul class="nav-left list-unstyled">
+						<li>
+							<a href="#/" data-toggle-nav-collapsed-min
+										 class="toggle-min"
+										 ><i class="ti-menu"></i></a>
+						</li>
+					</ul> 
+
+					<ul class="nav-left list-unstyled">
+						<li>
+							<a href="https://twitter.com/commit2dallas" target="_blank">
+								<i class="fa fa-twitter"></i>
+							</a>
+						</li>
+						<li>
+							<a href="https://www.facebook.com/Commit2Dallas" target="_blank">
+								<i class="fa fa-facebook"></i>
+							</a>
+						</li>
+						<li style="color:white">
+							<a href="">
+                                       <i class="fa fa-paper-plane"></i>
+								<i>leave feedback</i>
+							</a>
+						</li>
+						<li style="color:white">
+							<a href="">
+								<!--<i class="fa fa-paper-plane"></i>-->
+								<i>send to a friend</i>
+							</a>
+						</li>
+					</ul>
+					
+					
+					<ul class="nav-right pull-right list-unstyled">
+						<li style="width:99%;">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Get updates via E-mail!">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button"><div class=" glyphicon glyphicon-plus"></div></button>
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+
+			</header>
+
+		
+		</section>
+
+
+        <div class="main-container">
+            <aside id="nav-container" class="nav-container nav-fixed nav-vertical bg-dark">
+				<div class="nav-wrapper">
+					<ul id="nav" class="nav">
+
+						<li><a [routerLink]="['First']"> <i class="ti-home"></i><span data-i18n="Home">First</span> </a></li>
+						<li><a [routerLink]="['Second']"> <i class="ti-home"></i><span data-i18n="Home">Second</span> </a></li>
+						<li><a [routerLink]="['Third']"> <i class="ti-home"></i><span data-i18n="Home">Third</span> </a></li>
+						<li><a href="#/district"><i class="ti-flag-alt"></i><span data-i18n="District">District</span></a></li>
+						<li><a href="#/campus"><i class="ti-flag-alt-2"></i><span data-i18n="Campus">Campus</span></a></li>
+						<li><a href="#/aeis_explanation"><i class="ti-panel"></i><span data-i18n="What is AEIS/TAPR?">What is AEIS/TAPR?</span></a></li>
+						<li><a href="#/staar_explanation"><i class="ti-dashboard"></i><span data-i18n="What is STAAR?">What is STAAR?</span></a></li>
+						<li><a href="#/bulk"> <i class="ti-server"></i><span>Bulk Data</span></a></li>
+						<li><a href="#/donors"> <i class="ti-ruler-pencil"></i><span>Donors Choose</span></a></li>
+						<li id="scorecard-li"><a href="#/scorecard/2"> <i class="ti-ruler-pencil"></i><span>Scorecard</span></a></li>
+
+					</ul>
+				</div>
+            </aside>
+
+
+            <div id="content" class="content-container">
+                <router-outlet></router-outlet>
+            </div>
+</div>

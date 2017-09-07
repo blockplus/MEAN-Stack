@@ -1,0 +1,116 @@
+﻿@{
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "Feedback";
+}
+<style type="text/css">
+    .style1 {
+        width: 100%;
+        background-color: white;
+        background-color: white;
+        border-collapse: separate;
+        border-spacing: 10px 10px;
+        padding-bottom: 30px;
+    }
+
+</style>
+
+<nav class="navbar app-navbar" role="navigation">
+    <div class="container">
+        <div class="row tst">            
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="col-md-12 search-top">
+                <form action="">
+                    <div class="input-group srchbtn">
+                        <input type="text" name="query" class="form-control" value="" placeholder="Search Music, Movies,Sports, Feed, News, Cars and more......">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                            </button>
+                        </span>
+                    </div><!-- /input-group -->
+                </form>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>	<!-- /row -->
+    </div>
+    <!-- /.container -->
+</nav>
+<!-- End of Navigation-->
+@{ 
+    String name = Request["name"]!=null ? Request["name"] : "";
+    String email = Request["email"] != null ? Request["email"] : "";
+    String messages = Request["messages"] != null ? Request["messages"] : ""; 
+
+    bool status = false;
+
+    if (name != "" && email != "" && messages != "")
+    {
+        status = Global.sendFeedback(name, email, messages);
+    }
+
+}
+
+<div style="height: 20px;background-color: white;
+     padding-top: 10px;
+     padding-bottom: 10px;
+     "><hr style="border: 1px solid #eee;margin: 0;"/></div>
+<form method="post" action="~/feedback">
+    <table class="style1">
+        <tbody>
+            
+            <tr>
+                <td align="center" valign="top" colspan="2" style="padding-bottom: 20px;">
+                    <p style="font-size: large">Let us know what you think</p>
+                    <span style="font-weight:normal;font-style:normal;">Have a suggestion you'd want to give? Go a feedback you'd want to share? Just let us know.</span>
+                </td>
+            </tr>
+
+            <tr>
+                <td align="right" valign="top" width="35%">
+                    <span style="font-style:normal;">Name</span>
+                </td>
+                <td align="left" valign="top">
+                    <input type="text" name="name">
+                </td>
+            </tr>
+            <tr>
+                <td align="right" valign="top">
+                    <span style="font-style:normal;">Email</span>
+                </td>
+                <td align="left" valign="top">
+                    <input type="email" name="email">
+                </td>
+            </tr>
+            <tr>
+                <td align="right" valign="middle">
+                    <span style="font-style:normal;">Message</span>
+                </td>
+                <td align="left" valign="top">
+                    <textarea ID="txtdesc" rows="10" cols="50" name="messages"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" valign="top">
+                    &nbsp;
+                </td>
+                <td align="left" valign="top">
+                    <input type="submit" value="Send">
+                    <input type="reset" value="Cancel">
+                </td>
+            </tr>
+            <tr>
+                <td align="center" valign="top" colspan="2" style="color: red;">
+                    @if (status == false && name != "")
+                    {
+                        <p>Error while sending mail.please try again.</p>
+                    }
+                    else if (status == true && name != "")
+                    { 
+                        <p>your message has been sent will revert back to you!</p>
+                    }
+                </td>
+                
+            </tr>
+        </tbody>
+    </table>
+</form>

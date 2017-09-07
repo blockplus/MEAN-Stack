@@ -1,0 +1,275 @@
+﻿@using Google.Apis.Services;
+@using Google.Apis.YouTube.v3;
+@using Google.Apis.YouTube.v3.Data;
+@using System.Web.Script.Serialization;
+
+@{
+
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "Video Page";
+
+    String id = Request["id"];
+
+    // Load details of Video
+    var youtubeService = new YouTubeService(new BaseClientService.Initializer()
+    {
+        ApiKey = @System.Configuration.ConfigurationManager.AppSettings["youtubeApiKey"],
+    });
+
+    SearchListResponse similarListResponse = null;
+    VideoListResponse videoListResponse = null;
+    ChannelListResponse channelListResponse = null;
+    VideoCategoryListResponse videoCategoryListResponse = null;
+    Video videoItem = null;
+    Channel channelItem = null;
+    VideoCategory categoryItem = null;
+    SimilarVideo[] similarVideos;
+
+    String likeCountStr = "0";
+    String dislikeCountStr = "0";
+    String commentCountStr = "0";
+    String favoriteCountStr = "0";
+    String dateDifference = "";
+    String list_title = "";
+    String listWatchCountStr = "";
+    String similarVideosJson = "";
+
+    if (id !=null && id != "")
+    {
+        var videoListRequest = youtubeService.Videos.List("contentDetails,statistics,snippet");
+
+        videoListRequest.Id = id;
+        videoListResponse = videoListRequest.Execute();
+
+        videoItem = videoListResponse.Items[0];
+
+        // get channel info
+        var channelListRequest = youtubeService.Channels.List("snippet");
+        channelListRequest.Id = videoItem.Snippet.ChannelId;
+        channelListResponse = channelListRequest.Execute();
+
+        channelItem = channelListResponse.Items[0];
+
+        //get Video Category Info
+        var categoryListRequest = youtubeService.VideoCategories.List("snippet");
+        categoryListRequest.Id = videoItem.Snippet.CategoryId;
+        videoCategoryListResponse = categoryListRequest.Execute();
+
+        categoryItem = videoCategoryListResponse.Items[0];
+
+        // get date difference string
+        var curDate = DateTime.Now;
+
+        dateDifference =  Global.GetAgoString(videoItem.Snippet.PublishedAt.Value);
+
+        var commentCount = videoItem.Statistics.CommentCount != null ? videoItem.Statistics.CommentCount.Value : 0;
+        var likeCount = videoItem.Statistics.LikeCount !=null ? videoItem.Statistics.LikeCount.Value : 0;
+        var dislikeCount = videoItem.Statistics.DislikeCount != null ?  videoItem.Statistics.DislikeCount.Value : 0;
+        var favoriteCount = videoItem.Statistics.FavoriteCount != null ? videoItem.Statistics.FavoriteCount.Value : 0;
+
+        commentCountStr = Global.getCountString(commentCount, 1);
+        likeCountStr = Global.getCountString(likeCount, 1);
+        dislikeCountStr = Global.getCountString(dislikeCount, 1);
+        favoriteCountStr = Global.getCountString(favoriteCount, 1);
+        listWatchCountStr = Global.getCountString(videoItem.Statistics.ViewCount.Value, 0);
+
+        list_title = (videoItem.Snippet.Title.Length > 15 ? videoItem.Snippet.Title.Substring(0, 15) + "..." : videoItem.Snippet.Title);
+
+        // get similar videos of this video: and it will be used for random video play
+        var similarListRequest = youtubeService.Search.List("snippet");
+        similarListRequest.Q = videoItem.Snippet.Title;
+        similarListRequest.Type = "video";
+        similarListRequest.ChannelId = videoItem.Snippet.ChannelId;
+        similarListRequest.MaxResults = 25; // similar videos
+        similarListRequest.Order = SearchResource.ListRequest.OrderEnum.Relevance;
+        similarListResponse = similarListRequest.Execute();
+
+        // Add to Similar Videos variable
+        similarVideos = new SimilarVideo[similarListResponse.Items.Count];
+
+        for (var i=0; i< similarListResponse.Items.Count; i++)
+        {
+            var ele = similarListResponse.Items[i];
+
+            similarVideos[i] = new SimilarVideo();
+
+            similarVideos[i].setId(ele.Id.VideoId);
+            similarVideos[i].setImgUrl(ele.Snippet.Thumbnails.High.Url);
+            similarVideos[i].setVideoUrl("http://www.youtube.com/watch?v=" + ele.Id.VideoId);
+        }
+
+
+        similarVideosJson= new JavaScriptSerializer().Serialize(similarVideos);
+    }
+
+}
+
+<script>
+    // curvideo Object
+    var curVideo = {id: "@id"};
+</script>
+
+@* Load Search Page File *@
+<script src="~/Scripts/video_page.js"></script>
+
+@*<script src="~/Scripts/jwplayer/jwplayer.js"></script>*@
+<script src="https://content.jwplatform.com/libraries/X4SS5MAU.js"></script>
+<script>jwplayer.key = "OUJakiWcWqgzDwYd3hLu7HONYVPIbX84z+3oPtCjBGwlInfneZfYrfq9g/k=";</script>
+
+<script>
+    
+    //register similar videos
+
+    var similarVideos = null;
+    registerSimilarVideos('@similarVideosJson'); //it will be showing as
+
+    $(window).load(function () {
+
+        var playerInstance = jwplayer("video_player");
+
+        playerInstance.setup({
+            file: "http://www.youtube.com/watch?v=" + "@id",
+        });
+
+        // JWPlayer Event
+        playerInstance.on('complete', function () {
+
+            // play next videos from localStorage
+            // localStorage.onlineSearchVideos: has list of videos of playlist or random videos
+            playVideo(curVideo.id, "next");
+
+        });
+    });
+
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+    var disqus_config = function () {
+        //this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.url = "http://new.onlinesearchvideos.com/video?id=@id";
+        //this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.identifier = 'newonlinesearchvideos_@id';
+    };
+
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = '//http-new-onlinesearchvideos-com.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+
+    // current video id which is playing
+
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+<!-- Navigation -->
+<nav class="navbar app-navbar" role="navigation">
+    <div class="container">
+        <div class="row">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="col-md-12 search-top">
+                <form action="~/search">
+                    <div class="input-group srchbtn">                        
+                        <input type="text" name="query" class="form-control" placeholder="Search Music, Movies,Sports, Feed, News, Cars and more......">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search form-control-feedback"></span></button>
+                        </span>
+                    </div><!-- /input-group -->
+                </form>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>	<!-- /row -->
+    </div>
+    <!-- /.container -->
+</nav>	
+<!-- End of Navigation-->
+
+<!-- Video Page-->
+<div class="container-fluid rel-div slider_div video-page">
+    <div id="carousel-video" class="carousel slide" data-ride="carousel">        
+        <div class="carousel-inner">            
+            <div class="item active">                
+                <div id="video_player" style="width: 100%; height: 360px;"></div>                
+            </div>
+        </div>
+        <a class="left carousel-control" onclick="playVideo(curVideo.id, 'prev')" data-slide="prev"></a>
+        <a class="right carousel-control" onclick="playVideo(curVideo.id, 'next')"  data-slide="next"></a>
+    </div>
+</div>
+<div class="container-fluid rel-div upload-result-div video-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-11 col-sm-9 video-section">
+                <div class="post-box">
+                    <div class="img-profile" style="background-image: url(@channelItem.Snippet.Thumbnails.Default__.Url);"></div>
+                    <div class="all-pro">
+                        <div class="profile-div">
+                            <div class="profile-detail">
+                                <h2>@videoItem.Snippet.Title</h2>
+                                <div>
+                                    By <b>@videoItem.Snippet.ChannelTitle</b>
+                                    <button class="btn btn-primary btnn1" type="button"> @dateDifference </button>
+                                    <button class="btn btn-primary btnn2 btnntst" type="button">@categoryItem.Snippet.Title</button>
+                                    <a href=""> View More</a>
+                                    <div class="add-to-list">
+                                        <label><img src="~/Images/list.png" data-id="@videoItem.Id" data-channel-title="@videoItem.Snippet.ChannelTitle"
+                                                    data-list-title="@list_title" data-watch-count="@listWatchCountStr" 
+                                                    data-title="@videoItem.Snippet.Title" data-thumb-url="@videoItem.Snippet.Thumbnails.High.Url"
+                                                    /></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="video-description-ad pull-left">
+                                @RenderPage("Ads/160_90_VideoDescription.cshtml")
+                            </div>
+                        </div>
+                        <div class="like-dislike-btn">
+                            <p><a href="#"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span> @likeCountStr</a></p>
+                            <p><a href="#"> <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> @dislikeCountStr</a></p>
+                            <p><a href="#"> <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> @commentCountStr</a></p>
+                            <p><a href="#"> <span class="glyphicon glyphicon-heart" aria-hidden="true"></span> @favoriteCountStr</a></p>
+                            @*<span class="share"><a href="#"><img src="images/share.png"></a></span>*@
+                        </div>
+                        <div class="para-content">
+                            <p>@videoItem.Snippet.Description</p>                            
+                            <button class="btn btn-primary read_more" type="button"> Read More </button>
+                        </div>
+                    </div>
+                </div>
+                <div id="disqus_thread"></div>
+                <div class="jumbotron top-ad">
+                    @RenderPage("Ads/728_90VideoBottom.cshtml")
+                </div>
+            </div>
+            <!-------------->
+            <div class="col-md-3 side-bar">
+                <div class="jumbotron dole-img text-center">                    
+                    @RenderPage("Ads/300_250VideoTopRight.cshtml")
+                </div>
+                <div class="side-heading ">
+                    <h3> Playlist </h3>                    
+                </div>
+                <div class="play-list">
+                    @RenderPage("_playlist.cshtml")
+                    @*<div class="buttons-both">
+                        <button class="btn btn-primary" type="button" onclick="window.history.back();">More Videos </button>                        
+                    </div>*@
+                </div>                
+                <div class="shade">
+                    <img src="images/shade.png">
+                </div>
+                <p></p>
+                <div class="jumbotron dole-img text-center">                    
+                    @RenderPage("Ads/300_250VideoBottomRight.cshtml")
+                </div>
+            </div>
+        </div><!--row-->        
+    </div>
+</div>
+<!-- /.Search Results -->
+
+<!-- Page Content -->
+

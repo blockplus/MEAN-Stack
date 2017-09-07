@@ -1,0 +1,196 @@
+
+<div class="configuration">
+  <h1 class="text-center" style="color: red;">SLVI Configurator</h1>
+  <h2>CONFIGURATION</h2>
+  <div class="text-center">
+    <input type="text" class="digit" name="pump-digit" id="pump-digit" ng-model="ctx.pumpDigit" ng-change="ctx.onPumpDigitChanged()" ng-readonly="ctx.inputMethod == 'pump' ">
+    <input type="text" class="digit" name="pressure-digit" id="pressure-digit" ng-model="ctx.pressureDigit" ng-change="ctx.onPressureDigitChanged()" ng-readonly="ctx.inputMethod == 'pump'">
+    <input type="text" class="digit" name="hp-digit" id="hp-digit" ng-model="ctx.hpDigit" ng-change="ctx.onHorsepowerDigitChanged()" ng-readonly="ctx.inputMethod == 'pump'">
+    <input type="text" class="digit" name="topworks-digit" id="topworks-digit" ng-model="ctx.topworksDigit" ng-change="ctx.onTopworksDigitChanged()" ng-readonly="ctx.inputMethod == 'pump'">
+    <input type="text" class="digit" name="accumulator-digit" id="accumulator-digit" ng-model="ctx.accumulatorDigit" ng-change="ctx.onAccumulatorDigitChanged()" ng-readonly="ctx.inputMethod == 'pump'">
+    <input type="text" class="digit" name="cert-digit" id="cert-digit" ng-model="ctx.certsDigit" ng-change="ctx.onCertsDigitChanged()" ng-readonly="ctx.inputMethod == 'pump'">
+    <input type="text" class="digit" name="voltage-digit" id="voltage-digit" ng-model="ctx.voltageDigit" ng-change="ctx.onVoltageDigitChanged()" ng-readonly="ctx.inputMethod == 'pump'">
+    <input type="text" class="digit" name="efficiency-digit" id="efficiency-digit" ng-model="ctx.efficiencyDigit" ng-change="ctx.onEfficiencyDigitChanged()" ng-readonly="ctx.inputMethod == 'pump'">
+    <input type="text" class="digit" name="starter-digit" id="starter-digit" ng-model="ctx.starterDigit" ng-change="ctx.onStarterDigitChanged()" ng-readonly="ctx.inputMethod == 'pump'">
+    <input type="text" class="digit" name="panel-digit" id="panel-digit" ng-model="ctx.panelDigit" ng-change="ctx.onPanelDigitChanged()" ng-readonly="ctx.inputMethod == 'pump'">
+    <input type="text" class="digit" name="door-digit" id="door-digit" ng-model="ctx.doorDigit" ng-change="ctx.onDoorDigitChanged()" ng-readonly="ctx.inputMethod == 'pump'">
+    <input type="text" class="digit" name="cover-digit" id="cover-digit" ng-model="ctx.coverDigit" ng-change="ctx.onCoverDigitChanged()" ng-readonly="ctx.inputMethod == 'pump'">
+    <input type="text" class="digit" name="cooling-digit" id="cooling-digit" ng-model="ctx.coolingDigit" ng-change="ctx.onCoolingDigitChanged()" ng-readonly="ctx.inputMethod == 'pump'">
+    <input type="text" class="digit" name="transducer-digit" id="transducer-digit" ng-model="ctx.transducerDigit" ng-change="ctx.onTransducerDigitChanged()" ng-readonly="ctx.inputMethod == 'pump'">
+    <input type="text" class="digit" name="prop-vlv-digit" id="prop-vlv-digit" ng-model="ctx.propVlvDigit" ng-change="ctx.onPropVlvDigitChanged()" ng-readonly="ctx.inputMethod == 'pump'">
+    <input type="text" class="digit" name="plc-digit" id="plc-digit" ng-model="ctx.plcDigit" ng-change="ctx.onPlcDigitChanged()" ng-readonly="ctx.inputMethod == 'pump'">
+    <input type="text" class="digit" name="oil-grade-digit" id="oil-grade-digit" ng-model="ctx.oilDigit" ng-change="ctx.onOilDigitChanged()" ng-readonly="ctx.inputMethod == 'pump'">
+    <input type="text" class="digit" name="pf-digit" id="pf-digit" ng-model="ctx.pfDigit" ng-change="ctx.onPfDigitChanged()" ng-readonly="ctx.inputMethod == 'pump'">
+  </div>
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- PUMP -->
+      <div class="pull-left" style="width: 80px;">
+        <h5 class="section">PUMP</h5>
+        <input type="radio" name="pump" value="sl-vi" ng-click="ctx.SLVIClick()" id="sl-vl" ng-model="ctx.pumpOpt" ng-disabled="ctx.slviDisabled"><label for="sl-vl" ng-class="{'disabled': ctx.slviDisabled}">SL-VI</label><br>
+      </div>
+
+      <!-- PRESSURE -->
+      <div class="pull-left" style="width: 160px;">
+        <h5 class="section">PRESSURE</h5>
+        <input type="radio" name="pressure" value="35" id="pressure-35" ng-click="ctx.pressureClick('3')" ng-model="ctx.pressureOpt" ng-disabled="ctx.pressureDisabled[0]"><label for="pressure-35" ng-class="{'disabled': ctx.pressureDisabled[0]}">35KSI</label><br>
+        <input type="radio" name="pressure" value="55" id="pressure-55" ng-click="ctx.pressureClick('5')" ng-model="ctx.pressureOpt" ng-disabled="ctx.pressureDisabled[1]"><label for="pressure-55" ng-class="{'disabled': ctx.pressureDisabled[1]}">55KSI / 3.800 bar</label><br>
+        <input type="radio" name="pressure" value="60" id="pressure-60" ng-click="ctx.pressureClick('6')" ng-model="ctx.pressureOpt"ng-disabled="ctx.pressureDisabled[2]"><label for="pressure-60" ng-class="{'disabled': ctx.pressureDisabled[2]}">60KSI / 4.136 bar</label><br>
+        <input type="radio" name="pressure" value="90" id="pressure-90" ng-click="ctx.pressureClick('9')" ng-model="ctx.pressureOpt" ng-disabled="ctx.pressureDisabled[3]"><label for="pressure-90" ng-class="{'disabled': ctx.pressureDisabled[3]}">90KSI / 6.200 bar</label><br>
+      </div>
+
+      <!-- HORSEPOWER -->
+      <div class="pull-left" style="width: 140px;">
+        <h5 class="section">HORSEPOWER</h5>
+        <input type="radio" name="horsepower" value="15" id="hp-15" ng-model="ctx.horsepowerOpt" ng-disabled="ctx.hpDisabled[0]"><label for="hp-15" ng-class="{'disabled': ctx.hpDisabled[0]}">15</label>
+        <input type="radio" name="horsepower" value="100" id="hp-100" ng-click="ctx.hpClick('C')" ng-model="ctx.horsepowerOpt" ng-disabled="ctx.hpDisabled[5]"><label for="hp-100" ng-class="{'disabled': ctx.hpDisabled[5]}">100</label><br>
+        <input type="radio" name="horsepower" value="30" id="hp-30" ng-click="ctx.hpClick('3')" ng-model="ctx.horsepowerOpt" ng-disabled="ctx.hpDisabled[1]"><label for="hp-30" ng-class="{'disabled': ctx.hpDisabled[1]}">30</label>
+        <input type="radio" name="horsepower" value="125" id="hp-125" ng-model="ctx.horsepowerOpt" ng-disabled="ctx.hpDisabled[6]"><label for="hp-125" ng-class="{'disabled': ctx.hpDisabled[6]}">125</label><br>
+        <input type="radio" name="horsepower" value="40" id="hp-40" ng-click="ctx.hpClick('4')" ng-model="ctx.horsepowerOpt" ng-disabled="ctx.hpDisabled[2]"><label for="hp-40" ng-class="{'disabled': ctx.hpDisabled[2]}">40</label>
+        <input type="radio" name="horsepower" value="200" id="hp-200" ng-model="ctx.horsepowerOpt" ng-disabled="ctx.hpDisabled[7]" ><label for="hp-200" ng-class="{'disabled': ctx.hpDisabled[7]}">200</label><br>
+        <input type="radio" name="horsepower" value="50" id="hp-50" ng-click="ctx.hpClick('5')" ng-model="ctx.horsepowerOpt" ng-disabled="ctx.hpDisabled[3]"><label for="hp-50" ng-class="{'disabled': ctx.hpDisabled[3]}">50</label><br>
+        <input type="radio" name="horsepower" value="60" id="hp-60" ng-click="ctx.hpClick('6')" ng-model="ctx.horsepowerOpt" ng-disabled="ctx.hpDisabled[4]"><label for="hp-60" ng-class="{'disabled': ctx.hpDisabled[4]}">60</label><br>
+      </div>
+
+      <!-- TOPWORKS -->
+      <div class="pull-left" style="width: 140px;">
+        <h5 class="section">TOPWORKS</h5>
+        <input type="radio" name="topworks" value="single" id="topworks-single" ng-click="ctx.topworksClick('S')" ng-model="ctx.topworksOpt" ng-disabled="ctx.topworksDisabled[0]"><label for="topworks-single" ng-class="{'disabled': ctx.topworksDisabled[0]}">SINGLE</label><br>
+        <input type="radio" name="topworks" value="redundant" id="topworks-redundant" ng-click="ctx.topworksClick('R')" ng-model="ctx.topworksOpt" ng-disabled="ctx.topworksDisabled[1]"><label for="topworks-redundant" ng-class="{'disabled': ctx.topworksDisabled[1]}">REDUNDANT</label><br>
+        <input type="radio" name="topworks" value="dual" id="topworks-dual" ng-disabled="ctx.topworksDisabled[2]"><label for="topworks-dual" ng-class="{'disabled': ctx.topworksDisabled[2]}">DUAL</label><br>
+      </div>
+
+      <!-- ACCUMULATOR -->
+      <div class="pull-left" style="width: 140px;">
+        <h5 class="section">ACCUMULATOR</h5>
+        <input type="radio" name="accumulator" value="0.5" id="accumulator-0.5" ng-disabled="ctx.accDisabled[0]"><label for="accumulator-0.5" ng-class="{'disabled': ctx.accDisabled[0]}">0.5 Litre</label><br>
+        <input type="radio" name="accumulator" value="1" id="accumulator-1"  ng-click="ctx.accumulatorClick('1')" ng-model="ctx.accumulatorOpt" ng-disabled="ctx.accDisabled[1]"><label for="accumulator-1" ng-class="{'disabled': ctx.accDisabled[1]}">1 Litre</label><br>
+        <input type="radio" name="accumulator" value="2" id="accumulator-2"  ng-click="ctx.accumulatorClick('2')" ng-model="ctx.accumulatorOpt" ng-disabled="ctx.accDisabled[2]"><label for="accumulator-2" ng-class="{'disabled': ctx.accDisabled[2]}">2 Litre</label><br>
+        <input type="radio" name="accumulator" value="3" id="accumulator-3" ng-click="ctx.accumulatorClick('3')" ng-model="ctx.accumulatorOpt" ng-disabled="ctx.accDisabled[3]"><label for="accumulator-3" ng-class="{'disabled': ctx.accDisabled[3]}">3 Litre</label><br>
+        <input type="radio" name="accumulator" value="4" id="accumulator-4" ng-disabled="ctx.accDisabled[4]"><label for="accumulator-4" ng-class="{'disabled': ctx.accDisabled[4]}">4 Litre</label><br>
+        <input type="radio" name="accumulator" value="1.6" id="accumulator-1.6" ng-click="ctx.accumulatorClick('6')" ng-model="ctx.accumulatorOpt" ng-disabled="ctx.accDisabled[5]"><label for="accumulator-1.6" ng-class="{'disabled': ctx.accDisabled[5]}">1.6 Litre</label><br>
+      </div>
+
+      <!-- CERTS -->
+      <div class="pull-left" style="width: 180px;">
+        <h5 class="section">CERTS</h5>
+        <input type="radio" name="certs" value="dec" id="certs-dec" ng-click="ctx.certsClick('D')" ng-model="ctx.certsOpt" ng-disabled="ctx.certsDisabled[0]"><label for="certs-dec" ng-class="{'disabled': ctx.certsDisabled[0]}">Dec of Incorp</label><br>
+        <input type="radio" name="certs" value="csa" id="certs-csa" ng-click="ctx.certsClick('C')" ng-model="ctx.certsOpt" ng-disabled="ctx.certsDisabled[1]"><label for="certs-csa" ng-class="{'disabled': ctx.certsDisabled[1]}">CSA Conforming</label><br>
+        <input type="radio" name="certs" value="ce" id="certs-ce" ng-click="ctx.certsClick('E')" ng-model="ctx.certsOpt" ng-disabled="ctx.certsDisabled[2]"><label for="certs-ce" ng-class="{'disabled': ctx.certsDisabled[2]}">CE</label><br>
+        <input type="radio" name="certs" value="usda" id="certs-usda" ng-disabled="ctx.certsDisabled[3]"><label for="certs-usda" ng-class="{'disabled': ctx.certsDisabled[3]}">USDA</label><br>
+        <input type="radio" name="certs" value="none" id="certs-none" ng-click="ctx.certsClick('0')" ng-model="ctx.certsOpt" ng-disabled="ctx.certsDisabled[4]"><label for="certs-none" ng-class="{'disabled': ctx.certsDisabled[4]}">None</label><br>
+      </div>
+
+      <!-- MOTOR VOLTAGE -->
+      <div class="pull-left" style="width: 170px;">
+        <h5 class="section">MOTOR VOLTAGE</h5>
+        <input type="radio" name="voltage" value="200-230" id="voltage-200-230" ng-click="ctx.voltageClick('1')" ng-model="ctx.voltageOpt" ng-disabled="ctx.voltDisabled[0]"><label for="voltage-200-230" ng-class="{'disabled': ctx.voltDisabled[0]}">200-230/3/50</label><br>
+        <input type="radio" name="voltage" value="208-240" id="voltage-208-240" ng-click="ctx.voltageClick('2')" ng-model="ctx.voltageOpt" ng-disabled="ctx.voltDisabled[1]"><label for="voltage-208-240" ng-class="{'disabled': ctx.voltDisabled[1]}">208-240/3/60</label><br>
+        <input type="radio" name="voltage" value="380-415-60" id="voltage-380-415-60" ng-click="ctx.voltageClick('3')" ng-model="ctx.voltageOpt" ng-disabled="ctx.voltDisabled[2]"><label for="voltage-380-415-60" ng-class="{'disabled': ctx.voltDisabled[2]}">380-415/3/60</label><br>
+        <input type="radio" name="voltage" value="380-415-50" id="voltage-380-415-50" ng-click="ctx.voltageClick('4')" ng-model="ctx.voltageOpt" ng-disabled="ctx.voltDisabled[3]"><label for="voltage-380-415-50" ng-class="{'disabled': ctx.voltDisabled[3]}">380-415/3/50</label><br>
+        <input type="radio" name="voltage" value="440-480" id="voltage-440-480" ng-click="ctx.voltageClick('5')" ng-model="ctx.voltageOpt" ng-disabled="ctx.voltDisabled[4]"><label for="voltage-440-480" ng-class="{'disabled': ctx.voltDisabled[4]}">440-480/3/60</label><br>
+        <input type="radio" name="voltage" value="575-600" id="voltage-575-600" ng-click="ctx.voltageClick('6')" ng-model="ctx.voltageOpt" ng-disabled="ctx.voltDisabled[5]"><label for="voltage-575-600" ng-class="{'disabled': ctx.voltDisabled[5]}">575-600/3/60</label><br>
+      </div>
+
+      <!-- EFFICIENCY -->
+      <div class="pull-left" style="width: 120px;">
+        <h5 class="section">EFFICIENCY</h5>
+        <input type="radio" name="efficiency" value="ie3" id="efficiency-ie3" ng-click="ctx.efficiencyClick('E')" ng-model="ctx.efficiencyOpt" ng-disabled="ctx.effDisabled[0]"><label for="efficiency-ie3" ng-class="{'disabled': ctx.effDisabled[0]}">IE3</label><br>
+        <input type="radio" name="efficiency" value="nema" id="efficiency-nema" ng-click="ctx.efficiencyClick('N')" ng-model="ctx.efficiencyOpt" ng-disabled="ctx.effDisabled[1]"><label for="efficiency-nema" ng-class="{'disabled': ctx.effDisabled[1]}">NEMA</label><br>
+      </div>
+
+      <!-- STARTER -->
+      <div class="pull-left" style="width: 140px;">
+        <h5 class="section">STARTER</h5>
+        <input type="radio" name="starter" value="none" id="starter-none" ng-click="ctx.starterClick('0')" ng-model="ctx.starterOpt" ng-disabled="ctx.starterDisabled[0]"><label for="starter-none" ng-class="{'disabled': ctx.starterDisabled[0]}">None</label><br>
+        <input type="radio" name="starter" value="direct" id="starter-direct" ng-click="ctx.starterClick('D')" ng-model="ctx.starterOpt" ng-disabled="ctx.starterDisabled[1]"><label for="starter-direct" ng-class="{'disabled': ctx.starterDisabled[1]}">Direct Start</label><br>
+        <input type="radio" name="starter" value="wye" id="starter-wye" ng-click="ctx.starterClick('W')" ng-model="ctx.starterOpt" ng-disabled="ctx.starterDisabled[2]"><label for="starter-wye" ng-class="{'disabled': ctx.starterDisabled[2]}">Wye Delta</label><br>
+        <input type="radio" name="starter" value="soft" id="starter-soft" ng-click="ctx.starterClick('S')" ng-model="ctx.starterOpt" ng-disabled="ctx.starterDisabled[3]"><label for="starter-soft" ng-class="{'disabled': ctx.starterDisabled[3]}">Soft Start</label><br>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- ELECTRIC ENCLOSURE-->
+      <div class="pull-left" style="width: 210px;">
+        <h5 class="section">ELECTRIC ENCLOSURE</h5>
+        <input type="radio" name="electric" value="without" id="electric-without" ng-click="ctx.electricClick('0')" ng-model="ctx.panelOpt" ng-disabled="ctx.panelDisabled[0]"><label for="electric-without" ng-class="{'disabled': ctx.panelDisabled[0]}">Without Enclosure</label><br>
+        <input type="radio" name="electric" value="with" id="electric-with" ng-click="ctx.electricClick('1')" ng-model="ctx.panelOpt" ng-disabled="ctx.panelDisabled[1]"><label for="electric-with" ng-class="{'disabled': ctx.panelDisabled[1]}">With Enclosure</label><br>
+        <input type="radio" name="electric" value="terminal" id="electric-with-terminal" ng-click="ctx.electricClick('2')" ng-model="ctx.panelOpt" ng-disabled="ctx.panelDisabled[2]"><label for="electric-with-terminal" ng-class="{'disabled': ctx.panelDisabled[2]}">With Enclosure<br>With Terminal Blocks</label>
+      </div>
+
+      <!-- DOORS-->
+      <div class="pull-left" style="width: 130px;">
+        <h5 class="section">DOORS</h5>
+        <input type="radio" name="doors" value="no" ng-click="ctx.doorClick('0')" id="door-no" ng-model="ctx.doorOpt" ng-disabled="ctx.doorsDisabled[0]"><label for="door-no" ng-class="{'disabled': ctx.doorsDisabled[0]}">No Doors</label><br>
+        <input type="radio" name="doors" value="yes" ng-click="ctx.doorClick('1')" id="door-yes" ng-model="ctx.doorOpt" ng-disabled="ctx.doorsDisabled[1]"><label for="door-yes" ng-class="{'disabled': ctx.doorsDisabled[1]}">Doors</label><br>
+      </div>
+
+      <!-- TOP COVER -->
+      <div class="pull-left" style="width: 200px;">
+        <h5 class="section">TOP COVER</h5>
+        <input type="radio" name="cover" value="no" ng-click="ctx.coverClick('0')" id="cover-no" ng-model="ctx.coverOpt" ng-disabled="ctx.topcoverDisabled[0]"><label for="cover-no" ng-class="{'disabled': ctx.topcoverDisabled[0]}">No Top Cover</label><br>
+        <input type="radio" name="cover" value="yes" ng-click="ctx.coverClick('1')" id="cover-yes" ng-model="ctx.coverOpt" ng-disabled="ctx.topcoverDisabled[1]"><label for="cover-yes" ng-class="{'disabled': ctx.topcoverDisabled[1]}">Top Cover</label><br>
+        <input type="radio" name="cover" value="inter" id="cover-inter" ng-disabled="ctx.topcoverDisabled[2]"><label for="cover-inter" ng-class="{'disabled': ctx.topcoverDisabled[2]}">Top Cover with Interlock</label><br>
+      </div>
+
+      <!-- COOLING -->
+      <div class="pull-left" style="width: 210px;">
+        <h5 class="section">COOLING</h5>
+        <input type="radio" name="cooling" value="water" id="cooling-water" ng-click="ctx.coolingClick('A')" ng-model="ctx.coolingOpt" ng-disabled="ctx.coolingDisabled[0]"><label for="cooling-water" ng-class="{'disabled': ctx.coolingDisabled[0]}">Water/Oil Plate</label><br>
+        <input type="radio" name="cooling" value="oil-air-internal" id="oil-air-internal" ng-click="ctx.coolingClick('B')" ng-model="ctx.coolingOpt" ng-disabled="ctx.coolingDisabled[1]"><label for="oil-air-internal" ng-class="{'disabled': ctx.coolingDisabled[1]}">Oil/Air Internal</label><br>
+        <input type="radio" name="cooling" value="oil-air-external" id="oil-air-external" ng-click="ctx.coolingClick('C')" ng-model="ctx.coolingOpt" ng-disabled="ctx.coolingDisabled[2]"><label for="oil-air-external" ng-class="{'disabled': ctx.coolingDisabled[2]}">Oil/Air External</label><br>
+        <input type="radio" name="cooling" value="dual-cooling-internal" id="dual-cooling-internal" ng-click="ctx.coolingClick('D')" ng-model="ctx.coolingOpt" ng-disabled="ctx.coolingDisabled[3]"><label for="dual-cooling-internal" ng-class="{'disabled': ctx.coolingDisabled[3]}">Dual Cooling Internal</label><br>
+        <input type="radio" name="cooling" value="dual-cooling-external" id="dual-cooling-external" ng-disabled="ctx.coolingDisabled[4]" style="display: none;"><label for="dual-cooling-external" ng-class="{'disabled': ctx.coolingDisabled[4]}" style="display: none;">Dual Cooling External</label><br>
+      </div>
+
+      <!-- TRANSDUCER / PROP VLV -->
+      <div class="pull-left" style="width: 120px;">
+        <h5 class="section">TRANSDUCER</h5>
+        <input type="radio" name="transducer" value="yes" id="transducer-yes" ng-click="ctx.transducerClick('1')" ng-model="ctx.transducerOpt" ng-disabled="ctx.tranDisabled[0]"><label for="transducer-yes" ng-class="{'disabled': ctx.tranDisabled[0]}">Yes</label><br>
+        <input type="radio" name="transducer" value="no" id="transducer-no" ng-click="ctx.transducerClick('0')" ng-model="ctx.transducerOpt" ng-disabled="ctx.tranDisabled[1]"><label for="transducer-no" ng-class="{'disabled': ctx.tranDisabled[1]}">No</label><br>
+
+        <br/>
+        <br/>
+        <h5 class="section">PROP VLV</h5>
+        <input type="radio" name="prop" value="yes" id="prop-vlv-yes" ng-click="ctx.propVlvClick('1')" ng-model="ctx.propVlvOpt" ng-disabled="ctx.propDisabled[0]"><label for="prop-vlv-yes" ng-class="{'disabled': ctx.propDisabled[0]}">Yes</label><br>
+        <input type="radio" name="prop" value="no" id="prop-vlv-no" ng-click="ctx.propVlvClick('0')" ng-model="ctx.propVlvOpt" ng-disabled="ctx.propDisabled[1]"><label for="prop-vlv-no" ng-class="{'disabled': ctx.propDisabled[1]}">No</label><br>
+      </div>
+
+      <!-- PLC -->
+      <div class="pull-left" style="width: 130px;">
+        <h5 class="section">PLC</h5>
+        <input type="radio" name="plc" value="siemens" id="plc-siemens" ng-click="ctx.plcClick('S')" ng-model="ctx.plcOpt" ng-disabled="ctx.plcDisabled[0]"><label for="plc-siemens" ng-class="{'disabled': ctx.plcDisabled[0]}">Siemens</label><br>
+        <input type="radio" name="plc" value="moeller" id="plc-moeller" ng-disabled="ctx.plcDisabled[1]"><label for="plc-moeller" ng-class="{'disabled': ctx.plcDisabled[1]}">Moeller</label><br>
+        <input type="radio" name="plc" value="other" id="plc-other" ng-disabled="ctx.plcDisabled[2]"><label for="plc-other" ng-class="{'disabled': ctx.plcDisabled[2]}">Other</label><br>
+        <input type="radio" name="plc" value="none" id="plc-none" ng-click="ctx.plcClick('0')" ng-model="ctx.plcOpt" ng-disabled="ctx.plcDisabled[3]"><label for="plc-none" ng-class="{'disabled': ctx.plcDisabled[3]}">None</label><br>
+      </div>
+
+      <!-- OIL -->
+      <div class="pull-left" style="width: 140px;">
+        <h5 class="section">OIL</h5>
+        <input type="radio" name="oil" value="food" id="oil-food" ng-click="ctx.oilClick('1')" ng-model="ctx.oilOpt" ng-disabled="ctx.oilDisabled[0]"><label for="oil-food" ng-class="{'disabled': ctx.oilDisabled[0]}">Food Grade</label><br>
+        <input type="radio" name="oil" value="standard" id="oil-standard" ng-click="ctx.oilClick('0')" ng-model="ctx.oilOpt" ng-disabled="ctx.oilDisabled[1]"><label for="oil-standard" ng-class="{'disabled': ctx.oilDisabled[1]}">Standard</label><br>
+      </div>
+
+      <!-- PF CORRECT -->
+        <div class="pull-left" style="width: 140px;">
+        <h5 class="section">PF CORRECT</h5>
+        <input type="radio" name="pf" value="yes" id="pf-yes" ng-click="ctx.pfClick('1')" ng-model="ctx.pfOpt" ng-disabled="ctx.pfDisabled[0]"><label for="pf-yes" ng-class="{'disabled': ctx.pfDisabled[0]}">Yes</label><br>
+        <input type="radio" name="pf" value="no" id="pf-no" ng-click="ctx.pfClick('0')" ng-model="ctx.pfOpt" ng-disabled="ctx.pfDisabled[1]"><label for="pf-no" ng-class="{'disabled': ctx.pfDisabled[1]}">No</label><br>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="pull-left" style="width: 950px;">
+        <button ng-click="ctx.updateInputMethod()">{{ctx.inputMethodLbl}}</button>
+      </div>
+        <div class="pull-left" style="width: 100px;">
+        <button ng-click = "ctx.reset()">RESET</button>
+      </div>
+        <div class="pull-left" style="width: 200px;">
+        <button ng-click = "ctx.genBOM()">BILL OF MATERIALS</button>
+      </div>
+    </div>
+  </div>
+</div>

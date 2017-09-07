@@ -1,0 +1,44 @@
+<div class="page editsession-page">
+    <div class="row">
+        <div class="col-md-12">
+            <form name="editSessionForm">
+                <div class="form-group">
+                    <div class="form-input-with-icon md-block">
+                        <div class="fiwi-icon fiwi-valign-top">
+                            <i class="material-icons">comment</i>
+                        </div>
+                        <div class="fiwi-input">
+                            <md-input-container class="md-block">
+                                <label>{{ 'hint_title' | translate }}</label>
+                                <input required type="text" name="title" ng-model="session.name" aria-label="{{ 'hint_title' | translate }}">
+                            </md-input-container>
+                        </div>
+                    </div>
+
+                    <div class="form-input-with-icon md-block">
+                        <div class="fiwi-icon fiwi-valign-top">
+                            <i class="material-icons">chrome_reader_mode</i>
+                        </div>
+                        <div class="fiwi-input">
+                            <md-input-container class="md-block">
+                                <label>{{ 'hint_description' | translate }}</label>
+                                <input required type="text" name="sessionDescription" ng-model="session.description" aria-label="{{ 'hint_description' | translate }}">
+                            </md-input-container>
+                        </div>
+                    </div>
+
+                    <div class="form-input-with-icon md-block">
+                        <div class="fiwi-icon">
+                            <i class="material-icons">people</i>
+                        </div>
+                        <div class="fiwi-input">
+                            <mr-input-friends selected-friends="selectedFriends" user-id="userId" placeholder="{{ 'hint_friendtags' | translate }}"></mr-input-friends>
+                        </div>
+                    </div>
+
+                </div>
+                <button ui-wave class="btn btn-w-lg btn-primary" ng-click="update()">{{ 'action_update' | translate }}</button>
+            </form>
+        </div>
+    </div>
+</div>

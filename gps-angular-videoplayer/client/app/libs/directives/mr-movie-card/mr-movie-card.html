@@ -1,0 +1,47 @@
+<div class="card bg-white">
+    <div class="card-content">
+        <div ng-if="isTimelineCard" class="tl-action-description color-danger text-truncate" ng-init="actionDescription = timelineCtrl.getActionDescription(timelineObj)"
+             ng-show="actionDescription!=null" ng-bind-html="actionDescription"></div>
+        <div class="tl-action-header" ng-if="isTimelineCard">
+            <a ui-sref="user({userId: movie.owner.id })">
+                <div style="{{ 'background-image: url('+ movie.owner.avatarUrl +')' }}" class="tl-action-performer-img img-circle"></div>
+            </a>
+            <div class="tl-action-owner">
+                <div class="card-title text-truncate">{{ movie.owner.displayName }}</div>
+                <div class="card-subtitle">{{ movie.created | dateFromMillis }}</div>
+            </div>
+            <mr-social-share url="getShareUrl()" class="pull-right"><i class="material-icons">share</i></mr-social-share>
+        </div>
+        <div ng-if="!isTimelineCard">
+            <div class="card-title text-truncate">
+                <a ui-sref="movie({movieId: movie.id})">{{ movie.name }}</a>
+                <mr-social-share url="getShareUrl()" class="pull-right"><i class="material-icons">share</i></mr-social-share>
+            </div>
+            <p class="card-subtitle">{{ movie.created | dateFromMillis }}</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <a ui-sref="movie({movieId: movie.id})">
+                    <div class="card-thumbnails">
+                        <img alt="" ng-src="{{ getThumbnail() }}" class="img-responsive">
+                        <div ng-if="isTimelineCard" class="thumbnail-title text-truncate">{{ movie.name}}</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9 hashtag-container"><span class="hashtag" ng-repeat="hashtag in movie.hashtags">#{{ hashtag }}&NonBreakingSpace;</span></div>
+            <div class="col-md-3">
+                <div class="pull-right movie-views"><span>{{ movie.views }}</span> <i class="material-icons">visibility</i></div>
+            </div>
+        </div>
+        <hr style="margin-top: 10px">
+        <div class="row card-social text-center">
+            <div class="col-xs-4" ng-click="like()"><i class="material-icons" ng-class="{'md-accent': movie.liked}">favorite</i> <span>{{ movie.likes }} {{ 'likes' | translate }}</span></div>
+            <!--<div class="col-xs-4"><i class="material-icons">comment</i> <span>{{ movie.comments }} {{ 'comments' | translate }}</span></div>-->
+            <div class="col-xs-4"><mr-movie-comments movie-id="movie.id"><i class="material-icons">comment</i> <span>{{ movie.comments }} {{ 'comments' | translate }}</span></mr-movie-comments></div>
+            <div class="col-xs-4"><i class="material-icons">people</i> <span>{{ movie.friendtags!=null ? movie.friendtags.length : 0 }} {{ 'friends' | translate }}</span></div>
+        </div>
+    </div>
+</div>

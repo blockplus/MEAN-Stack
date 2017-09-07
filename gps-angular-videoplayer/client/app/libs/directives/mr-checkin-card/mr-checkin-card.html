@@ -1,0 +1,49 @@
+<div class="card bg-white">
+    <div class="card-content">
+        <div ng-if="isTimelineCard" class="tl-action-description color-danger text-truncate" ng-init="actionDescription = timelineCtrl.getActionDescription(timelineObj)"
+             ng-show="actionDescription!=null" ng-bind-html="actionDescription"></div>
+        <div class="row">
+            <div class="col-sm-10" ng-if="isTimelineCard">
+                <div class="tl-action-header">
+                    <a ui-sref="user({userId: checkin.owner.id })">
+                        <div style="{{ 'background-image: url('+ checkin.owner.avatarUrl +')' }}" class="tl-action-performer-img img-circle"></div>
+                    </a>
+                    <div class="tl-action-owner">
+                        <div class="card-title text-truncate">{{ checkin.owner.displayName }}</div>
+                        <div class="card-subtitle">{{ checkin.created | dateFromMillis }}</div>
+                    </div>
+                    <!--<mr-social-share url="getShareUrl()" class="pull-right"><i class="material-icons">share</i></mr-social-share>-->
+                </div>
+            </div>
+            <div class="col-sm-10" ng-if="!isTimelineCard">
+                <div class="card-title text-truncate">{{ checkin.place.name }}</div>
+                <p class="card-subtitle">{{ checkin.created | dateFromMillis }}</p>
+            </div>
+            <div class="col-sm-2">
+                <img ng-show="getSportIcon() != 0" class="sport-icon" ng-src="images/sport_icons/{{ getSportIcon() }}.png"/>
+                <img ng-show="getSportConditionIcon()!=0" class="condition-icon" ng-src="images/condition_icons/{{ getSportConditionIcon() }}.png"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <a ui-sref="place({placeId: checkin.place.id })">
+                    <div class="card-thumbnails">
+                        <img alt="" ng-src="{{ placeMap(checkin.place.position.coordinates) }}" class="img-responsive">
+                        <div ng-if="isTimelineCard" class="thumbnail-title text-truncate">{{ checkin.place.name}}</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 comment"><p>{{ checkin.comment }}</p></div>
+        </div>
+        <hr style="margin-top: 10px">
+        <div class="row card-social text-center">
+            <div class="col-xs-4" ng-click="like()"><i class="material-icons" ng-class="{'md-accent': checkin.liked}">favorite</i> <span>{{ checkin.likes }} {{ 'likes' | translate }}</span></div>
+            <div class="col-xs-4">
+                <mr-checkin-comments checkin-id="checkin.id"><i class="material-icons">comment</i> <span>{{ checkin.comments }} {{ 'comments' | translate }}</span></mr-checkin-comments>
+            </div>
+            <div class="col-xs-4"><i class="material-icons">people</i> <span>{{ checkin.friendtags!=null ? checkin.friendtags.length : 0 }} {{ 'friends' | translate }}</span></div>
+        </div>
+    </div>
+</div>

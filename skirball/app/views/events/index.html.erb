@@ -1,0 +1,23 @@
+<%= content_for :title, "Events" %>
+
+<%= render_sidebar %>
+<div class="entry">
+  <%= render_flash %>
+  <% @events.each do |event| %>
+    <h2><%= event.title %></h2>
+    <p class="details">
+      <%= image_tag 'calendar.png', class: 'alignleft' %>
+      <%= event.date.strftime "%B #{event.date.day.ordinalize}" %>
+      <span class="separator">|</span>
+      <%= Time.zone.parse(event.time).strftime("%I:%M%P") %>
+    </p>
+    <p class="details"><%= event.location.address %></p>
+    <div class="clear"></div>
+    <p><%= event.preview %></p>
+    <div class="clear"></div>
+    <%= link_to "Read More", event_path(event), :class => "big register button" %>
+    <%= link_to "Register", create_event_item_path(event.id), method: :post, :class => "big register button" %>
+    <div class="clear"></div>
+  <% end %>
+</div>
+

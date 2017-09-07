@@ -1,0 +1,85 @@
+﻿<script type="text/javascript">
+    $(window).load(function () {
+        showPlaylistVideos();       
+    });
+</script>
+
+<div id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="card">
+        <div class="card-header" role="tab" id="headingOne">
+            <h5 class="mb-0">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">MY COLLECTION  <span class="caret pull-right"></span></a>
+                <img src="~/Images/repeat.png" style="width: 24px; height: 24px;" data-mode="repeat" id="repeat-mode" onclick="togglePlayMode()" />
+                <span class='glyphicon glyphicon-pause' style="top: 5px; font-size: 20px;" aria-hidden='true' id="video-play-button" onclick="PlayCurVideo()" ></span>
+                <span class='glyphicon glyphicon-chevron-left' style="top: 5px; font-size: 20px;" aria-hidden='true' id="video-prev-button" onclick="playVideo(curVideo.id, 'prev')"></span>
+                <span class='glyphicon glyphicon-chevron-right' style="top: 5px; font-size: 20px;" aria-hidden='true' id="video-next-button" onclick="playVideo(curVideo.id, 'next')"></span>
+            </h5>
+        </div>
+        <div id="collapseOne" class="collapse in" role="tabpanel" aria-labelledby="headingOne">
+            <div id="playlist" class="card-block">
+                <p class="empty-message">There is no video in your list</p>
+            </div>
+        </div>
+    </div>
+    @*<p>&nbsp;</p>*@
+    @if (Page.items != null)
+    {
+    int moreSize = Convert.ToInt32(@System.Configuration.ConfigurationManager.AppSettings["searchMoreSize"]);
+    <div class="card">
+        <div class="card-header" role="tab" id="headingThree">
+            <h5 class="mb-0">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">More Videos<span class="caret pull-right "></span></a>
+            </h5>
+        </div>
+        <div id="collapseThree" class="collapse in" role="tabpanel" aria-labelledby="headingThree">
+            <div class="card-block">
+            @{ 
+                var beginning = 0;
+                if (Page.items.Count - moreSize > 0)
+                {
+                    beginning = Page.items.Count - moreSize;
+                }
+            }
+            @for (var i = Page.items.Count - 1; i >= beginning; i--)
+            {
+                var item = Page.items[i];
+                var statItem = Page.statItems[i];
+
+                var watchCount = statItem.Statistics.ViewCount;
+                var list_title = (item.Snippet.Title.Length > 15 ? item.Snippet.Title.Substring(0, 15) + "..." : item.Snippet.Title);
+                var channel_title = (item.Snippet.ChannelTitle.Length > 15 ? item.Snippet.ChannelTitle.Substring(0, 15) + "..." : item.Snippet.ChannelTitle);
+                String listWatchCountStr = Global.getCountString(watchCount, 1); ;
+                
+                <div class="list-item">
+                    <div class="left-section">
+                        <div class="embed-responsive embed-responsive-16by9 thumb-div">
+                            <a class='play-button' href='/video?id=@item.Id.VideoId' data-id="@item.Id.VideoId"
+                               data-list-title="@list_title" data-channel-title="@channel_title"
+                               data-watch-count="@listWatchCountStr">
+                                <image class='thumb' src='@item.Snippet.Thumbnails.High.Url' title='@item.Snippet.Title' />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="right-section">
+                        <div class="text-center" style="height: 16px;"> </div>
+                        <h2>@list_title</h2>
+                        <div><i>@channel_title</i></div>
+                        <div class="first-video-sec2 width-100">
+                            <span class="labl2 pull-left">@listWatchCountStr</span>
+                            <a class="more-video-play-button pull-left" href='/video?id=@item.Id.VideoId'>
+                                <label class="labl11">
+                                    <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                                </label>
+                            </a>
+                            <div class="more-video-add-to-list pull-left">
+                                <label><img src="/Images/list.png" alt=""></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>                
+            }
+            </div>
+        </div>
+    </div>
+    }
+</div>

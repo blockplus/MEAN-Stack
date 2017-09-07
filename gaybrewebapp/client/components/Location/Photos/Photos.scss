@@ -1,0 +1,28 @@
+.photosLabel {
+  background-size: 100% auto;
+  max-width: 100%;
+  position: relative;
+  input {
+    opacity: 0;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+}
+.locationThumb {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  div {
+    margin: 0;
+    display: block !important;
+    width: calc(20% - 10px) !important;
+    padding: 0 !important;
+  }
+}

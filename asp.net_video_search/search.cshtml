@@ -1,0 +1,256 @@
+﻿@using Google.Apis.Services;
+@using Google.Apis.YouTube.v3;
+@using Google.Apis.YouTube.v3.Data;
+@{
+    Layout = "~/_SiteLayout.cshtml";
+    Page.Title = "Search Results";
+
+    String query = Request["query"];
+    String sortBy = Request["sortby"];
+    String sortByStr = "";
+    int pageSize = Convert.ToInt32(@System.Configuration.ConfigurationManager.AppSettings["searchResultSize"]);
+    int moreSize = Convert.ToInt32(@System.Configuration.ConfigurationManager.AppSettings["searchMoreSize"]);
+    String pageToken = Request["ptoken"];
+
+    var youtubeService = new YouTubeService(new BaseClientService.Initializer()
+    {
+        ApiKey = @System.Configuration.ConfigurationManager.AppSettings["youtubeApiKey"],
+    });
+
+
+    SearchListResponse searchListResponse = null;
+    VideoListResponse videoListResponse = null;
+
+    if (sortBy ==null ||  sortBy =="")
+    {
+        sortBy = "viewcount";
+    }
+
+    if (query != null && query != "")
+    {
+
+        var searchListRequest = youtubeService.Search.List("snippet");
+
+        searchListRequest.Q = query;
+        searchListRequest.Type = "video";
+        searchListRequest.MaxResults = pageSize +  moreSize; // 10 will be displayed as more videos
+
+        if (sortBy == "date")
+        {
+            searchListRequest.Order = SearchResource.ListRequest.OrderEnum.Date;
+            sortByStr = "Date";
+        }
+        else if (sortBy == "rating")
+        {
+            searchListRequest.Order = SearchResource.ListRequest.OrderEnum.Rating;
+            sortByStr = "Rating";
+        }
+        else if (sortBy == "relevance")
+        {
+            searchListRequest.Order = SearchResource.ListRequest.OrderEnum.Relevance;
+            sortByStr = "Relevance";
+        }
+
+        else if (sortBy == "title")
+        {
+            searchListRequest.Order = SearchResource.ListRequest.OrderEnum.Title;
+            sortByStr = "Title";
+        }
+        else if (sortBy == "viewcount")
+        {
+            searchListRequest.Order = SearchResource.ListRequest.OrderEnum.ViewCount;
+            sortByStr = "Most Viewed";
+        }
+
+        if (pageToken != null)
+        {
+            searchListRequest.PageToken = pageToken;
+        }
+
+        searchListResponse = searchListRequest.Execute();
+
+        if (searchListResponse != null && searchListResponse.Items != null)
+        {
+            // get collection of video id, and do another api call for statistics
+
+            String[] videoIds =new String[searchListResponse.Items.Count];
+            int _index = 0;
+
+            foreach (var item in searchListResponse.Items)
+            {
+                videoIds[_index] = item.Id.VideoId;
+                _index++;
+            }
+
+            //part = contentDetails,statistics & id = TruIq5IxuiU,-VoFbH8jTzE,RPNDXrAvAMg,gmQmYc9 - zcg & key = AIzaSyAxHDsb6Yr__9pTD4i1oVCw - P38KAPMS50
+            var videoListRequest = youtubeService.Videos.List("contentDetails,statistics");
+
+            videoListRequest.Id = string.Join(",", videoIds);
+            videoListResponse = videoListRequest.Execute();
+        }
+
+    }
+
+
+}
+@* Custom *@
+<script src="~/Scripts/search_page.js"></script>
+
+<!-- Navigation -->
+
+<nav class="navbar app-navbar" role="navigation">
+    <div class="container">
+        <div class="row">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="col-md-12 search-top">
+                <form action="">
+                    <div class="input-group srchbtn">
+                        <input type="text" name="query" class="form-control" value="@query" placeholder="Search Music, Movies,Sports, Feed, News, Cars and more......">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">
+                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                            </button>
+                        </span>
+                    </div><!-- /input-group -->
+                </form>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>	<!-- /row -->
+    </div>
+    <!-- /.container -->
+</nav>
+<!-- End of Navigation-->
+
+<!-- Search Results-->
+<div class="container-fluid rel-div add-result-div">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-9 video-section">
+                <div class="jumbotron top-ad">                    
+                    @RenderPage("Ads/728_90TopSearchLeft.cshtml")
+                </div>
+                <div class="top-btns-pagi">
+                    <div class="pull-left result">
+                        @if (searchListResponse != null && searchListResponse.PageInfo != null)
+                        {
+                            <p>@searchListResponse.PageInfo.TotalResults RESULTS FOR <b>@query</b></p>
+                        }                       
+                    </div>
+                    <div class="pull-right sort-by">
+                        <p>SORT BY:</p>
+                        <div class="btn-group">
+                            <button class="btn btn-default btn-lg dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @sortByStr <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="/search?query=@query&ptoken=@pageToken&sortby=viewcount">Most Viewed</a>
+                                </li>
+                                <li>
+                                    <a href="/search?query=@query&ptoken=@pageToken&sortby=date">Date</a>
+                                </li>
+                                <li>
+                                    <a href="/search?query=@query&ptoken=@pageToken&sortby=rating">Rating</a>
+                                </li>
+                                <li>
+                                    <a href="/search?query=@query&ptoken=@pageToken&sortby=relevance">Relevance</a>
+                                </li>
+                                <li>
+                                    <a href="/search?query=@query&ptoken=@pageToken&sortby=title">Title</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                @if (searchListResponse != null && searchListResponse.Items !=null)
+                {
+                <div class="album-music">
+                    @for (var i = 0; i < searchListResponse.Items.Count; i++)
+                    {
+                        if (i >= pageSize)
+                        {
+                            break;
+                        }
+                        var item = searchListResponse.Items[i];
+                        var statItem = videoListResponse.Items[i];
+                        var watchCount = statItem.Statistics.ViewCount.Value;
+                        String watchCountStr = Global.getWatchCountString(watchCount);
+                        String listWatchCountStr = Global.getCountString(watchCount, 1);
+
+                        var list_title = (item.Snippet.Title.Length > 15 ? item.Snippet.Title.Substring(0, 15) + "..." : item.Snippet.Title);
+                        var clearBoth = "";
+                        //if (i % 3 == 0)
+                        //{
+                        //    clearBoth = "style=clear:both";
+                        //}
+                        <div class="col-md-4 col-sm-6 col-xs-12" @clearBoth>
+                            <div class="thumbnail">
+                                <a class="thumb-link" href="/video?id=@item.Id.VideoId" data-id="@item.Id.VideoId"
+                                    data-list-title="@list_title" data-channel-title="@item.Snippet.ChannelTitle"
+                                    data-watch-count="@listWatchCountStr">
+                                    <img src="@item.Snippet.Thumbnails.High.Url" title="@item.Snippet.Title">
+                                </a>
+                                <div class="caption">
+                                    <span class="second-img"><img src="images/icon-1.png" alt=""></span>
+                                    <div class="video-info">
+                                        <h6>
+                                            <a href="/video?id=@item.Id.VideoId">
+                                                @(item.Snippet.Title.Length > 20 ? item.Snippet.Title.Substring(0, 20) + "..." : item.Snippet.Title)
+                                            </a>
+                                        </h6>
+                                        <div class="first-vide-sec5">
+                                            <label class="labl1">User</label>
+                                            <span class="labl2">@watchCountStr</span>
+                                        </div>
+                                        <div class="add-to-list">
+                                            <label><img src="~/Images/list.png" alt=""></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }                    
+                </div>
+                }
+                else
+                {
+                <p>There is no results.</p>
+                }
+                <nav aria-label="Page navigation" class="pagenav">
+                    <ul class="pagination">
+                        <li>
+                            <a href="/search?query=@query&ptoken=@searchListResponse.PrevPageToken&sortby=@sortBy" aria-label="Previous" class="page-prev"><span aria-hidden="true">Previous</span> </a>
+                        </li>
+
+                        <li>
+                            <a href="/search?query=@query&ptoken=@searchListResponse.NextPageToken&sortby=@sortBy" aria-label="Next" class="pag-next"><span aria-hidden="true">Next</span></a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="jumbotron top-ad">
+                    @RenderPage("Ads/728_90BottomSearchLeft.cshtml")
+                </div>
+                
+            </div>
+            <!-------------->
+            <div class="col-md-3 side-bar">
+                <div class="jumbotron dole-img text-center">
+                    @RenderPage("Ads/300_250TopSearchRight.cshtml")
+                </div>
+                <div class="side-heading ">
+                    <h3> Playlist </h3>                    
+                </div>
+                <div class="play-list">
+                    @RenderPage("_playlist.cshtml", new { items = searchListResponse!=null ? searchListResponse.Items: null, statItems= videoListResponse!=null ? videoListResponse.Items: null })
+                    <!------------------->                    
+                </div>
+                <div class="jumbotron dole-img text-center">
+                    @RenderPage("Ads/300_250BottomSearchRight.cshtml")
+                </div>           
+            </div>
+        </div><!--row-->
+    </div>
+</div>
+<!-- /.Search Results -->
+
+<!-- Page Content -->

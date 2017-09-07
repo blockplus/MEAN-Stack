@@ -1,0 +1,116 @@
+<h2>Enter your <%= @cart.total == 0 ? "registration" : "payment" %> information</h2>
+<%= form_tag :purchases, id: :payment_form do %>
+  <div class="alignleft">
+    <div class="control-group">
+      <%= label_tag 'Name', nil, class: "control-label" %>
+      <%= text_field_tag 'card[first_name]', @card[:first_name], size: 30, class: 'required span2', placeholder: "First Name" %>
+      <%= text_field_tag 'card[last_name]', @card[:last_name], size: 30, class: 'required span2', placeholder: "Last Name" %>
+    </div>
+    <div class="control-group">
+      <%= label_tag 'Street Address', nil, class: "control-label" %>
+      <%= text_field_tag 'address[address]', @address[:address], size: 30, class: 'required span4', placeholder: "Street Address" %>
+    </div>
+    <div class="control-group">
+      <%= label_tag 'Street Address 2', nil, class: "control-label" %>
+      <%= text_field_tag 'address[address2]', @address[:address2], size: 30, class: 'span4', placeholder: "Street Address 2" %>
+    </div>
+    <div class="control-group">
+      <%= label_tag 'City, State, and Zip', nil, class: "control-label" %>
+      <%= text_field_tag 'address[city]', @address[:city], size: 30, class: 'required span2', placeholder: "City" %>
+      <%= select_tag 'address[state]', options_for_select(us_states, @address[:state]), class: 'required span1' %>
+      <%= text_field_tag 'address[zip]', @address[:zip], size: 30, class: 'required span1', placeholder: "Zip" %>
+    </div>
+  </div>
+  <% unless @cart.total == 0 %>
+    <div class="alignleft">
+      <div class="control-group">
+        <%= label_tag "Credit Card Number", nil, class: "control-label" %>
+        <%= text_field_tag 'card[number]', @card[:number], size: 30, class: 'required span4', placeholder: "####-####-####-####" %>
+      </div>
+      <div class="control-group">
+        <%= label_tag "Expiration Date", nil, class: "control-label" %>
+        <%= select_month ( @card[:month] || Date.today ), { prefix: 'card', use_two_digit_numbers: true }, { class: 'required span1' } %>
+        <%= select_year ( @card[:year] || Date.today ), { prefix: 'card', start_year: Date.today.year }, { class: 'required span2' } %>
+      </div>
+      <div class="control-group">
+        <%= label_tag :verification_value, "CVC", class: "control-label" %>
+        <%= text_field_tag 'card[verification_value]', @card[:verification_value], placeholder: "###", class: "required span1" %>
+      </div>
+    </div>
+  <% end %>
+  <div class="clear"></div>
+  <h2>Enter your contact information</h2>
+  <div class='alignleft'>
+    <div class="control-group">
+      <%= label_tag 'Phone Number', nil, class: "control-label" %>
+      <%= text_field_tag 'address[phone]', @address[:phone], size: 30, class: 'required span4', placeholder: "Phone Number" %>
+    </div>
+    <div class="control-group">
+      <%= label_tag 'Email Address', nil, class: "control-label" %>
+      <%= text_field_tag 'address[email]', @address[:email], size: 30, class: 'required span4', placeholder: "Email Address" %>
+    </div>
+    <div class="control-group">
+      <%= label_tag 'Contact Preference', nil, class: "control-label" %>
+      <% %w(email phone).each do |pref| %>
+        <%= label_tag pref do %>
+          <%= radio_button_tag 'address[contact_preference]', pref, @address[:contact_preference] == pref %> <%= pref.titleize %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class='clearfix'></div>
+  <% @cart.line_items.where('quantity > 1').each do |item| %>
+    <h2>Guests for <%= item.title %></h2>
+    <div class='alignleft'>
+    <% (item.quantity - 1).times do |i| %>
+      <h3>Guest #<%= i + 1 %></h3>
+      <div class="control-group">
+        <%= label_tag 'Name', nil, class: "control-label" %>
+        <%= text_field_tag "address[additional_attendees][courses][#{item.course.id}][#{i}][name]", nil, size: 30, class: 'required span4', placeholder: "Name" %>
+      </div>
+      <div class="control-group">
+        <%= label_tag 'Phone Number', nil, class: "control-label" %>
+        <%= text_field_tag "address[additional_attendees][courses][#{item.course.id}][#{i}][phone]", nil, size: 30, class: 'required span4', placeholder: "Phone Number" %>
+      </div>
+      <div class="control-group">
+        <%= label_tag 'Email Address', nil, class: "control-label" %>
+        <%= text_field_tag "address[additional_attendees][courses][#{item.course.id}][#{i}][email]", nil, size: 30, class: 'required span4', placeholder: "Email Address" %>
+      </div>
+      <div class="control-group">
+        <%= label_tag 'Address', nil, class: "control-label" %>
+        <%= text_area_tag "address[additional_attendees][courses][#{item.course.id}][#{i}][address]", nil, size: 30, class: 'required span4' %>
+      </div>
+    <% end %>
+    </div>
+    <div class='clearfix'></div>
+  <% end %>
+  <% @cart.event_items.where('quantity > 1').each do |item| %>
+    <h2>Guests for <%= item.title %></h2>
+    <div class='alignleft'>
+    <% (item.quantity - 1).times do |i| %>
+      <h3>Guest #<%= i + 1 %></h3>
+      <div class="control-group">
+        <%= label_tag 'Full Name', nil, class: "control-label" %>
+        <%= text_field_tag "address[additional_attendees][events][#{item.event.id}][#{i}][name]", nil, size: 30, class: 'required span4', placeholder: "Full Name" %>
+      </div>
+      <div class="control-group">
+        <%= label_tag 'Phone Number', nil, class: "control-label" %>
+        <%= text_field_tag "address[additional_attendees][events][#{item.event.id}][#{i}][phone]", nil, size: 30, class: 'required span4', placeholder: "Phone Number" %>
+      </div>
+      <div class="control-group">
+        <%= label_tag 'Email Address', nil, class: "control-label" %>
+        <%= text_field_tag "address[additional_attendees][events][#{item.event.id}][#{i}][email]", nil, size: 30, class: 'required span4', placeholder: "Email Address" %>
+      </div>
+      <div class="control-group">
+        <%= label_tag 'Address', nil, class: "control-label" %>
+        <%= text_area_tag "address[additional_attendees][events][#{item.event.id}][#{i}][address]", nil, size: 30, class: 'required span4' %>
+      </div>
+    <% end %>
+    </div>
+    <div class='clearfix'></div>
+  <% end %>
+  <div class='clearfix'></div>
+  <%= submit_tag "Checkout", :class => "big" %> -or- <%= link_to "Continue Registering", courses_path, :class => 'big register button', :style => "float: none;" %>
+  <div class='clearfix'></div>
+  <p><em>Limited scholarships are available for individuals experiencing financial hardship. <%= link_to 'PLEASE CLICK HERE', page_url('scholarship-application') %> for more information.</em></p>
+<% end %>

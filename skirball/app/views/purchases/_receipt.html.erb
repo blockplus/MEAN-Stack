@@ -1,0 +1,159 @@
+<div id="receipt">
+  <h3><%= Time.now.strftime "%B %-d, %Y" %></h3>
+  <p>
+    <%= contact_params[:first_name] %> <%= contact_params[:last_name] %><br>
+    <%= contact_params[:address] %><br>
+  <% if contact_params[:address2] %>
+    <%= contact_params[:address2] %><br>
+  <% end %>
+    <%= contact_params[:city] %>, <%= contact_params[:state] %> <%= contact_params[:zip] %><br>
+    <%= contact_params[:phone] %><%= " (preferred)" if contact_params[:contact_preference] == 'phone' %><br>
+    <%= contact_params[:email] %><%= " (preferred)" if contact_params[:contact_preference] == 'email' %><br>
+  </p>
+  <% if cart.line_items.present? %>
+    <% cart.line_items.each do |item| %>
+      <h3><%= link_to item.title, course_path(item.course) %></h3>
+      <table id="cart" class="table table-striped">
+        <thead>
+          <tr>
+            <th class="purple">Course Information</th>
+            <th width="10%"></th>
+            <th class="purple" width="10%">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to course_path(item.course) do %>
+                <%= "#{item.course.semester.title}: #{item.course.day_of_week} #{item.course.start_time} - #{item.course.end_time}, #{item.course.teacher.name}" %> 
+              <% end %>
+              <% if item.quantity > 1 %>
+                <%= " x#{item.quantity}" %>
+              <% end %>
+            </td>
+            <td class='right'>Cost:</td>
+            <td><%= number_to_currency item.total %></td>
+          </tr>
+          <% if item.quantity > 1 && contact_params[:additional_attendees]['courses'][item.course.id.to_s].present? %>
+            <tr><td colspan='3'>Also attending:</td></tr>
+            <% contact_params[:additional_attendees]['courses'][item.course.id.to_s].values.each do |attendee| %>
+              <tr><td colspan='3'><strong><%= attendee['name'] %></strong></td></tr>
+              <tr><td colspan='3'><%= attendee['phone'] %></td></tr>
+              <tr><td colspan='3'><%= attendee['email'] %></td></tr>
+              <tr><td colspan='3'><%= attendee['address'] %></td></tr>
+              <tr></tr>
+            <% end %>
+          <% end %>
+          <% if cart.discount.present? && item.discountable? %>
+            <tr id="shipping">
+              <td colspan=2 class="right"><%= discount_label cart.discount %>:</td>
+              <td>
+                <% if cart.discount.rule == "amount" %>
+                  <%= number_to_currency( cart.discount.amount / cart.line_items.count ) %>
+                <% else %>
+                  <%= number_to_currency( cart.calculate_amount(item.total) ) %>
+                <% end %>
+              </td>
+            </tr>
+            <tr id="total">
+              <td></td>
+              <td class="right">Subtotal:</td>
+              <td>
+                <% if cart.discount.rule == "amount" %>
+                  <%= number_to_currency( item.total - (cart.discount.amount / cart.line_items.count) ) %>
+                <% else %>
+                  <%= number_to_currency( item.total - cart.calculate_amount(item.total) ) %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  <% end %>
+  <% if cart.event_items.present? %>
+    <h3><%= link_to "Events", :calendar %></h3>
+    <% cart.event_items.each do |item| %>
+      <table id="cart" class="table table-striped">
+        <thead>
+          <tr>
+            <th class="purple">Event Information</th>
+            <th width="10%"></th>
+            <th class="purple" width="10%">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <%= link_to item.title, event_path(item.event) %>
+              <% if item.quantity > 1 %>
+                <%= " x#{item.quantity}" %>
+              <% end %>
+            </td>
+            <td>Cost:</td>
+            <td><%= number_to_currency item.total %></td>
+          </tr>
+          <% if item.quantity > 1 && contact_params[:additional_attendees]['events'][item.event.id.to_s].present? %>
+            <tr><td colspan='3'>Also attending:</td></tr>
+            <% contact_params[:additional_attendees]['events'][item.event.id.to_s].values.each do |attendee| %>
+              <tr><td colspan='3'><strong><%= attendee['name'] %></strong></td></tr>
+              <tr><td colspan='3'><%= attendee['phone'] %></td></tr>
+              <tr><td colspan='3'><%= attendee['email'] %></td></tr>
+              <tr><td colspan='3'><%= attendee['address'] %></td></tr>
+              <tr></tr>
+            <% end %>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  <% end %>    
+  <% if cart.donation.present? %>
+    <h3><%= link_to "Donation", :donate %></h3>
+    <table id="cart" class="table table-striped">
+      <thead>
+        <tr>
+          <th class="purple">Donation Information</th>
+          <th width="10%"></th>
+          <th class="purple" width="10%">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <%= donation_title(cart.donation) %>
+          </td>
+          <td>Amount:</td>
+          <td><%= number_to_currency cart.donation.amount %></td>
+        </tr>
+      </tbody>
+    </table>
+  <% end %>    
+  <table id="cart" class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th width="10%"></th>
+        <th width="10%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if cart.discount.present? && cart.calculate_discount > 0 %>
+        <tr>
+          <td></td>
+          <td><strong>Subtotal:</strong></td>
+          <td><%= number_to_currency( cart.discountable_subtotal + cart.nondiscountable_total) %></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><strong>Discount:</strong></td>
+          <td><%= number_to_currency cart.calculate_discount %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td></td>
+        <td><strong>Total:</strong></td>
+        <td><%= number_to_currency cart.total %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

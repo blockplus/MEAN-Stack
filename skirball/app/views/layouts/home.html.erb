@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<%= render 'layouts/head' %>
+<%= content_tag :body, class: "home" do %>
+  <%= render 'layouts/home_header' %>
+  <div id="main">
+    <div class="content">
+      <%= render 'layouts/flash' %>
+      <%= yield %>
+    </div> 
+  </div>
+  <%= render 'layouts/footer' %>
+<% end %>
+</html>
+

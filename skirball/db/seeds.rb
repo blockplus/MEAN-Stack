@@ -1,0 +1,66 @@
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
+#
+# Examples:
+#
+#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
+#   Mayor.create(name: 'Emanuel', city: cities.first)
+Page.create(
+  title: "Mission and Vision",
+  content: %q{<p></p><h2><span style="color: #332985;">"<strong><em>Skirball is the power of education to smash idols and create minds.</em></strong>"</span></h2><p><span style="color: #332985;"><br></span></p><p></p><hr><p></p><h3><span style="color: #332985;"><br></span></h3><h3><span style="color: #332985;">What is the Purpose of Adult Jewish Education?</span></h3><p><span style="font-size: 15px; line-height: 1.45em; color: rgb(50, 53, 55);">To open the door for people to become critical thinkers in the world, to master the skill of asking probing questions, and to maintain a curiosity about life and humanity.&nbsp;</span></p><h3><font color="#332985">Our Mission at Skirball:</font></h3><p>Critical thinking, questioning and fostering curiosity are precious gifts endowed us by our Jewish heritage. It is the mission of the Skirball Center to cultivate that gift of Jewish heritage. We aim to generate a critical mass of Jews who can become agents of a vibrant, mindful, high-quality Judaism that can serve as a meaningful force in modern life. Each Skirball student becomes an ambassador and role model for this kind of Judaism, making a notable difference in the world.</p><p></p><h1><br></h1><p></p><p></p>}
+)
+Page.create(
+  title: 'Staff', 
+  content: %q{<p></p><p>Our staff at Skirball is small, but we operate as a dedicated and efficient team, based on the principles of cooperation and mutual respect. We enjoy working together to create outstanding programs for our students, and to offer the most sophisticated Jewish learning program in NYC.</p><h3><span style="color: #332985;"><b><br></b></span></h3><h3><span style="color: #332985;"><b>Rabbi Alfredo F. Borodowski, PhD - Executive Director&nbsp;<p></p></b></span></h3><p><i><img src="https://skirball.s3.amazonaws.com/public/Borodowski-Alfredo-bw-224x300.jpg" style="float: right; margin: 0px 0px 10px 10px;" alt="">"Teaching for 29 years, I still relish those 'a-ha!' moments when the doors of the mind open and we can walk through with surprise; the best compliment someone can pay me is 'you make me think.' "</i><br></p><p>Rabbi Alfredo, as he is known around Skirball, has served as the Executive Director since 2010. His dedication and vision have propelled Skirball's programming to new heights, continually opening new doors for intellectual growth. Rabbi Alfredo is beloved for his exciting courses on Jewish philosophy each semester at Skirball. Before coming to Skirball, Rabbi Alfredo served as Executive Director of The American Friends of the Hartman Institute. Raised in Argentina, he earned his law degree at the University of Buenos Aires Law School and&nbsp;was ordained as a rabbi in 1991 by the Seminario Rabinico Latinoamericano, the center of the Masorti Movement in Argentina and Latin America. He is a graduate of Senior Educators program of the Hebrew University, and&nbsp;received an MA in rabbinic literature and a PhD in Jewish Philosophy from the Jewish Theological Seminary of America in 1997. He published <i>Isaac Abravanel on Miracles, Creation, Prophecy and Evil</i> in 2003.&nbsp;<strong><a href="http://skirball.j-town.com/faculty/rabbi-alfredo-borodowski/"></a><a href="">Click here to view the courses Rabbi Alfredo is teaching this semester.</a></strong><br></p><p><strong><em>What you may not know about Rabbi Alfredo:&nbsp;</em></strong>He is a certified administrator and interpreter of the Myers Briggs&nbsp;character&nbsp;type instrument, specializing in organizational leadership and spirituality.<br></p><p></p><p>Alfredo can be reached by <a href="mailto:alfredo@adultjewishlearning.org">email</a> or at (212) 507-9581</p><p><br></p><h3></h3><h3><span style="color: #332985;"><b>Rabbi Yael Shmilovitz - Program Director&nbsp;</b></span></h3><span style="color: #332985;"><p><i style="font-family: inherit; line-height: 1.45em; color: rgb(50, 53, 55);"></i></p><p style="font-weight: inherit;"><i style="font-family: inherit; line-height: 1.45em; color: rgb(50, 53, 55);"></i></p></span><p><span><i><font color="#000000"><img src="https://skirball.s3.amazonaws.com/public/Yael-S-244x300.jpg" style="float: left; margin: 0px 10px 10px 0px; width: 216.34666666666666px; height: 266px;" alt="">"Judaism teaches us not to take anything at face value. Therefore, I want my students to believe nothing I say. Question everything. Always dig deeper."&nbsp;</font></i></span></p><p><font color="#000000"><span style="font-style: normal;">Yael has been the Program Director of The Skirball Center for Adult Jewish Learning since the Summer of 2008, after being ordained from HUC-JIR where she also received a Masters of Religious Education. A native Israeli, Yael is co-author of&nbsp;</span><i>Resilience of the Soul: Developing Emotional and Spiritual Resilience in Adolescents and Their Families</i><span style="font-style: normal;">, published by URJ Press. She brings to Skirball a variety of teaching, writing and research experience for private, educational and academic institutions.<br></span></font></p><p><span style="font-style: normal;"><font color="#000000"><strong>What you may not know about Yael:&nbsp;</strong><span>In her spare time, she is working on completing certification as clinical pastoral educator at Bellevue hospital.<br></span></font></span><span style="font-style: normal;"><font color="#000000"><span><br></span></font></span><font color="#000000" style="font-style: normal;"><span>Yael can be reached by </span><a href="mailto:yael@adultjewishlearning.org ">email</a><span> or at (212) 507-9537</span></font></p><p></p><p></p><p><span style="color: #0c0c0c;"><br></span></p><h3><b style="font-family: inherit; font-size: 24px; font-style: inherit; color: rgb(51, 41, 133); line-height: 1;">Michele Davison - Office Manager and Registrar&nbsp;</b></h3><h3><span style="color: #332985;"><b><p></p></b></span></h3><p><i><img src="https://skirball.s3.amazonaws.com/public/Davison%20Michele%20b%26w.jpg" style="float: right; margin: 0px 0px 10px 10px;" alt="">"My favorite quote is by Elisabeth Kubler-Ross: 'Learn to get in touch with the silence within yourself, and know that everything in life has purpose. There are no mistakes, no coincidences, all events are blessings given to us to learn from'. This is how I think of every student I meet; someone important, a blessing to learn from."</i></p><p>Michele has served as Skirball's Registrar and Office Manager since the Summer of 2008. Born and raised in Brooklyn, she graduated from Medgar Evers College with a degree in&nbsp;Biology, after which she spent four years as the registrar at her alma mater. She has extensive background in business and finance, and has worked for, among others, Chemical Bank, Chase Manhattan Bank and First Fidelity Bank before coming to work at the Skirball Center. Most importantly, Michele is adored by Skirball's students, and she loves them in return.</p><p><em><strong>What you may not know about Michele:</strong></em>&nbsp;She is the proud mother of two sons - Douglas and Devon.</p><p>Michele can be reached by <a href="mailto:michele@adultjewishlearning.org">email</a> or at (212) 507-9580</p><p><br></p><h3><b><span style="color: #332985;">Elisa Schindler Frankel -Director of Development and Communications&nbsp;<p></p></span></b></h3><p></p><p></p><p></p><p></p><p><i><img src="https://skirball.s3.amazonaws.com/public/Elisa%20medium%20b%26w.jpg" style="float: left; margin: 0px 10px 10px 0px;" alt="">"Adult Jewish learning is not only fundamental to Jewish life but helps us to deepen our impact on the world. The teachings of Judaism are a wellspring that sustains and renews me. Skirball keeps aflame my passion for Judaism."</i></p><p>Elisa joined Skirball in 2013. She comes to us after 7-1/2 years with Jewish National Fund, where she most recently served as National Director of the Women' Campaign and Special Campaigns. Prior to joining JNF, Elisa spent 25 years in the corporate world, specializing in brand development and marketing. A graduate of Brandeis University, Elisa brings to us a vast experience in Jewish community service and leadership. She is a member of Stephen Wise Free Synagogue in NYC and Congregation Sulam Yaakov in Larchmont, NY. Elisa has a great passion for sustaining and enriching the values and ideals of Klal Israel, Judaism, and Tikkun Olam - as well as stimulating the American Jewish Community to be an effective voice for Jews around the world.</p><p><b style="font-style: italic;">What you may not know about Elisa:&nbsp;</b>She is married to a wonderful man, Larry, who is an artist. The two reside on Manhattan's Upper West Side with their three small dogs. Larry has blessed Elisa with five special stepchildren, two terrific sons-in-law, and four delicious grandchildren.&nbsp;</p><p>Elisa can be reached by <a href="mailto:elisa@adultjewishlearning.org">email</a> or at (212) 507-9583</p><br><p></p><p></p><span style="font-family: inherit; font-style: inherit; line-height: 1.45em;"><b><p></p><p></p><p></p></b></span><p></p><p><b style="font-family: inherit; font-style: inherit; line-height: 1.45em;"></b></p><p></p><p></p><p></p>
+<br><p></p><p></p><br><p></p><br><p></p><br><p></p><p></p>}
+)
+Page.create(
+  title: 'Donate', content: %q{<h2>Skirball is about the transformative power of ideas and learning.</h2><p></p><p>Jewish ideas and Jewish texts belong to each and every one of us - and we need not take Jewish sources literally to take them seriously.  For many of us Jewish study is the primary way of expressing our Jewishness, and the "Beit Midrash" ("house of study") is one of its most vital institutions. Please join our generous friends and students in making ours a home for Jewish thinkers and seekers from all streams of Judaism by making a gift today.</p>}
+)
+Page.create([
+  {title: 'Faculty', content: "<p>This is placeholder content for the Faculty page</p>"},
+  {title: 'Who Studies Here?', content: "<p>This is placeholder content for the Who Studies Here? page</p>"},
+  {title: 'News and Events', content: "<p>This is placeholder content for the News and Events page</p>"},
+  {title: 'Courses', content: "<p>This is placeholder content for the Courses page</p>"},
+  {title: 'Request a Guide', content: "<p>This is placeholder content for the Request a Guide page</p>"},
+  {title: 'Interact', content: "<p>This is placeholder content for the Interact page</p>"},
+  {title: 'Connect', content: "<p>This is placeholder content for the Connect page</p>"},
+  {title: 'Privacy Policy', content: "<p>This is placeholder content for the Privacy Policy page</p>"},
+  {title: 'Site Security', content: "<p>This is placeholder content for the Site Security page</p>"},
+  {title: 'Site Map', content: "<p>This is placeholder content for the Site Map page</p>"},
+  {title: 'Register', content: "<p>This is placeholder content for the Register page</p>"},
+  {title: 'Search', content: "<p>This is placeholder content for the Search page</p>"},
+  {title: 'Calendar', content: ""},
+  {title: 'Social Media', content: ""},
+  {title: 'Podcasts', content: ""},
+  {title: 'FAQ', content: ""},
+  {title: 'Support Our Work', content: ""},
+  {title: 'Address/Directions', content: ""},
+  {title: 'Contact Us', content: ""}
+  ])
+
+
+["Jewish Thought", "Literature", "Bible", "History", "Talmud", "Archaeology", "Comparative Religion", "American Judaism"].each do |title|
+  Subject.create(title: title)
+end
+
+Location.create([
+  {title: 'Rel. School', address: "10 East 66th Street (between 5th and Madison Avenues)"},
+  {title: 'Main Bldg', address: "One East 65th Street (between 5th and Madison Avenues)"},
+  {title: 'Skirball @ SAJ', address: "15 West 86th St (between Columbus Avenue and Central Park West)"},
+  {title: 'Skirball @ TI', address: "112 E 75th St (between Lexington and Park Aves)"}
+])
+
+SuggestedDonation.create([
+  { amount: 250000, description: "Endow a Course or Department" },
+  { amount: 5000, description: "TBD" },
+  { amount: 2500, description: "Bring a Visiting Academic who can enrich our intellectual endeavors during a 7 semester course" },
+  { amount: 1800, description: "Join our Skirball Scholars' Society, a special circle of dedicated learners" },
+  { amount: 1000, description: "Sponsor a semester-length course on a topic close to your heart, or honor a favorite teacher" },
+  { amount: 360, description: "Provide a scholarship for one student to study with us for a semester" },
+  { amount: 250, description: "Dedicate a Sunday Seminar in honor or memory of a loved one or in celebration of a special occasion" },
+  { amount: 180, description: "Dedicate a podcast in honor or memory of a loved one or in celebration of an occasion" },
+  { amount: 100, description: "Contribute funds to support or Artists' or Writers' Beit Midrash" }
+])                         
+
+puts "database seeded!"

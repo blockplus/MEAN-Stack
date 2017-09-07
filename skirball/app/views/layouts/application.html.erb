@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<%= render 'layouts/head' %>
+<%= content_tag :body, class: @class || "page" do %>
+<%= render 'layouts/header' %>
+<div id="main">
+  <div class="content">
+    <%= yield %>
+    <div class="clear"></div>
+  </div> 
+</div>
+<%= render 'layouts/footer' %>
+<% end %>
+</html>

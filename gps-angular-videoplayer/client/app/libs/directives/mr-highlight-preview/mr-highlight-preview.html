@@ -1,0 +1,23 @@
+<md-card class="mr-highlight-preview">
+    <div class="mr-video-container">
+        <a>
+            <img ng-src="{{highlightThumbnail(highlight)}}" class="md-card-image" ng-click="imageClick()">
+            <span class="mr-video-icon" ng-class="{'over-with-image' : playButtonOverWithImage }" ng-click="playClick()"><i class="material-icons md-36">play_arrow</i></span>
+            <span class="mr-video-title text-truncate" ng-click="titleClick()"><p>{{highlight.name}}</p></span>
+            <span class="mr-video-starred" ng-if="starringEnabled" ng-click="toggleStarred()"
+                  ng-init="toggleStarredIcon = highlight.starred ? 'star' : 'star_border'"
+                  ng-mouseenter="toggleStarredIcon = toggleBusy ? toggleStarredIcon : (highlight.starred ? 'star_border' : 'star')"
+                  ng-mouseleave="toggleStarredIcon = toggleBusy ? toggleStarredIcon : (highlight.starred ? 'star' : 'star_border')">
+                <i class="material-icons md-24" ng-class="{ 'starred': highlight.starred }">{{ toggleStarredIcon }}</i>
+            </span>
+        </a>
+    </div>
+    <md-card-content>
+        <p class="mr-video-stats">
+            <span class="pull-left mr-info mr-views"><i class="material-icons md-18 md-primary">visibility</i> {{ highlight.views}}</span>
+            <span class="pull-left mr-info mr-likes"><i class="material-icons md-18 md-color-accent">favorite</i> {{ highlight.likes}}</span>
+            <span class="pull-left mr-info mr-comments"><i class="material-icons md-18 md-primary">comment</i> {{highlight.comments}}</span>
+            <span class="pull-right mr-info mr-duration">{{highlight.duration | duration}}"</span>
+        </p>
+    </md-card-content>
+</md-card>

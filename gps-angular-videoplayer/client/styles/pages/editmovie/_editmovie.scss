@@ -1,0 +1,109 @@
+.editmovie-page {
+    height: 100%;
+    overflow-y: auto;
+
+    .content-page-container-fixed-width {
+        width: 100%;
+        display: inline-block;
+    }
+
+    .timeline-editor-container {
+        margin-top: 20px;
+    }
+
+    .starred-highlight-container,
+    .timeline-editor-container {
+        .title-block {
+            display: inline-block;
+            width: 100%;
+
+            h4 {
+                text-align: left;
+                margin-top: 0px;
+            }
+            a.clear-btn {
+                cursor: pointer;
+                -webkit-touch-callout: none; /* iOS Safari */
+                -webkit-user-select: none;   /* Chrome/Safari/Opera */
+                -khtml-user-select: none;    /* Konqueror */
+                -moz-user-select: none;      /* Firefox */
+                -ms-user-select: none;       /* IE/Edge */
+                user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+
+                &.not-active {
+                    cursor: default;
+                    color: $skin-gray-dark;
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+
+    .starred-highlight-container .as-sortable-item {
+        border: none;
+        margin: 0;
+    }
+
+    // starred highlight card cloned by ng sortable
+    .as-sortable-drag {
+        height: calc((200px * 360) / 640) !important;
+        width: 200px;
+
+        .as-sortable-item.highlight-card {
+            padding: 0px;
+            border: none;
+            background-color: transparent;
+            margin: 0px;
+            width: 200px;
+
+            .mr-video-container img {
+                height: calc((200px * 360) / 640) !important;
+                min-height: 0px;
+            }
+
+            md-card {
+                margin: 0px;
+
+                .mr-video-title {
+                    width: 100%;
+                    padding: 4px 4px;
+                    p {
+                        text-align: center;
+                        font-size: 10px;
+                        font-weight: bold;
+                        color: #fff;
+                        line-height: 10px;
+                    }
+                }
+            }
+            md-card-content, .mr-video-icon, .mr-video-starred {
+                display: none;
+            }
+        }
+    }
+
+    @media (min-width: $screen-lg-min) {
+        .content-page-container-fixed-width {
+            width: 950px;
+        }
+    }
+
+    @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+        .content-page-container-fixed-width {
+            width: 740px;
+        }
+    }
+
+    @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+        .content-page-container-fixed-width {
+            width: 540px;
+        }
+    }
+
+    @media (max-width: $screen-xs-max) {
+        padding: 15px 0 0 0;
+    }
+}

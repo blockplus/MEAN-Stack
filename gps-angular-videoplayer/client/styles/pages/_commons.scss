@@ -1,0 +1,573 @@
+.session-card {
+    .clips-number {
+        font-size: 14px;
+        cursor: default;
+    }
+
+    .tracks-icon {
+        cursor: default;
+        margin-right: 15px;
+    }
+
+    .session-place {
+        text-align: left;
+    }
+}
+
+.highlight-card {
+
+    .mr-video-starred {
+        width: 19px;
+        height: 19px;
+        margin-right: 10px;
+
+        i {
+            font-size: 19px;
+        }
+    }
+
+    .mr-video-starred i {
+        -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none;   /* Chrome/Safari/Opera */
+        -khtml-user-select: none;    /* Konqueror */
+        -moz-user-select: none;      /* Firefox */
+        -ms-user-select: none;       /* IE/Edge */
+        user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+        color: #262B33;
+    }
+
+    .mr-video-starred i.starred {
+        color: #262B33;
+    }
+
+    .highlight-views {
+        cursor: default;
+    }
+}
+
+.movie-card {
+
+    .movie-views {
+        cursor: default;
+    }
+}
+
+.checkin-card {
+    .comment {
+        height: 40px;
+        overflow: hidden;
+        p {
+            text-align: left;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+    }
+
+    .sport-icon {
+        height: 24px;
+        margin-top: 1px;
+    }
+
+    .condition-icon {
+        height: 24px;
+        margin-top: 2px;
+    }
+}
+
+.user-card {
+
+    .user-header {
+        display: block;
+        text-align: left;
+        margin-bottom: 10px;
+
+        > div, a {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .user-img {
+            height: 43px;
+            width: 43px;
+            box-shadow: 0 0 0 5px rgba(255, 255, 255, .5), 0 0 10px rgba(0, 0, 0, .2);
+            background-clip: padding-box;
+            background-size: cover;
+            background-position: center center;
+            @media (min-width: $screen-lg) {
+                height: 50px;
+                width: 50px;
+            }
+        }
+
+        .user-details {
+            margin-left: 15px;
+            .card-title {
+                line-height: 20px;
+                font-size: 14px;
+                @media (min-width: $screen-lg) {
+                    line-height: 24px;
+                    font-size: 18px;
+                }
+            }
+            .card-subtitle {
+                font-size: 12px;
+                @media (min-width: $screen-lg) {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    .user-sports-container {
+        .user-sport-container {
+            .user-sport-icon {
+
+                i {
+                    display: inline-block;
+                }
+
+                i.ic_sport_snowboard {
+                    //                    @include background-image("logo-horizontal", 147px 44px);
+                    background-image: url("images/sport_icons/ic_snowboard_white_24dp.png");
+                }
+                i.ic_sport_kayak {
+                    background-image: url("images/sport_icons/ic_kayak_white_24dp.png");
+                }
+            }
+        }
+    }
+}
+
+.content-loader {
+    margin: 0 auto;
+    color: $color-accent;
+}
+
+.content-page {
+
+    i {
+        vertical-align: middle;
+        font-size: 14px;
+        @media (min-width: $screen-lg) {
+            font-size: 18px;
+        }
+    }
+
+    .content-social {
+        [class^="col-"] {
+            padding: 0;
+
+            i {
+                font-size: 14px;
+                @media (min-width: $screen-lg) {
+                    font-size: 24px;
+                }
+            }
+            span {
+                font-size: 16px;
+                vertical-align: middle;
+
+                @media (min-width: $screen-sm) and (max-width: $screen-sm-max) {
+                    font-size: 14px;
+                }
+
+                @media (max-width: $screen-xs-max) {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+    .content-details {
+        display: block;
+        text-align: left;
+        margin: 15px 0 20px 5px;
+
+        > div, a {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .content-owner-img {
+            height: 43px;
+            width: 43px;
+            //box-shadow: 0 0 0 5px rgba(255, 255, 255, .5), 0 0 10px rgba(0, 0, 0, .2);
+            background-clip: padding-box;
+            background-size: cover;
+            background-position: center center;
+            @media (min-width: $screen-lg) {
+                height: 50px;
+                width: 50px;
+            }
+        }
+
+        > div {
+            margin-left: 15px;
+            max-width: calc(100% - 69px);
+            .content-owner-displayname {
+                line-height: 20px;
+                font-size: 14px;
+                @media (min-width: $screen-lg) {
+                    line-height: 24px;
+                    font-size: 18px;
+                }
+            }
+            .content-created {
+                font-size: 12px;
+                @media (min-width: $screen-lg) {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
+
+.content-header-panel {
+    padding: 0 5px 5px 5px;
+    text-align: left;
+
+    > div:first-child {
+        vertical-align: middle;
+        padding-right: 3px;
+
+        .header-icon {
+            margin-left: 10px;
+            vertical-align: top;
+            margin-top: 16px;
+            color: $text-color;
+            @media (min-width: $screen-sm) and (max-width: $screen-md-max) {
+                margin-top: 13px;
+            }
+            @media (max-width: $screen-xs-max) {
+                margin-top: 11px;
+                margin-left: 7px;
+            }
+
+            i {
+                font-size: 24px;
+                @media (min-width: $screen-sm) and (max-width: $screen-md-max) {
+                    font-size: 20px;
+                }
+                @media (max-width: $screen-xs-max) {
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+
+    .header-ribbon {
+        cursor: default;
+        position: absolute;
+        top: -16px;
+        left: 11px;
+        vertical-align: top;
+        width: 65px;
+        height: 65px;
+        background-size: 65px;
+        background-image: url("/images/ribbon.png");
+        background-position: 0px 0px;
+
+        @media (max-width: $screen-md-max) {
+            width: 60px;
+            height: 60px;
+            background-size: 60px;
+        }
+
+        i {
+            color: white;
+            margin: 10px 0 0 20px;
+            font-size: 32px;
+
+            @media (max-width: $screen-md-max) {
+                margin: 10px 0 0 19px;
+                font-size: 28px;
+            }
+        }
+    }
+
+    .content-name {
+        max-width: calc(100% - 65px - 32px - 20px);
+        margin-left: 65px;
+        @media (max-width: $screen-md-max) {
+            max-width: calc(100% - 58px - 32px - 20px);
+            margin-left: 58px;
+        }
+        @media (max-width: $screen-xs-max) {
+            max-width: calc(100% - 58px - 25px - 10px);
+        }
+
+        &.with-edit-icon{
+            max-width: calc(100% - 65px - 32px - 32px - 20px);
+            @media (max-width: $screen-md-max) {
+                max-width: calc(100% - 58px - 32px - 32px - 20px);
+            }
+            @media (max-width: $screen-xs-max) {
+                max-width: calc(100% - 58px - 25px - 25px - 10px);
+            }
+        }
+
+        h1 {
+            margin: 10px 0 0;
+            line-height: 32px;
+            font-size: 30px;
+            font-weight: 500;
+            text-align: left;
+            @media (min-width: $screen-md) and (max-width: $screen-md-max) {
+                font-size: 26px;
+                margin-top: 5px;
+            }
+            @media (min-width: $screen-sm) and (max-width: $screen-sm-max) {
+                font-size: 22px;
+                margin-top: 5px;
+            }
+            @media (max-width: $screen-xs-max) {
+                font-size: 18px;
+                margin-top: 5px;
+            }
+
+            a {
+                color: $text-color
+            }
+        }
+    }
+
+    > div:nth-child(2) {
+        vertical-align: bottom;
+
+        > div:nth-child(2) {
+            height: 100%;
+        }
+    }
+
+    .content-social {
+        margin-top: 20px;
+        cursor: default;
+        @media (max-width: $screen-sm-max) {
+            margin-top: 10px;
+        }
+        [class^="col-"] {
+            padding: 0;
+
+            i {
+                font-size: 14px;
+//                color: $brand-primary;
+                @media (min-width: $screen-lg) {
+                    font-size: 28px;
+                }
+            }
+            span {
+                font-size: 14px;
+//                color: $brand-primary;
+                vertical-align: middle;
+
+                @media (min-width: $screen-sm) and (max-width: $screen-md-max) {
+                    font-size: 12px;
+                }
+                @media (max-width: $screen-xs-max) {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+    .content-details {
+        margin: 0 0 0 2px;
+
+        > div {
+            margin-left: 10px;
+            max-width: calc(100% - 64px);
+
+            .content-owner-displayname {
+                line-height: 20px;
+                font-size: 14px;
+                @media (min-width: $screen-lg) {
+                    line-height: 24px;
+                    font-size: 18px;
+                }
+            }
+            .content-created {
+                font-size: 12px;
+                @media (min-width: $screen-lg) {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
+
+
+.session-header-panel {
+
+    .movie-ribbon, .session-name, .tracks-icon {
+        display: inline-block;
+    }
+
+    .movie-ribbon {
+        background-image: url("/images/ribbon.png");
+
+        i {
+            margin: 11px 0 0 22px;
+            font-size: 28px;
+
+            @media (max-width: $screen-md-max) {
+                margin: 11px 0 0 21px;
+                font-size: 24px;
+            }
+        }
+    }
+
+    .tracks-icon {
+        i {
+            cursor: default;
+            color: $brand-primary;
+        }
+    }
+
+    .session-name {
+
+        &.with-tracks-icon{
+            max-width: calc(100% - 65px - 32px - 32px - 15px);
+            @media (max-width: $screen-md-max) {
+                max-width: calc(100% - 58px - 32px - 32px - 15px);
+            }
+            @media (max-width: $screen-xs-max) {
+                max-width: calc(100% - 58px - 25px - 25px - 10px);
+            }
+
+            &.with-edit-icon{
+                max-width: calc(100% - 65px - 32px - 32px - 32px - 15px);
+                @media (max-width: $screen-md-max) {
+                    max-width: calc(100% - 58px - 32px - 32px - 32px - 15px);
+                }
+                @media (max-width: $screen-xs-max) {
+                    max-width: calc(100% - 58px - 25px - 25px - 25px - 10px);
+                }
+            }
+        }
+    }
+
+    .session-clips-number {
+        margin-top: 10px;
+        cursor: default;
+        @media (max-width: $screen-md-max) {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    }
+
+    .session-highlights-number {
+        cursor: default;
+        @media (max-width: $screen-md-max) {
+            font-size: 12px;
+        }
+        span {
+            color: $brand-primary;
+        }
+    }
+}
+
+.highlight-header-panel {
+
+    .cut-ribbon, .highlight-name{
+        display: inline-block;
+    }
+
+    .cut-ribbon {
+        background-image: url("/images/ribbon-rosso.png");
+
+        i {
+            margin: 13px 0 0 23px;
+            font-size: 26px;
+
+            @media (max-width: $screen-md-max) {
+                margin: 13px 0 0 22px;
+                font-size: 22px;
+            }
+        }
+    }
+
+    .highlight-name {}
+
+    .highlight-view-number {
+        margin-top: 10px;
+        cursor: default;
+        @media (max-width: $screen-md-max) {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    }
+
+    .highlight-place {
+        i {
+            cursor: default;
+        }
+        @media (max-width: $screen-md-max) {
+            font-size: 12px;
+        }
+        span {
+            color: $brand-primary;
+        }
+    }
+
+    hr {
+        margin: 2px 0 5px 0;
+    }
+
+    .hashtag-and-views-container{
+        padding: 5px 5px 0 0px;
+    }
+}
+
+.movie-header-panel {
+
+    .theaters-ribbon, .movie-name{
+        display: inline-block;
+    }
+
+    .theaters-ribbon {
+        background-image: url("/images/ribbon.png");
+
+        i {
+            margin: 13px 0 0 23px;
+            font-size: 26px;
+
+            @media (max-width: $screen-md-max) {
+                margin: 13px 0 0 22px;
+                font-size: 22px;
+            }
+        }
+    }
+
+    .movie-name {}
+
+    .movie-view-number {
+        margin-top: 10px;
+        cursor: default;
+        @media (max-width: $screen-md-max) {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    }
+
+    .movie-place {
+        i {
+            cursor: default;
+        }
+        @media (max-width: $screen-md-max) {
+            font-size: 12px;
+        }
+        span {
+            color: $brand-primary;
+        }
+    }
+
+    hr {
+        margin: 2px 0 5px 0;
+    }
+
+    .hashtag-and-views-container{
+        padding: 5px 5px 0 0px;
+    }
+}

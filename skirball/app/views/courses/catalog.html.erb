@@ -1,0 +1,18 @@
+<%= content_for :title, "Courses" %>
+<div class="view">
+  <%= link_to "View Online Course Guide", :courses, :class => "button course-guide" %>
+  <%= link_to "View Printed Course Guide", :catalog, :class => "button big course-guide" %>
+</div>
+
+<%= render_sidebar %>
+<div class="entry">
+  <%= render_flash %>
+  <%= @catalog.embed_code.html_safe %>
+  <%= image_tag "current_guide.png", class: "alignleft" %>
+  <%= image_tag @catalog.image.url(:default) %>
+  <% if @catalog.pdf.present? %>
+    <%= link_to "Download", catalog_url(:pdf), :class => "button big" %>
+  <% end %>
+  <div class="clear"></div>
+</div>
+

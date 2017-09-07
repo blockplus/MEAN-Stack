@@ -1,0 +1,172 @@
+<!doctype html>
+<!--[if lt IE 8]>         <html class="no-js lt-ie8"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Web Application</title>
+        <meta name="description" content="Responsive Admin Web App">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,400,600,300,700" rel="stylesheet" type="text/css">
+        <!-- Needs images, font... therefore can not be part of main.css -->
+        <link rel="stylesheet" href="themify-icons/themify-icons.min.css">
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+        <!-- end Needs images -->
+
+
+        <link rel="stylesheet" href="styles/main.css">
+
+
+                <!--ANGULAR 2 stuff-->
+
+              <!-- IE required polyfills, in this exact order -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.34.1/es6-shim.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.20/system-polyfills.js"></script>
+      <script src="https://npmcdn.com/angular2/es6/dev/src/testing/shims_for_IE.js"></script>
+
+      <!-- Angular polyfill required everywhere -->
+      <script src="https://code.angularjs.org/2.0.0-beta.8/angular2-polyfills.js"></script>
+
+      <script src="https://code.angularjs.org/tools/system.js"></script>
+        <script src="https://code.angularjs.org/tools/typescript.js"></script>
+      <script src="https://code.angularjs.org/2.0.0-beta.8/Rx.js"></script>
+      <script src="https://code.angularjs.org/2.0.0-beta.8/angular2.dev.js"></script>
+      <script src="https://code.angularjs.org/2.0.0-beta.8/router.dev.js"></script>
+      <script src="https://code.angularjs.org/2.0.0-beta.8/http.dev.js"></script>
+
+          <script>
+          System.config({
+            transpiler: 'typescript',
+            typescriptOptions: { emitDecoratorMetadata: true },
+            packages: {
+              'app': {defaultExtension: 'ts'}
+            }
+          });
+        System.import('app/main')
+              .then(null, console.error.bind(console));
+      </script>
+
+
+
+    </head>
+    <body id="app" class="app">
+        <!--[if lt IE 9]>
+            <div class="lt-ie9-bg">
+                <p class="browsehappy">You are using an <strong>outdated</strong> browser.</p>
+                <p>Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            </div>
+        <![endif]-->
+
+        <section id="header" class="header-container header-fixed bg-white">
+			<header class="top-header clearfix">
+
+				<!-- Logo -->
+				<div class="logo bg-dark">
+					<a href="#/">
+						<span class="logo-text">Commit!</span>
+					</a>
+				</div>
+
+				<!-- needs to be put after logo to make it work -->
+				<div class="menu-button" toggle-off-canvas>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</div>
+
+				<div class="top-nav">
+					<ul class="nav-left list-unstyled">
+						<li>
+							<a href="#/" data-toggle-nav-collapsed-min
+										 class="toggle-min"
+										 ><i class="ti-menu"></i></a>
+						</li>
+					</ul>
+
+					<ul class="nav-left list-unstyled">
+						<li>
+							<a href="https://twitter.com/commit2dallas" target="_blank">
+								<i class="fa fa-twitter"></i>
+							</a>
+						</li>
+						<li>
+							<a href="https://www.facebook.com/Commit2Dallas" target="_blank">
+								<i class="fa fa-facebook"></i>
+							</a>
+						</li>
+						<li style="color:white">
+							<a href=""">
+								<!--<i class="fa fa-paper-plane"></i>-->
+								<i>leave feedback</i>
+							</a>
+						</li>
+						<li style="color:white">
+							<a href=""">
+								<!--<i class="fa fa-paper-plane"></i>-->
+								<i>send to a friend</i>
+							</a>
+						</li>
+					</ul>
+
+
+					<ul class="nav-right pull-right list-unstyled">
+						<li style="width:99%;">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Get updates via E-mail!">
+								<span class="input-group-btn">
+									<button class="btn btn-default" type="button"><div class=" glyphicon glyphicon-plus"></div></button>
+								</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+
+			</header>
+
+
+		</section>
+
+        <div class="main-container">
+            <aside id="nav-container" class="nav-container nav-fixed nav-vertical bg-dark">
+				<div class="nav-wrapper">
+					<ul id="nav" class="nav">
+						<li><a href="#/home"> <i class="ti-home"></i><span data-i18n="Home">Home</span> </a></li>
+						<li><a href="#/district"><i class="ti-flag-alt"></i><span data-i18n="District">District</span></a></li>
+						<li><a href="#/campus"><i class="ti-flag-alt-2"></i><span data-i18n="Campus">Campus</span></a></li>
+						<li><a href="#/aeis_explanation"><i class="ti-panel"></i><span data-i18n="What is AEIS/TAPR?">What is AEIS/TAPR?</span></a></li>
+						<li><a href="#/staar_explanation"><i class="ti-dashboard"></i><span data-i18n="What is STAAR?">What is STAAR?</span></a></li>
+						<li><a href="#/bulk"> <i class="ti-server"></i><span>Bulk Data</span></a></li>
+						<li><a href="#/donors"> <i class="ti-ruler-pencil"></i><span>Donors Choose</span></a></li>
+						<li id="scorecard-li"><a href="#/scorecard/2"> <i class="ti-ruler-pencil"></i><span>Scorecard</span></a></li>
+					</ul>
+				</div>
+            </aside>
+
+            <div id="content" class="content-container">
+                <section class="view-container">
+					<div class="page page-profile">
+						<header class="profile-header">
+							<div class="profile-img">
+								<!--<img alt="" src="images/g1.jpg" class="img-circle">-->
+
+							</div>
+
+							<a href="http://www.commit2dallas.org" target="_blank"><img alt="" src="images/logo5.png"></a>
+
+							<div class="profile-social" style="margin-left:25px;">
+								<a href="https://www.facebook.com/Commit2Dallas" target="_blank" class="btn-icon btn-icon-round btn-facebook"><i class="ti-facebook"></i></a>
+								<a href="https://twitter.com/commit2dallas" target="_blank" class="btn-icon btn-icon-round btn-twitter"><i class="ti-twitter"></i></a>
+								<!--<a href="javascript:;" class="btn-icon btn-icon-round btn-instagram"><i class="ti-instagram"></i></a>-->
+							</div>
+
+
+						</header>
+                        <app-begin></app-begin>
+					</div>
+				</section>
+            </div>
+        </div>
+
+    </body>
+</html>

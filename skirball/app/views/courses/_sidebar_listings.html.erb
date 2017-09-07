@@ -1,0 +1,9 @@
+<div class="leftsidebar">
+  <% @courses.each do |course| %>
+    <div class="listing">
+      <%= image_tag course.image.url, class: 'alignleft' %>
+      <%= link_to course.title, course_path(course) %>
+    </div>
+  <% end %>
+</div>
+

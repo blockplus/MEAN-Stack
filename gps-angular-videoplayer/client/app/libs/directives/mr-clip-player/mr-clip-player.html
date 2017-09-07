@@ -1,0 +1,75 @@
+
+<div class="videoangular-container" ng-class="{ 'floating': isFloating }">
+    <videogular vg-theme="config.theme" vg-player-ready="onPlayerReady($API)" vg-complete="onCompleteVideo()" vg-update-time="onPlayerUpdateTime($currentTime, $duration)" vg-auto-play="config.autoPlay" vg-preload="config.preload" vg-crossorigin="anonymous">
+        <vg-media vg-src="config.sources">
+        </vg-media>
+        <vg-controls vg-autohide="config.autoHide" vg-autohide-time="config.autoHideTime">
+            <vg-play-pause-button class="mr-clip-player-custom-button"></vg-play-pause-button>
+            <i class="material-icons mr-clip-player-custom-button" ng-click="onPrevClick()">skip_previous</i>
+            <i class="material-icons mr-clip-player-custom-button" ng-click="onNextClick()">skip_next</i>
+            <vg-scrub-bar>
+                <div class="hidden-bar" ng-mousemove="onBarMouseMove($event)" ng-mouseleave="onBarMouseLeave($event)" ng-mouseEnter="onBarMouseEnter($event)"></div>
+                <vg-scrub-bar-buffer></vg-scrub-bar-buffer>
+                <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+            </vg-scrub-bar>
+            <vg-time-display>{{ currentTime | date:'mm:ss' }}</vg-time-display>
+            <vg-volume>
+                <vg-mute-button></vg-mute-button>
+                <vg-volume-bar></vg-volume-bar>
+            </vg-volume>
+            <vg-fullscreen-button></vg-fullscreen-button>
+        </vg-controls>
+
+        <div class="highlight-editor" ng-if="editMode && !isFullscreen && hasVgControls">
+            <mr-clip-highlights ng-style="{width: progressBarWidth}" highlights='highlights' ng-class="{fullscreen: isFullscreen}"
+                                clip-duration="videoElement.duration" on-click-highlight="selectHighlight(selected)"
+                                ng-hide="selectrange.view && videoElement.duration > zoomDuration">
+            </mr-clip-highlights>
+            <div class="preview-thumbnail" style="left: {{thumb.left}}px;" ng-show="thumb.visible">
+                <img src="{{appConfig.CDN_URL}}/sessions/{{clip.sessionId}}/clips/{{clip.id}}/frames/frame_{{thumb.filename}}_640.jpg"/>
+            </div>
+            <div class="video-progress-bar">
+                <div mr-highlight-range-selector ng-show="selectrange.view && !selectrange.isFixedWidth" class="selectrange" ng-style="{width: selectrange.width + '%', left: selectrange.left + 'px'}"></div>
+                <div mr-highlight-range-selector ng-show="selectrange.view && selectrange.isFixedWidth" class="selectrange" ng-style="{width: selectrange.width + 'px', left: selectrange.left + 'px'}"></div>
+                <div ng-show="selectrange.view && videoElement.duration > zoomDuration" class="zoom-timeline" ></div>
+            </div>
+            <div class='edit-session-bar'>
+                <div class="row">
+                    <div class="col-xs-2 col-md-1 playback-rate-dropbdown-container">
+                        <div class="dropup" uib-dropdown is-open="playbackRateDropbdown.isopen">
+                            <a href="javascript:;" class="dropdown-toggle" uib-dropdown-toggle md-button aria-label="playback rate">
+                                <i class="material-icons history-icon">history</i>
+                            </a>
+                            <ul class="uib-dropdown-menu">
+                                <li ng-class="{'active':API.playback == 2}"><a ng-click="setPlaybackRate(2)">2</a></li>
+                                <li ng-class="{'active':API.playback == 1}"><a ng-click="setPlaybackRate(1)">1</a></li>
+                                <li ng-class="{'active':API.playback == 0.5}"><a ng-click="setPlaybackRate(0.5)">½</a></li>
+                                <li ng-class="{'active':API.playback == 0.25}"><a ng-click="setPlaybackRate(0.25)">¼</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xs-8 col-md-10">
+                        <div class="row range-selectors-container">
+                            <div class="col-xs-4 range-selector-btn-col">
+                                <div ng-class="{selected: selectrange.length=='small'}" class="range-selector-btn yellow" ng-click="createRangeSelector('small')">{{ 'highlight_duration_small' | translate }}</div>
+                            </div>
+                            <div class="col-xs-4 range-selector-btn-col">
+                                <div ng-class="{selected: selectrange.length=='medium'}" class="range-selector-btn blue" ng-click="createRangeSelector('medium')">{{ 'highlight_duration_medium' | translate }}</div>
+                            </div>
+                            <div class="col-xs-4 range-selector-btn-col">
+                                <div ng-class="{selected: selectrange.length=='large'}" class="range-selector-btn red" ng-click="createRangeSelector('large')">{{ 'highlight_duration_large' | translate }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-2 col-md-1 create-highlight-btn-container">
+                        <button id="create-highlight-btn" class="md-fab md-warn md-fab-xs md-button md-ink-ripple" type="button" aria-label="create-highlight" ng-click="createHighlight($event)"><i class="material-icons">content_cut</i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <vg-overlay-play></vg-overlay-play>
+        <!--<vg-buffering></vg-buffering>-->
+        <vg-poster vg-url='config.plugins.poster' ng-if='!config.autoPlay'></vg-poster>
+    </videogular>
+</div>

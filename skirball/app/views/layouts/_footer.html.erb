@@ -1,0 +1,14 @@
+<div id="footer">
+  <ul>
+  <li><%= link_to "Your Account", :account %></li>
+  <% if logged_in? %>
+    <li><%= link_to "Logout", :logout %></li>
+  <% end %>
+  <li><%= link_to "Privacy Policy", page_url("privacy-policy") %></li> 
+  <li><%= link_to "Site Security", page_url("site-security") %></li>       
+  <li><%= link_to "Site Map", page_url("site-map") %></li>				
+  </ul>
+    <div class="alignright">One East 65th Street, New York, NY 10065 <span class="spacer">|</span> Phone 212.507.9580 <span class="spacer">|</span> <a href="mailto:info@adultjewishlearning.org">info@adultjewishlearning.org</a> <span class="spacer">|</span> <%= link_to "Contact Us", page_url("contact-us") %><br>
+    <small>Copyright © 2013 The Skirball Center for Adult Jewish Learning at Temple Emanu-El</small>
+    </div>
+</div>

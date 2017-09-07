@@ -1,0 +1,55 @@
+<%= content_for :title, "Your Account" %>
+<div class="entry">
+  <%= render_flash %>
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#courses" data-toggle="tab">Your Courses</a></li>
+    <li><a href="#home" data-toggle="tab">Login Information</a></li>
+    <li><a href="#orders" data-toggle="tab">Order History</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane active" id="courses">
+      <% @semesters.each_with_index do |semester, i| %>  
+        <h2 class="title"><%= semester[0] %></h2>
+        <% semester[1].each do |course| %>
+          <h3><%= link_to course.title, course_path(course) %></h3>
+          <h3 class="purple"><%= course.teacher.name %></h3>
+          <div class="clear"></div>
+          <p class="details">
+            <%= course.day_of_week %>
+            <span class="separator">|</span>
+            <%= "#{course.start_time} - #{course.end_time}" %>
+          </p>
+          <p class="details"><%= image_tag 'calendar.png', class: 'alignleft' %><%= course.humanized_class_dates %></p>
+          <div class="clear"></div>
+        <% end %>
+        <% unless i == @semesters.count - 1 %>
+          <hr>
+        <% end %>
+      <% end %>
+    </div>
+	
+		<div class="tab-pane" id="home">
+      <%= form_for @account, class: "account" do |f| %>
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "span4", size: 30, placeholder: "Your Name" %>
+        <%= f.label :email, "Email Address" %>
+        <%= f.email_field :email, class: "span4", size: 30, placeholder: "your@email.com" %>
+        <%= f.label :password, "Change your password" %>
+        <%= f.password_field :password, class: "span4", size: 10, placeholder: "*****************" %>
+        <%= f.label :password_confirmation, "Confirm your new password" %>
+        <%= f.password_field :password_confirmation, class: "span4", size: 10, placeholder: "*****************" %>
+        <div class="clear"></div>
+        <%= f.submit "Update", :class => :big %>
+      <% end %>
+    </div>
+
+    <div class="tab-pane" id="orders">
+      <% @account.purchases.each do |purchase| %>
+        <%= purchase.receipt.html_safe %>
+      <% end %>
+    </div>
+    <div class="clear"></div>
+	</div>
+</div>
+

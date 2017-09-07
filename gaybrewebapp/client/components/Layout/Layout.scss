@@ -1,0 +1,84 @@
+@import '../variables.scss';
+
+* {
+  border: 0px;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, ul, li {
+  margin: 0px;
+  padding: 0px;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  list-style-type: none;
+  font-family: 'Muli', sans-serif;
+}
+
+html,
+body,
+:global(#app) {
+  height: 100%;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  transition: all 0.3s ease-in-out 0.1s;
+  color: inherit;
+}
+
+a:hover, a:focus {
+  transition: all 0.3s ease-in-out 0.1s;
+  outline: none;
+  text-decoration: none;
+  color: #63c1a4;
+}
+
+a:focus {
+  outline: none;
+}
+
+textarea {
+  resize: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+.loader {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 20;
+  background-image: url(./img/loading.gif);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: #1a1a1a;
+}
+
+h2 {
+  font-size: 45px;
+  line-height: 44px;
+  color: #63c1a4;
+  padding-bottom: 30px;
+}
+
+p {
+  font-size: 18px;
+  line-height: 30px;
+  color: #494949;
+  padding-bottom: 30px;
+}
+:global(.index-container) {
+	height: 100%;
+}
+.Layout {
+	height: 100%;
+}

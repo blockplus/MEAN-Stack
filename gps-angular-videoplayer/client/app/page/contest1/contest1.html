@@ -1,0 +1,66 @@
+<div class="page contest-page">
+    <div class="row ui-section">
+        <div class="col-md-12">
+            <div class="ui-page-with-max-width-container">
+                <div class="contest-header contest1-header">
+                    <h1>{{ 'contest1_title' | translate }}</h1>
+                    <div class="contest-header-subtitle">
+                        <img src="/images/logo/logo-horizontal@2x.png"/>
+                        <h2>{{ 'contest1_subtitle' | translate }}</h2>
+                    </div>
+                </div>
+                <section>
+                    <div class="contest-section-content">
+                        <div class="contest-section-content-left">
+                            <h1 class="contest-section-title">{{ 'contest1_period' | translate }}</h1>
+                            <p class="contest-section-text">{{ 'contest1_description_1' | translate}}</p>
+                            <p class="contest-section-text">{{ 'contest1_description_2' | translate}}</p>
+                            <p class="contest-section-text">{{ 'contest1_description_3' | translate}}</p>
+                        </div>
+                        <div class="contest-section-content-right">
+                            <img class="img-responsive contest-prize-img" src="/images/contest1/img_werner_power_house.png"/>
+                            <h2 class="contest-section-slogan contest-section-ribbon-slogan">
+                                <div class="arrow-right pull-left"></div>
+                                {{ 'contest1_slogan' | translate }}
+                                <div class="arrow-left pull-right"></div>
+                            </h2>
+                        </div>
+                    </div>
+                    <h1 class="contest-section-footer">{{ 'contest1_score_info' | translate }}</h1>
+                    <section class="candidate-section text-center">
+                        <span class="register-btn btn-icon btn-icon-round btn-danger"><a href="{{necomoniUrl}}" target="_blank">{{ 'contest1_register' | translate }}</a></span>
+                    </section>
+                </section>
+
+                <section>
+                    <div class="contest-section-content text-center">
+                        <h1 class="contest-section-title">{{ 'contest1_ranking' | translate }}</h1>
+                    </div>
+
+                    <table class="table table-hover table-striped table-responsive">
+                        <thead>
+                        <tr>
+                            <th>{{'contest_ranking_place' | translate}}</th>
+                            <th>{{'contest_ranking_score' | translate}}</th>
+                            <th>{{'contest_ranking_title' | translate}}</th>
+                            <th>{{'contest_ranking_author' | translate}}</th>
+                            <th>{{'contest_ranking_preview' | translate}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in items track by item.id" ng-click="goToItem(item)">
+                            <td style="vertical-align:middle">{{$index+1}}</td>
+                            <td style="vertical-align:middle">{{item.score | formatScore}}</td>
+                            <td style="vertical-align:middle">{{title(item)}}</td>
+                            <td style="vertical-align:middle"><img ng-src="{{ ownerAvatarUrl(item)}}" alt="" class="img-circle img35_35"> {{ownerDisplayName(item)}}</td>
+                            <td><img ng-src="{{thumbnail(item)}}" class="thumbail-preview"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div>

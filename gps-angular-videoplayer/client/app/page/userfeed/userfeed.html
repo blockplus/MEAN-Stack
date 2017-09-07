@@ -1,0 +1,85 @@
+<div class="page user-timeline">
+
+    <div class="row ui-section">
+        <div class="col-md-12">
+
+            <div class="ui-timeline-container">
+                <section class="ui-timeline"
+                         infinite-scroll='timeline.nextPage()'
+                         infinite-scroll-disabled='timeline.disabled'
+                         infinite-scroll-distance='0'>
+
+                    <!-- no timeline actions -->
+                    <article class="tl-item" ng-show="timeline.data.length == 0 && !timeline.busy">
+                        <div class="tl-body">
+                            <div class="tl-entry">
+                                <div class="tl-caption">
+                                    <a class="btn btn-primary btn-block">{{ 'timeline_today' | translate }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="tl-item alt" ng-show="timeline.data.length == 0 && !timeline.busy">
+                        <div class="tl-body">
+                            <div class="tl-entry">
+                                <div class="tl-time">&nbsp;</div>
+                                <div class="tl-icon btn-icon-round btn-icon btn-icon-thin btn-info"><i class="zmdi zmdi-info"></i></div>
+                                <div class="tl-content">
+                                    <h4 class="tl-tile text-primary">{{ 'nodata_found' | translate }}</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="tl-item feed-page-banner hidden-xs" affix affix-class="feed-page-banner-affix" affix-options="{ offset: 64 }">
+                        <div class="tl-body">
+                            <div class="tl-entry">
+                                <div class="tl-content">
+                                    <mr-banner-contest/>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- timeline actions -->
+                    <article class="tl-item" ng-repeat-start="timelineObj in timeline.data" ng-init="timeline.evaluateDay(timelineObj)" ng-show="timeline.isFirstItemOfTheDay(timelineObj)">
+                        <div class="tl-body">
+                            <div class="tl-entry">
+                                <div class="tl-caption">
+                                    <a class="btn btn-primary btn-block">{{ timeline.getTimelineDayHeader(timelineObj) }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="tl-item" ng-repeat-end ng-class="{ 'alt': true }">
+                        <div class="tl-body">
+                            <div class="tl-entry" ng-init="timelineEntryType = timeline.getTimelineEntryType(timelineObj)">
+                                <!-- contents -->
+                                <mr-checkin-card ng-if="timelineEntryType == TimelineEntryTypes._CHECKIN" checkin="timelineObj.checkin" is-timeline-card="true" timeline-obj="timelineObj" timeline-controller="timeline"></mr-checkin-card>
+                                <mr-highlight-card ng-if="timelineEntryType == TimelineEntryTypes._HIGHLIGHT" highlight="timelineObj.highlight" is-timeline-card="true" timeline-obj="timelineObj" timeline-controller="timeline"></mr-highlight-card>
+                                <mr-movie-card ng-if="timelineEntryType == TimelineEntryTypes._MOVIE" movie="timelineObj.movie" is-timeline-card="true" timeline-obj="timelineObj" timeline-controller="timeline"></mr-movie-card>
+                                <mr-session-card ng-if="timelineEntryType == TimelineEntryTypes._SESSION" session="timelineObj.session" is-timeline-card="true" timeline-obj="timelineObj" timeline-controller="timeline"></mr-session-card>
+                                <mr-user-card ng-if="timelineEntryType == TimelineEntryTypes._USER" user="timelineObj.user" is-timeline-card="true" timeline-obj="timelineObj" timeline-controller="timeline"></mr-user-card>
+                                <!-- content deleted -->
+                                <div ng-if="timelineEntryType == TimelineEntryTypes._CONTENT_DELETED">
+                                    <div class="tl-time">{{ timeline.getTimelineEntryTime(timelineObj) }}</div>
+                                    <div class="tl-icon btn-icon-round btn-icon btn-icon-thin btn-info"><i class="material-icons md-18">delete</i></div>
+                                    <div class="tl-content">
+                                        <h4 class="tl-tile text-danger">{{ 'content_deleted' | translate }}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                </section>
+            </div>
+            <div class="row">
+                <div ng-show="timeline.busy" class="col-md-12 text-center"><md-progress-circular class="md-warn card-loader" md-mode="indeterminate" md-diameter="40"></md-progress-circular></div>
+            </div>
+        </div>
+    </div>
+
+</div>

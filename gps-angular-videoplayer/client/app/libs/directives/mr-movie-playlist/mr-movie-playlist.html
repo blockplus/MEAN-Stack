@@ -1,0 +1,13 @@
+<div class="mr-movie-playlist" ng-class="{active: active}">
+    <a ng-click="click()">
+        <img ng-src="{{::getThumbnail(movie)}}" class="img-responsive"/>
+    </a>
+    <div class="title-info">
+        <span class="title"><p class="text-truncate">{{::movie.name}}</p></span>
+    </div>
+    <div class="time-info">
+        <span class="time"><p>{{::movie.duration | duration}}</p></span>
+    </div>
+    <div class="mr-movie-playlist-mask"></div>
+
+</div>

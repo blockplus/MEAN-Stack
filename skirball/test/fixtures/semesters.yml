@@ -1,0 +1,21 @@
+summer:
+  name: Summer 2013
+  starts_at: 2013-07-02 00:00:00.000000000 Z 
+  ends_at: 2013-10-02 00:00:00.000000000 Z
+
+early_bird:
+  name: Early Bird
+  starts_at: <%= 28.days.from_now %>
+  ends_at: <%= 3.months.from_now %>
+  early_bird_ends_at: <%= 1.week.from_now %>
+
+after_early_bird:
+  name: After Early Bird
+  starts_at: <%= 2.weeks.from_now %>
+  ends_at: <%= 2.months.from_now %>
+  early_bird_ends_at: <% 1.week.ago %>
+
+four_week_semester:
+  name: Four Week Semester
+  starts_at: <%= Time.now %>
+  ends_at: <%= 28.days.from_now %>

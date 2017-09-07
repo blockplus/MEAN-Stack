@@ -1,0 +1,133 @@
+.mr-highlight-preview {
+    background-color: #FFFFFF;
+}
+
+.mr-highlight-preview .md-card-image {
+    min-height: 120px;
+}
+
+.mr-highlight-preview .mr-video-container {
+    position: relative;
+}
+
+.mr-highlight-preview .mr-video-starred {
+    position: absolute;
+    top: 6px;
+    right: 5px;
+}
+
+.mr-highlight-preview .mr-video-starred i {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* IE/Edge */
+    user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+    color: white !important;
+    text-shadow: 2px solid white;
+}
+
+.mr-highlight-preview .mr-video-starred i.starred {
+    color: white !important;
+}
+
+.mr-highlight-preview .mr-video-icon {
+    background-color: #0F72B5;
+    color: #fff;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 48px;
+    height: 48px;
+    padding: 6px 6px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* IE/Edge */
+    user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+.mr-highlight-preview a {
+    cursor: pointer;
+}
+
+.mr-highlight-preview a:hover .mr-video-icon.over-with-image {
+    background-color: #DA322C;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.mr-highlight-preview a .mr-video-icon:hover {
+    background-color: #DA322C;
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -ms-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.mr-highlight-preview .mr-video-title {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 12px;
+    padding: 3px 5px 3px 5px;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* IE/Edge */
+    user-select: none;           /* non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+.mr-highlight-preview .mr-video-title p {
+    margin-bottom: 0px;
+    font-weight: 300;
+}
+
+.mr-highlight-preview .mr-video-stats span{
+    color: rgba(0, 0, 0, 0.87);
+    font-weight: 300;
+    cursor: default;
+}
+
+.mr-highlight-preview .mr-video-stats span i{
+    margin-right: 2px;
+}
+
+.mr-highlight-preview .mr-info  {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    font-size: 12px;
+}
+
+.mr-highlight-preview .mr-views  {
+
+}
+
+.mr-highlight-preview .mr-likes  {
+    margin-left: 10px;
+}
+
+
+.mr-highlight-preview .mr-comments  {
+    margin-left: 10px;
+}
+
+.mr-highlight-preview .mr-duration  {
+
+}
+
+md-card.mr-highlight-preview md-card-content {
+    padding: 10px
+}

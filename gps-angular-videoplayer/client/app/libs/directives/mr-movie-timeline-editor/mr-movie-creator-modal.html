@@ -1,0 +1,64 @@
+<div class="modal-header">
+    <h3>{{ 'dialog_new_movie' | translate }}</h3>
+</div>
+<div class="modal-body">
+    <img class="img-responsive" ng-src="{{movie.thumbnail}}">
+    <form name="movieForm">
+
+        <div class="form-input-with-icon md-block">
+            <div class="fiwi-icon fiwi-valign-top">
+                <i class="material-icons">comment</i>
+            </div>
+            <div class="fiwi-input">
+                <md-input-container class="md-block">
+                    <label>{{ 'hint_title' | translate }}</label>
+                    <input required type="text" name="name" ng-model="movie.name"  aria-label="{{ 'hint_title' | translate }}"/>
+                </md-input-container>
+            </div>
+        </div>
+
+        <div class="form-input-with-icon md-block">
+            <div class="fiwi-icon fiwi-valign-top">
+                <i class="material-icons">chrome_reader_mode</i>
+            </div>
+            <div class="fiwi-input">
+                <md-input-container class="md-block">
+                    <label>{{ 'hint_description' | translate }}</label>
+                    <input type="text" name="description" ng-model="movie.description"  aria-label="{{ 'hint_description' | translate }}"/>
+                </md-input-container>
+            </div>
+        </div>
+
+        <div class="form-input-with-icon md-block">
+            <div class="fiwi-icon">
+                <i class="material-icons">local_offer</i>
+            </div>
+            <div class="fiwi-input">
+                <mr-input-hashtags selected-hashtags="selectedHashtags" require-match="false" placeholder="{{ 'hint_hashtags' | translate }}"></mr-input-hashtags>
+            </div>
+        </div>
+
+        <div class="form-input-with-icon md-block movie-friends-selector">
+            <div class="fiwi-icon">
+                <i class="material-icons">people</i>
+            </div>
+            <div class="fiwi-input">
+                <mr-input-friends selected-friends="selectedFriends" user-id="userId" placeholder="{{ 'hint_friendtags' | translate }}"></mr-input-friends>
+            </div>
+        </div>
+
+        <div class="form-input-with-icon md-block movie-music-switch">
+            <div class="fiwi-icon">
+                <i class="material-icons">music_video</i>
+            </div>
+            <div class="fiwi-input">
+                <md-switch class="md-primary" ng-model="musicEnabled" aria-label="Enable music">{{ 'dialog_new_movie_enable_music' | translate }}</md-switch>
+            </div>
+        </div>
+
+    </form>
+</div>
+<div class="modal-footer">
+    <button ui-wave class="btn btn-flat btn-default" ng-click="cancel()">{{ 'action_cancel' | translate }}</button>
+    <button ui-wave class="btn btn-flat btn-primary" ng-disabled="waiting" ng-click="create($event)">{{ 'action_create' | translate }}</button>
+</div>

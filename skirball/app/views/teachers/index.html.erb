@@ -1,0 +1,17 @@
+<%= content_for :title, "Faculty" %>
+<%= render_sidebar %>
+
+<div class="entry">
+  <%= render_flash %>
+  <% @teachers.each do |teacher| %>
+    <div class="faculty_all">
+      <div class="faculty">
+        <%= link_to teacher_path(teacher) do %>
+          <%= image_tag teacher.image.url(:default) %>
+        <% end %>
+        <%= link_to teacher.name, teacher_path(teacher) %>
+      </div>  
+    </div>
+  <% end %>
+</div>
+<div class="clear"></div>

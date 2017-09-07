@@ -1,0 +1,16 @@
+logs
+*.log
+node_modules
+.idea
+lib
+npm-debug.log*
+
+# Ignore non default themes
+src/themes/*
+!src/themes/bordeau
+!src/themes/harlequin
+!src/themes/light-grey
+!src/themes/light-yellow
+!src/themes/night-blue
+!src/themes/yellow
+!src/themes/snow

@@ -1,0 +1,23 @@
+<%= content_for :title, "Events" %>
+<%= content_for :custom_head do %>
+  <meta property="og:description" content="<%= strip_tags @event.description %>" />
+<% end %>
+
+<%= render_sidebar %>
+<div class="entry">
+  <%= render_flash %>
+  <h2><%= @event.title %></h2>
+  <p class="details">
+    <%= image_tag 'calendar.png', class: 'alignleft' %>
+    <%= @event.date.strftime "%B #{@event.date.day.ordinalize}" %>
+    <span class="separator">|</span>
+    <%= Time.zone.parse(@event.time).strftime("%I:%M%P") %>
+  </p>
+  <p class="details"><%= @event.location.address %></p>
+  <div class="clear"></div>
+  <%= @event.description.html_safe %>
+  <div class="clear"></div>
+  <% unless @event.archived? %>
+    <%= link_to "Register", create_event_item_path(@event.id), method: :post, :class => "big register button" %>
+  <% end %>
+</div>

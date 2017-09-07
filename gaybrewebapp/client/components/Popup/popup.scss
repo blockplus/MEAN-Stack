@@ -1,0 +1,65 @@
+.layout {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(56, 56, 56, .7);
+  z-index: 11;
+  transition: opacity .5s;
+}
+
+:global(.popup-animation) {
+   opacity: 0;
+
+   &-enter{
+     opacity: 0;
+     transition: opacity .5s;
+   }
+
+   &-enter-active {
+     opacity: 1;
+   }
+
+   &-leave {
+     opacity: 1;
+     transition: opacity .5s;
+   }
+
+   &-leave-active {
+     opacity: 0;
+   }
+}
+
+:global(.popup-container) {
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
+  top: 50px;
+}
+
+:global(.popup-animation-anim){
+   opacity: 0;
+
+   &-enter{
+     opacity: 0;
+     transition: opacity .5s .1s, transform .5s .1s;
+     transform: translate(-50%, -100px);
+   }
+
+   &-enter-active {
+     opacity: 1;
+     transform: translate(-50%, 0);
+   }
+
+   &-leave {
+     opacity: 1;
+     transform: translate(-50%, 0);
+     transition: opacity .3s, transform .3s;
+   }
+
+   &-leave-active {
+     transform: translate(-50%, 100px);
+     opacity: 0;
+   }
+}

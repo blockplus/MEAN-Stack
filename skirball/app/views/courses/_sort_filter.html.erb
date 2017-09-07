@@ -1,0 +1,40 @@
+<div class="sort">
+  <%= form_tag :courses do %>
+    <%= label_tag nil, class: 'checkbox inline' do %>
+      <span class="italic">Filter Results</span>
+    <% end %>
+    <%= label_tag :daytime, class: 'checkbox inline' do %>
+      <%= check_box_tag "time_of_day[]", :daytime, params[:time_of_day].present? && params[:time_of_day].include?('daytime') %>
+      Daytime
+    <% end %>
+    <%= label_tag :evening, class: 'checkbox inline' do %>
+      <%= check_box_tag "time_of_day[]", :evening, params[:time_of_day].present? && params[:time_of_day].include?('evening') %>
+      Evening
+    <% end %>
+    <%= label_tag :sunday, class: 'checkbox inline' do %>
+      <%= check_box_tag "day_of_week[]", 'Sunday', params[:day_of_week].present? && params[:day_of_week].include?('Sunday') %>
+      Sun
+    <% end %>
+    <%= label_tag :monday, class: 'checkbox inline' do %>
+      <%= check_box_tag 'day_of_week[]', 'Monday', params[:day_of_week].present? && params[:day_of_week].include?("Monday") %>
+      Mon
+    <% end %>
+    <%= label_tag :tuesday, class: 'checkbox inline' do %>
+      <%= check_box_tag 'day_of_week[]', 'Tuesday', params[:day_of_week].present? && params[:day_of_week].include?("Tuesday") %>
+      Tues
+    <% end %>
+    <%= label_tag :wednesday, class: 'checkbox inline' do %>
+      <%= check_box_tag 'day_of_week[]', 'Wednesday', params[:day_of_week].present? && params[:day_of_week].include?('Wednesday') %>
+      Wed
+    <% end %>
+    <%= label_tag :thursday, class: 'checkbox inline' do %>
+      <%= check_box_tag 'day_of_week[]', 'Thursday', params[:day_of_week].present? && params[:day_of_week].include?('Thursday') %>
+      Thurs
+    <% end %>
+    <%= submit_tag "Find" %>
+    <% if params[:time_of_day] || params[:day_of_week] %>
+      <%= link_to "Clear", :courses %>
+    <% end %>
+  <% end %>
+</div>
+

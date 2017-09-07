@@ -1,0 +1,22 @@
+<%= image_tag course.image.url, class: 'alignleft', height: 95, width: 95 %>
+<h2><%= course.title %></h2>
+<h3 class="subtitle"><%= course.subtitle %></h3>
+<h3 class="purple">
+  <%= course.teachers.map{ |teacher| link_to teacher.name, teacher_path(teacher) }.to_sentence.html_safe %></h3>
+<div class="clear"></div>
+<p class="details">
+  <%= number_to_currency course.price(false), precision: 0 %>
+
+  <% if course.ignore_discount != true %>
+      <span class="separator">|</span>
+      (<%= number_to_currency course.price(true), precision: 0 %> with member discount)
+  <% end %>
+  <span class="separator">|</span>
+  <%= course.day_of_week %>
+  <span class="separator">|</span>
+  <%= "#{course.start_time} - #{course.end_time}" %>
+  </p>
+<p class="details"><%= image_tag 'calendar.png', class: 'alignleft' %><%= course.humanized_class_dates %></p>
+<div class="clear"></div>
+<%= course.description.html_safe %>
+

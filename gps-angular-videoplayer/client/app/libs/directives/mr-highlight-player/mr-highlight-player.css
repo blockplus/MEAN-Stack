@@ -1,0 +1,18 @@
+mr-highlight-player {
+    text-align: initial;
+}
+
+videogular div.session-info {
+    position: absolute;
+    display: block;
+    z-index: 50;
+    top: 0;
+    left: 20px
+}
+
+.mr-highlight-player-custom-button {
+    display: table-cell;
+    width: 32px;
+    cursor: pointer;
+    color: white;
+}

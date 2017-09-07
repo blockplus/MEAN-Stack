@@ -1,0 +1,24 @@
+<div class="tl-time">{{ timelineCtrl.getTimelineEntryTime(timelineObj) }}</div>
+<div class="tl-icon btn-icon-round btn-icon btn-icon-thin btn-color-secondary2 active"><i class="material-icons md-18">person_add</i></div>
+<div class="tl-content user-card">
+    <div class="card bg-white">
+        <div class="card-content">
+            <div class="tl-action-description color-danger text-truncate" ng-init="actionDescription = timelineCtrl.getActionDescription(timelineObj)"
+                 ng-show="actionDescription!=null" ng-bind-html="actionDescription"></div>
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="tl-action-header">
+                        <a ui-sref="user({userId: user.id })"><div style="{{ 'background-image: url('+ user.avatarUrl +')' }}" class="tl-action-performer-img img-circle"></div></a>
+                        <div class="tl-action-owner">
+                            <div class="card-title text-truncate">{{ user.displayName }}</div>
+                            <div class="card-subtitle">{{ user.created | dateFromMillis }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="logo-image pull-right"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
